@@ -1,0 +1,96 @@
+<dom-module id="epicerie-login">
+  <style>
+    :host {
+      display: block;
+    }
+    .userTheme {
+      background-color: #e9faff;
+      padding: 14px 21px;
+      color: black;
+      box-shadow: 0 0 0 1px #aad6df inset, 0 1px 2px 0 rgba(0,0,0,2);
+    }
+    .userName {
+      font-size: 17px;
+      opacity: 0.85;
+      color: #297187;
+      text-align: left;
+      font-weight: 700;
+    }
+
+  </style>
+  <template>
+    <firebase-auth id="baselogin"
+                   user="{{user}}"
+                   statusKnown="{{statusKnown2}}"
+                   location="https://projectmgmt.firebaseio.com"
+                   provider="google"
+                   on-login="_fireLogin"
+                   on-logout="_fireLogout"
+                   autoLogin="false"></firebase-auth>
+      <div>
+        <template is="dom-if" if="{{!user}}">
+          <paper-button raised on-click="triggerLogin">Login</paper-button>
+        </template>
+
+        <template is="dom-if" if="{{user}}">
+          <paper-button raised on-click="triggerLogout">Logout</paper-button>
+
+          <span class="userTheme">
+            <iron-icon icon="face"></iron-icon>
+            <span class="userName">{{user.google.displayName}}</span>
+            <iron-image src="{{user.google.cachedUserProfile.picture}}"
+                        style="width:45px; height:45px; vertical-align:middle; border-radius:100%"
+                        sizing="contain" preload fade></iron-image>
+          </span>
+        </template>
+      </div>
+
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'epicerie-login',
+    properties: {
+      myuser: {
+        type: Object,
+        notify: true,
+        readOnly: false,
+        observer: '_myuserChanged'
+      },
+      isConnected:{
+        type:Boolean,
+        value:false
+      }
+    },
+    triggerLogin: function() {
+      this.$.baselogin.login();
+    },
+    triggerLogout: function() {
+      //console.log('"{{user.google.displayName}}"');
+      this.$.baselogin.logout();
+    },
+    _fireLogin: function(e) {
+      console.log("firelogin");
+      console.log(e.detail.user.uid);
+      //console.log(e.detail.user.google.displayName);
+      this.myuser=e.detail.user;
+      this.isConnected = true;
+    },
+    _fireLogout: function(e) {
+      this.myuser = null;
+      this.isConnected = false;
+      //console.log('logout');
+    },
+    _myuserChanged: function(newValue, oldValue) {
+      console.log("userChanged");
+      console.log(newValue);
+/*      if (newValue){
+        console.log(newValue.google.displayName);
+      }else{
+        console.log('user removed');
+      }
+*/
+    }
+  });
+</script>
