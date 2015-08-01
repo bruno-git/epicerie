@@ -17,7 +17,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <div>New user</div>
+    New User Page
+    <div class="flex">
+      <paper-input label="Name" style="width:50%"></paper-input>
+      <paper-input label="Last Name" style="width:50%"></paper-input>
+    </div>
+    <paper-input label="email" type="email"></paper-input>
+    <paper-input label="Password" type="password"></paper-input>
+    <paper-input label="Phone" type="tel"></paper-input>
+    <paper-button>Create Account</paper-button>
+    <div>or</div>
+    <div><paper-button>Login with Facebook</paper-button></div>
+    <div><paper-button>Login with Google</paper-button></div>
+    <div>Already have an account? <paper-button on-click="_existing">Sign in</paper-button></div>
+
   </template>
 </dom-module>
 <script>
@@ -26,11 +39,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'new-user',
 
     properties: {
-      foo: {
-        type: String,
-        value: 'bar',
-        notify: true
+      myaction: {
+        type: String
       }
+    },
+
+    _existing: function() {
+      this.myaction = "existing";
+      console.log(this.myaction);
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior

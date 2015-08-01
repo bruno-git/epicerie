@@ -23,18 +23,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          entry-animation="fade-in-animation"
                          exit-animation="fade-out-animation"
                          animatedInitialSelection>
-      <new-user></new-user>
+      <new-user myaction="{{readaction}}"></new-user>
       <existing-user></existing-user>
     </neon-animated-pages>
+    <br>
+    action: <span>{{readaction}}</span>
   </template>
 </dom-module>
 <script>
 (function() {
   Polymer({
     is: 'app-login',
-    selected: {
-      value: 0
-    },
+
     properties: {
       foo: {
         type: String,
