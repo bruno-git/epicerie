@@ -43,34 +43,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
   <template is="dom-bind" id="app">
-
+<!-- Paper-drawer-panel removed
     <paper-drawer-panel id="paperDrawerPanel">
+-->
+<!-- Div drawer removed (part 1)
       <div drawer>
 
         <!-- Drawer Toolbar -->
+<!-- (part 2)
         <paper-toolbar id="drawerToolbar">
           <span class="paper-font-title">Menu</span>
         </paper-toolbar>
 
         <!-- Drawer Content -->
+<!-- (part 3)
           <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
             <a data-route="epicerie" href="/epicerie">
               <iron-icon icon="home"></iron-icon>
               <span>Epicerie</span>
             </a>
             <a data-route="users" href="/users">
-                <iron-icon icon="info"></iron-icon>
-                <span>Users</span>
-              </a>
+              <iron-icon icon="info"></iron-icon>
+              <span>Users</span>
+            </a>
+            <a data-route="neon" href="/neon">
+              <span>neon test</span>
+            </a>
 
           </paper-menu>
       </div>
-      <paper-header-panel main mode="waterfall-tall">
+-->
+      <paper-header-panel main mode="standard">
 
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar">
+<!-- icon with action paper-drawer-panel removed
           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-          <span class="flex">menu</span>
+-->
+          <span class="flex"></span>
 
           <!-- Toolbar icons -->
           <template is="dom-if" if="{{logged_user}}">
@@ -94,6 +104,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
+          <app-login></app-login>
+
+<!-- Hidden, to be removed once completely replaced by sub polymer elements
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="users">
@@ -133,11 +146,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </template>
           </section>
 
+          <section data-route='neon'>
+            <paper-material elevation="1">
+              <neon-test><neon-test>
+            </paper-material>
+          </section>
+
           </iron-pages>
+-->
         </div>
       </paper-header-panel>
+<!--
     </paper-drawer-panel>
-
+-->
   </template>
 
   <!-- build:js scripts/app.js -->

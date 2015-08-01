@@ -76,13 +76,13 @@
     },
 //_ERRORHANDLER
     _errorHandler: function(e) {
-      alert('Error Handler Message');
-      console.log("Firebase-collection error: " + e);
+      console.log('Error Handler Message');
+      console.log('Firebase-collection error: ' + e);
     },
 //_SUBMITPROJECT
-    _submitProject: function(e) {
+    _submitProject: function() {
       if (!this.$.name.value) {
-        alert('titre vide!');
+        console.log('titre vide!');
         return;
       }
       var newProject = this.$.fireProject.add({
@@ -90,7 +90,7 @@
         Manager:this.$.manager.value,
         Desc: this.$.description.value
       });
-      console.log("new project created: " + newProject);
+      console.log('new project created: ' + newProject);
     },
 //_SHOWPROJECTDETAILS
     _showProjectDetails: function(e) {
@@ -100,7 +100,7 @@
       document.getElementById(collapseId).toggle();
 
       var nodeName = e.target.parentElement.nodeName;
-      console.log("nodeName: " + nodeName);
+      console.log('nodeName: ' + nodeName);
 
     }
 
