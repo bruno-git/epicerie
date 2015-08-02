@@ -15,42 +15,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
+    .text-login {
+      text-align:center;
+    }
   </style>
   <template>
-    New User Page
-    <div class="flex">
-      <paper-input label="Name" style="width:50%"></paper-input>
-      <paper-input label="Last Name" style="width:50%"></paper-input>
+    <div style="width:275px; margin: auto">
+      <br>
+      <div class="text-login">New User Page</div>
+      <br>
+      <paper-input label="First Name"></paper-input>
+      <paper-input label="Last Name"></paper-input>
+      <paper-input label="Email" type="email" style="width:100%"></paper-input>
+      <paper-input label="Password" type="password" style="width:100%"></paper-input>
+      <paper-input label="Phone" type="tel" style="width:100%"></paper-input>
+      <paper-button raised style="width:100%">Create Account</paper-button>
+      <div class="text-login">or</div>
+      <paper-button raised style="width:100%">Login with Facebook</paper-button>
+      <paper-button raised style="width:100%">Login with Google</paper-button>
+      <div>
+        Already have an accoun?
+        <paper-button raised accesskey=""on-click="_switchExisting">Sign in</paper-button>
+      </div>
     </div>
-    <paper-input label="email" type="email"></paper-input>
-    <paper-input label="Password" type="password"></paper-input>
-    <paper-input label="Phone" type="tel"></paper-input>
-    <paper-button>Create Account</paper-button>
-    <div>or</div>
-    <div><paper-button>Login with Facebook</paper-button></div>
-    <div><paper-button>Login with Google</paper-button></div>
-    <div>Already have an account? <paper-button on-click="_existing">Sign in</paper-button></div>
-
   </template>
 </dom-module>
 <script>
-(function() {
+
   Polymer({
     is: 'new-user',
 
     properties: {
-      myaction: {
-        type: String
+      isNewUser: {
+        type: Boolean,
+        notify: true,
+        readOnly: false,
+        observer: '_isNewUserChanged'
       }
     },
-
-    _existing: function() {
-      this.myaction = "existing";
-      console.log(this.myaction);
+    _switchExisting: function() {
+      this.isNewUser = false;
+      console.log(this.isNewUser);
+    },
+    _isNewUserChanged: function(newValue, oldValue) {
+      console.log('(from new-user.html) isNewUser changed from: ' + oldValue + ' to: ' + newValue)
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior
     ]
   });
-})();
+
 </script>

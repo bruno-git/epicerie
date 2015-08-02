@@ -17,30 +17,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <paper-button on-click="_1">open 0</paper-button>
-    <paper-button on-click="_2">open 1</paper-button>
     <neon-animated-pages selected="[[selected]]"
                          entry-animation="fade-in-animation"
                          exit-animation="fade-out-animation"
                          animatedInitialSelection>
-      <new-user myaction="{{readaction}}"></new-user>
-      <existing-user></existing-user>
+      <new-user is-new-user="{{isNew}}"></new-user>
+      <existing-user is-new-user="{{isNew}}"></existing-user>
     </neon-animated-pages>
-    <br>
-    action: <span>{{readaction}}</span>
   </template>
 </dom-module>
 <script>
-(function() {
   Polymer({
     is: 'app-login',
 
     properties: {
-      foo: {
-        type: String,
-        value: 'bar',
-        notify: true
+      isNew: {
+        type: Boolean,
+        notify: true,
+        observer: '_isNewChanged'
       }
+    },
+    ready: function() {
+      this.isNew = false;
+
+    },
+    _isNewChanged(newValue, oldValue){
+      console.log('is new changed triggered, new value: ' + this.isNew);
+      if (this.isNew == true) {
+        this.selected=0
+      }
+      else {
+        this.selected = 1
+      }
+
     },
     _1: function() {
       this.selected = 0;
@@ -50,5 +59,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-})();
+
 </script>

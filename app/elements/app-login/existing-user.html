@@ -15,34 +15,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
+    .text-login {
+      text-align:center;
+    }
   </style>
   <template>
-    <div>Existing user</div>
-    <paper-input label="email" type="email"></paper-input>
-    <paper-input label="Password" type="password"></paper-input>
-    <paper-button>Login</paper-button>
-    <div>or</div>
-    <div><paper-button>Connect with Facebook</paper-button></div>
-    <div><paper-button>Connect with Google</paper-button></div>
-    Don't have an account? <paper-button>Sign up</paper-button>
-
+    <div style="width:275px; margin: auto">
+      <br>
+      <div class="text-login">Existing user page</div>
+      <br>
+      <paper-input label="Email" type="email"></paper-input>
+      <paper-input label="Password" type="password"></paper-input>
+      <paper-button raised style="width:100%">Login</paper-button>
+      <div class="text-login">or</div>
+      <paper-button raised style="width:100%">Connect with Facebook</paper-button>
+      <paper-button raised style="width:100%">Connect with Google</paper-button>
+      <div>
+        Don't have an account?
+        <paper-button raised on-click="_switchExisting">Sign up</paper-button>
+      </div>
+    </div>
   </template>
 </dom-module>
 <script>
-(function() {
   Polymer({
     is: 'existing-user',
 
     properties: {
-      foo: {
-        type: String,
-        value: 'bar',
-        notify: true
+      isNewUser: {
+        type: Boolean,
+        notify: true,
+        readOnly: false
       }
+    },
+    _switchExisting: function(){
+      this.isNewUser = true;
+      console.log(this.isNewUser);
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior
     ]
   });
-})();
 </script>
