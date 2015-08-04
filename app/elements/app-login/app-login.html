@@ -22,7 +22,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          exit-animation="fade-out-animation"
                          animatedInitialSelection>
       <new-user is-new-user="{{isNew}}"></new-user>
-      <existing-user is-new-user="{{isNew}}"></existing-user>
+      <existing-user is-new-user="{{isNew}}" fake-user-logged="{{isLogged}}"></existing-user>
+      <main-categories></main-categories>
     </neon-animated-pages>
   </template>
 </dom-module>
@@ -35,6 +36,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Boolean,
         notify: true,
         observer: '_isNewChanged'
+      },
+      isLogged:{
+        type: Boolean,
+        notify: true,
+        observer: '_isLoggedChanged'
       }
     },
     ready: function() {
@@ -49,13 +55,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       else {
         this.selected = 1
       }
-
     },
-    _1: function() {
-      this.selected = 0;
-    },
-    _2: function() {
-      this.selected = 1;
+    _isLoggedChanged(newValue, oldValue){
+      console.log('is logged (fake) changed triggered: new value: ' + this.isLogged);
+      if (this.isLogged == true){
+        this.selected = 2;
+      }
     }
 
   });

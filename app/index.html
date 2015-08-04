@@ -104,7 +104,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
-          <app-login></app-login>
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+            <section data-route="login">
+              <app-login></app-login>
+            </section>
+            <section data-route="epicerie">
+              <main-categories></main-categories>
+            </section>
+          </iron-pages>
+
 
 <!-- Hidden, to be removed once completely replaced by sub polymer elements
           <iron-pages attr-for-selected="data-route" selected="{{route}}">

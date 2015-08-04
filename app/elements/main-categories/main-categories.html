@@ -18,13 +18,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <div>Main Categories</div>
-    <paper-button raised>Mon Congelateur</paper-button>
-    <paper-button raised>Mon Garge-Manger</paper-button>
-    <paper-button raised>Mes Produits Menagers</paper-button>
+    <paper-button raised on-click="_section1">Menu</paper-button>
+    <paper-button raised on-click="_section2">2e section</paper-button>
+    <paper-button raised on-click="_section3">Mon Congelateur</paper-button>
     <neon-animated-pages selected="[[catSelected]]"
-                         entry-animation="fade-in-animation"
-                         exit-animation="fade-out-animation">
+                         entry-animation="[[entryAnimation]]"
+                         exit-animation="[[exitAnimation]]"
+                         animateInitialSelection>
+      <main-menu></main-menu>
       <liste-congelateur></liste-congelateur>
+      <liste-epicerie connected-to-firebase filter-category="viande"></liste-epicerie>
+
     </neon-animated-pages>
   </template>
 </dom-module>
@@ -34,11 +38,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'main-categories',
 
     properties: {
-      foo: {
-        type: String,
-        value: 'bar',
+      catSelected: {
+        value: 0,
         notify: true
       }
+    },
+    _section1: function(){
+      this.entryAnimation = 'slide-from-left-animation';
+      this.exitAnimation = 'slide-right-animation';
+      this.catSelected = 0;
+    },
+    _section2: function(){
+      this.entryAnimation = 'slide-from-right-animation';
+      this.exitAnimation = 'slide-left-animation';
+      this.catSelected = 1;
+    },
+    _section3: function(){
+      this.entryAnimation = 'slide-from-right-animation';
+      this.exitAnimation = 'slide-left-animation';
+      this.catSelected = 2;
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior

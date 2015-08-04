@@ -26,14 +26,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <br>
       <paper-input label="Email" type="email"></paper-input>
       <paper-input label="Password" type="password"></paper-input>
-      <paper-button raised style="width:100%">Login</paper-button>
+      <paper-button raised style="width:100%" on-click="_fake_login">Login</paper-button>
       <div class="text-login">or</div>
-      <paper-button raised style="width:100%">Connect with Facebook</paper-button>
-      <paper-button raised style="width:100%">Connect with Google</paper-button>
+      <paper-button raised style="width:100%" on-click="_fake_login">Connect with Facebook</paper-button>
+      <paper-button raised style="width:100%" on-click="_fake_login">Connect with Google</paper-button>
       <div>
         Don't have an account?
         <paper-button raised on-click="_switchExisting">Sign up</paper-button>
       </div>
+      <a data-route="epicerie" href="/epicerie">open epicerie</a>
     </div>
   </template>
 </dom-module>
@@ -46,11 +47,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Boolean,
         notify: true,
         readOnly: false
+      },
+      fakeUserLogged: {
+        type: Boolean,
+        notify: true,
+        value: false,
+        readOnly: false
       }
     },
     _switchExisting: function(){
       this.isNewUser = true;
       console.log(this.isNewUser);
+    },
+    _fake_login: function(){
+      this.fakeUserLogged = true;
+      console.log('fakeUserLogged: ' + this.fakeUserLogged)
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior
