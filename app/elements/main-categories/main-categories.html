@@ -17,17 +17,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <div>Main Categories</div>
-    <paper-button raised on-click="_section1">Menu</paper-button>
-    <paper-button raised on-click="_section2">2e section</paper-button>
-    <paper-button raised on-click="_section3">Mon Congelateur</paper-button>
+    <div>Main Categories page</div>
+
     <neon-animated-pages selected="[[catSelected]]"
                          entry-animation="[[entryAnimation]]"
                          exit-animation="[[exitAnimation]]"
                          animateInitialSelection>
-      <main-menu></main-menu>
-      <liste-congelateur></liste-congelateur>
-      <liste-epicerie connected-to-firebase filter-category="viande"></liste-epicerie>
+      <main-menu menu-item-selected="{{selection}}"></main-menu>
+      <liste-congelateur menu-item-selected="{{selection}}"></liste-congelateur>
+      <liste-epicerie connected-to-firebase filter-category="viande" menu-item-selected="{{selection}}"></liste-epicerie>
 
     </neon-animated-pages>
   </template>
@@ -41,26 +39,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       catSelected: {
         value: 0,
         notify: true
+      },
+      selection: {
+        type: String,
+        value: 'menu',
+        notify: true,
+        observer: '_selectionChanged'
       }
     },
-    _section1: function(){
+//SELECTION CHANGED
+    _selectionChanged: function() {
+      if (this.selection == 'menu') {
+        console.log('menu selected');
+        this._moveRight(0);
+      }
+      if (this.selection == 'viande') {
+        console.log('viande selected');
+        this._moveLeft(1);
+      }
+      if (this.selection == 'mer') {
+        console.log('mer selected');
+        this._moveLeft(2);
+      }
+    },
+//MOVE RIGHT
+    _moveRight: function(newPage) {
       this.entryAnimation = 'slide-from-left-animation';
       this.exitAnimation = 'slide-right-animation';
-      this.catSelected = 0;
+      this.catSelected = newPage;
+      console.log('move right to: ' + this.catSelected);
     },
-    _section2: function(){
+//MOVE LEFT
+    _moveLeft: function(newPage){
       this.entryAnimation = 'slide-from-right-animation';
       this.exitAnimation = 'slide-left-animation';
-      this.catSelected = 1;
-    },
-    _section3: function(){
-      this.entryAnimation = 'slide-from-right-animation';
-      this.exitAnimation = 'slide-left-animation';
-      this.catSelected = 2;
-    },
-    behaviors: [
-      Polymer.NeonAnimatableBehavior
-    ]
+      this.catSelected = newPage;
+      console.log('move left to: ' + this.catSelected);
+    }
   });
 
 </script>

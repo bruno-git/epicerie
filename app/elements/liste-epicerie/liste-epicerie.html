@@ -6,7 +6,9 @@
   </style>
 
   <template>
-    Category: <span>{{filterCategory}}</span>
+    <div>Category: <span>{{filterCategory}}</span></div>
+    <paper-button raised on-click="_selectBack">Back</paper-button>
+
     <template is="dom-if" if="{{connectedToFirebase}}">
       <firebase-collection id="fireProject"
                            location="https://epicerieenligne.firebaseio.com/Epicerie"
@@ -17,23 +19,12 @@
                            on-error="_errorHandler"></firebase-collection>
 
       <template is="dom-repeat" items="[[epicerie]]" as="epicerie_item">
-  <!--
-          <h4>[[epicerie_item.__firebaseKey__]]</h4>
-  -->
+
           <h4><span>[[epicerie_item.Name]]</span></h4>
           <div>Prix: <span>[[epicerie_item.Prix]]</span></div>
           <div>Categorie: <span>[[epicerie_item.Categorie]]</span></div>
           <div>Connected: <span>{{connectedToFirebase}}</span></div>
 
-  <!--
-          <paper-button raised
-                        on-click="_showProjectDetails"
-                        project-target="[[project.Desc]]">Show Miletones</paper-button>
-
-          <iron-collapse id=[[epicerie_item.__firebaseKey__]] opened>
-            <paper-material>Sub List</paper-material>
-          </iron-collapse>
-  -->
       </template>
     </template>
     <paper-fab mini icon="add"
@@ -56,7 +47,23 @@
     properties: {
       connectedToFirebase: {
         type: Boolean
+      },
+      menuItemSelected: {
+        type: String,
+        notify: true,
+        observer: '_menuItemSelectedChange'
       }
+    },
+//READY
+    ready: function(){
+      console.log('liste-epicerie ready');
+    },
+    _menuItemSelectedChange: function(newValue, oldValue){
+      console.log('liste-epicerie/menuItemSelected changed to: ' + this.menuItemSelected);
+    },
+//SELECT BACK
+    _selectBack: function() {
+        this.menuItemSelected = 'menu';
     },
 //_CLICKHANDLER
     _clickHandler: function(e){

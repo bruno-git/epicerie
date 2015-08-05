@@ -17,24 +17,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <div>Main Menu</div>
+    <div>Main Menu page</div>
+    <paper-button raised on-click="_selectViande">Viande</paper-button>
+    <paper-button raised on-click="_selectMer">Mer</paper-button>
   </template>
 </dom-module>
 <script>
-(function() {
+
   Polymer({
     is: 'main-menu',
 
     properties: {
-      foo: {
+      menuItemSelected: {
         type: String,
-        value: 'bar',
-        notify: true
+        notify: true,
+        observer: '_menuItemSelectedChange'
       }
+    },
+//SELECT VIANDE
+    _selectViande: function() {
+      this.menuItemSelected = 'viande';
+    },
+//SELECT MER
+    _selectMer: function() {
+      this.menuItemSelected = 'mer';
+    },
+//MENU ITEM SELECTED CHANGE    
+    _menuItemSelectedChange: function(newValue, oldValue) {
+      console.log('main-menu/menuItemSelected changed to: ' + this.menuItemSelected);
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior
     ]
   });
-})();
+
 </script>

@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <div>Liste d'items lies au congelateur</div>
+    <paper-button raised on-click="_selectBack">Back</paper-button>
   </template>
 </dom-module>
 <script>
@@ -26,11 +27,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'liste-congelateur',
 
     properties: {
-      foo: {
+      menuItemSelected: {
         type: String,
-        value: 'bar',
-        notify: true
+        notify: true,
+        observer: '_menuItemSelectedChange'
       }
+    },
+//SELECT BACK
+    _selectBack: function(){
+      this.menuItemSelected = 'menu';
+    },
+//MENU ITEM SELECTED CHANGE    
+    _menuItemSelectedChange: function(newValue, oldValue) {
+      console.log('liste-congelateur/menuItemSelected changed to: ' + this.menuItemSelected);
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior
