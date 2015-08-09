@@ -10,29 +10,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="main-menu">
+<dom-module id="liste-commande">
   <style>
     :host {
       display: block;
     }
   </style>
   <style is="custom-style">
-    .congelateur {
-      background: #a9bad1;
+    .commande {
+      background: #71a7f3;
     }
 
   </style>
-  <template>
-    <div class="congelateur">Main Menu page</div>
-    <div><paper-button raised on-click="_selectViande">Viande</paper-button></div>
-    <div><paper-button raised on-click="_selectMer">Mer</paper-button></div>
-    <div><paper-button raised on-click="_selectCommande">Ma Commande</paper-button></div>
+  <template class="commande">
+    <div class="commande">
+      <div>Ma Commande</div>
+      <paper-button raised on-click="_selectBack">Back</paper-button>
+    </div>
   </template>
 </dom-module>
 <script>
 
   Polymer({
-    is: 'main-menu',
+    is: 'liste-commande',
 
     properties: {
       menuItemSelected: {
@@ -41,21 +41,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: '_menuItemSelectedChange'
       }
     },
-//SELECT VIANDE
-    _selectViande: function() {
-      this.menuItemSelected = 'viande';
-    },
-//SELECT MER
-    _selectMer: function() {
-      this.menuItemSelected = 'mer';
-    },
-//SELECT COMMANDE
-    _selectCommande: function() {
-      this.menuItemSelected = 'commande';
+//READY
+    ready: function(){
+      console.log('liste-commande ready');
     },
 //MENU ITEM SELECTED CHANGE
-    _menuItemSelectedChange: function(newValue, oldValue) {
-      console.log('main-menu/menuItemSelected changed to: ' + this.menuItemSelected);
+    _menuItemSelectedChange: function(newValue, oldValue){
+      console.log('liste-commande/menuItemSelected changed to: ' + this.menuItemSelected);
+    },
+//SELECT BACK
+    _selectBack: function() {
+        this.menuItemSelected = 'menu';
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior

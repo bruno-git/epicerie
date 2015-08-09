@@ -25,7 +25,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          animateInitialSelection>
       <main-menu menu-item-selected="{{selection}}"></main-menu>
       <liste-congelateur menu-item-selected="{{selection}}"></liste-congelateur>
-      <liste-epicerie connected-to-firebase filter-category="viande" menu-item-selected="{{selection}}"></liste-epicerie>
+      <liste-epicerie connected-to-firebase
+                      filter-category="viande"
+                      menu-item-selected="{{selection}}"></liste-epicerie>
+      <liste-commande menu-item-selected="{{selection}}"></liste-commande>
 
     </neon-animated-pages>
   </template>
@@ -61,10 +64,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         console.log('mer selected');
         this._moveLeft(2);
       }
+      if (this.selection == 'commande') {
+        console.log('commande selected');
+        this._moveLeft(3);
+      }
     },
 //MOVE RIGHT
     _moveRight: function(newPage) {
-      this.entryAnimation = 'slide-from-left-animation';
+      this.entryAnimation = 'fade-in-animation';
       this.exitAnimation = 'slide-right-animation';
       this.catSelected = newPage;
       console.log('move right to: ' + this.catSelected);
@@ -72,7 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //MOVE LEFT
     _moveLeft: function(newPage){
       this.entryAnimation = 'slide-from-right-animation';
-      this.exitAnimation = 'slide-left-animation';
+      this.exitAnimation = 'fade-out-animation';
       this.catSelected = newPage;
       console.log('move left to: ' + this.catSelected);
     }
