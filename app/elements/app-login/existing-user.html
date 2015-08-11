@@ -55,14 +55,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         readOnly: false
       }
     },
+//SWITCH EXISTING USER STATUS
     _switchExisting: function(){
       this.isNewUser = true;
       console.log(this.isNewUser);
     },
+//FAKE LOGIN
     _fake_login: function(){
       this.fakeUserLogged = true;
       console.log('fakeUserLogged: ' + this.fakeUserLogged)
     },
+//BEHAVIORS
     behaviors: [
       Polymer.NeonAnimatableBehavior
     ]

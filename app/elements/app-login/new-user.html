@@ -20,6 +20,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
+    <firebase-auth id="firebaseLogin"
+                   user="{{user}}"
+                   statusKnown="{{statusKnown2}}"
+                   location="https://epicerieenligne.firebaseio.com"
+                   provider="google"
+                   on-login="_fireLogin"
+                   on-logout="_fireLogout"></firebase-auth>
+
+    <firebase-collection id="firebaseUsers"
+                         location="https://epicerieenligne.firebaseio.com/users"
+                         data="{{firebaseUsers}}"
+                         log></firebase-collection>
+
     <div style="width:275px; margin: auto">
       <br>
       <div class="text-login">New User Page</div>
@@ -32,7 +45,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-button raised style="width:100%">Create Account</paper-button>
       <div class="text-login">or</div>
       <paper-button raised style="width:100%">Login with Facebook</paper-button>
-      <paper-button raised style="width:100%">Login with Google</paper-button>
+      <paper-button raised
+                    on-click="_triggerLogin"
+                    style="width:100%">Login with Google</paper-button>
       <div>
         Already have an accoun?
         <paper-button raised accesskey=""on-click="_switchExisting">Sign in</paper-button>
@@ -51,15 +66,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         notify: true,
         readOnly: false,
         observer: '_isNewUserChanged'
+      },
+      myuser: {
+        type: Object,
+        notify: true,
+        readOnly: false,
+        observer: '_myuserChanged'
       }
     },
+//TRIGGER LOGIN
+    _triggerLogin: function() {
+      this.$.firebaseLogin.login();
+    },
+//FIRELOGIN
+    _fireLogin: function(e) {
+      console.log("firelogin");
+      console.log(e.detail.user.uid);
+      this.myuser = e.detail.user;
+      this.isConnected = true;
+      //Create the new user node if user doesn't already exists
+      var userId = e.detail.user.uid;
+      var newUserNode = this.$.firebaseUsers.query.ref().child(userId);
+      newUserNode.once('value', function(snapshot) {
+        var exists = snapshot.val() !== null;
+        if (!exists) {
+          //TODO replace this by a real callback function
+          newUserNode.set({name: "Bruno", city: "Mourial"});
+        }
+      })
+      page('/epicerie');
+    },
+
+//FIRELOGOUT
+    _fireLogout: function(e) {
+      console.log("firelogout");
+      this.myuser =  null;
+      this.isConnected = false;
+    },
+
+//SWITCH EXISTING USER STATE
     _switchExisting: function() {
       this.isNewUser = false;
       console.log(this.isNewUser);
     },
+    _myuserChanged: function(newValue, oldValue) {
+      console.log("userchanged");
+      console.log(newValue);
+    },
+//IS NEW USER CHANGED
     _isNewUserChanged: function(newValue, oldValue) {
       console.log('(from new-user.html) isNewUser changed from: ' + oldValue + ' to: ' + newValue)
     },
+//BEHAVIORS
     behaviors: [
       Polymer.NeonAnimatableBehavior
     ]

@@ -28,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 </dom-module>
 <script>
+
   Polymer({
     is: 'app-login',
 
@@ -43,19 +44,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: '_isLoggedChanged'
       }
     },
+//READY
     ready: function() {
-      this.isNew = false;
+      this.isNew = true;
 
     },
+//IS NEW CHANGED
     _isNewChanged(newValue, oldValue){
       console.log('is new changed triggered, new value: ' + this.isNew);
       if (this.isNew == true) {
-        this.selected=0
+        this.selected = 0
       }
       else {
         this.selected = 1
       }
     },
+//IS LOGGED CHANGED
     _isLoggedChanged(newValue, oldValue){
       console.log('is logged (fake) changed triggered: new value: ' + this.isLogged);
       if (this.isLogged == true){

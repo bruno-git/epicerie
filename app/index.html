@@ -106,7 +106,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
             <section data-route="login">
-              <app-login></app-login>
+              <app-login is-logged="{{isLoggedUser}}"></app-login>
             </section>
             <section data-route="epicerie">
               <main-categories></main-categories>
