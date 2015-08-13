@@ -18,13 +18,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <style is="custom-style">
     .congelateur {
-      background: #a9bad1;
+      background: #a9bab1;
     }
 
   </style>
   <template>
     <div class="congelateur">Main Menu page</div>
-    <div><paper-button raised on-click="_selectViande">Viande</paper-button></div>
+    <div><paper-button raised on-click="_selectCongelateur">Remplir mon congelateur</paper-button></div>
     <div><paper-button raised on-click="_selectMer">Mer</paper-button></div>
     <div><paper-button raised on-click="_selectCommande">Ma Commande</paper-button></div>
   </template>
@@ -41,9 +41,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: '_menuItemSelectedChange'
       }
     },
-//SELECT VIANDE
-    _selectViande: function() {
-      this.menuItemSelected = 'viande';
+//SELECT CONGELATEUR
+    _selectCongelateur: function() {
+      this.menuItemSelected = 'commandeCongelateur';
     },
 //SELECT MER
     _selectMer: function() {

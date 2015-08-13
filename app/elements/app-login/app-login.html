@@ -17,11 +17,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
+    <span>app-login myuser: <span>{{myuser.google.displayName}}</span></span>
     <neon-animated-pages selected="[[selected]]"
                          entry-animation="fade-in-animation"
                          exit-animation="fade-out-animation"
                          animatedInitialSelection>
-      <new-user is-new-user="{{isNew}}"></new-user>
+      <new-user is-new-user="{{isNew}}" myuser="{{myuser}}"></new-user>
       <existing-user is-new-user="{{isNew}}" fake-user-logged="{{isLogged}}"></existing-user>
       <main-categories></main-categories>
     </neon-animated-pages>
@@ -42,6 +43,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Boolean,
         notify: true,
         observer: '_isLoggedChanged'
+      },
+      myuser: {
+        type: Object,
+        notify: true,
+        readOnly: false
       }
     },
 //READY
