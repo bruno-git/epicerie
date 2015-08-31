@@ -25,30 +25,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <div class="congelateur">Mon congelateur (commande)</div>
     <paper-button raised on-click="_selectBack">Back</paper-button>
-    <paper-item>
-      <paper-item-body two-line>
-        <div>paper item</div>
-        <div>second line</div>
-      </paper-item-body>
-    </paper-item>
-<!-- SECTION A TRAVAILLER
+
     <firebase-collection id="fireProject"
-                         location="https://epicerieenligne.firebaseio.com/Commandes"
+                         location="https://epicerieenligne.firebaseio.com/Commandes/Commande1"
                          data="{{commande}}"
                          order-by-child="Categorie"
                          equal-to="{{filterCategory}}"
                          log
                          on-error="_errorHandler"></firebase-collection>
 
-    <template is="dom-repeat" items="[[commande]]" as="commande_item">
+    <template is="dom-repeat" items="{{commande}}" as="commande_item">
 
-        <h4><span>[[epicerie_item.Name]]</span></h4>
-        <div>Prix: <span>[[epicerie_item.Prix]]</span></div>
-        <div>Categorie: <span>[[epicerie_item.Categorie]]</span></div>
-        <div>Connected: <span>{{connectedToFirebase}}</span></div>
-
-    </template>
+      <commande-item  item="{{commande_item}}"></commande-item>
+        <h4><paper-input value="{{commande_item.Name}}"></paper-input></h4>
+<!--        <div>Prix: <span>[[commande_item.Prix]]</span></div>
+        <div>Categorie: <span>[[commande_item.Categorie]]</span></div>
 -->
+    </template>
+
 
   </template>
 </dom-module>
