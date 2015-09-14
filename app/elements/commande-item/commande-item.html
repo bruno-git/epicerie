@@ -17,20 +17,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-<!--    <template is="dom-if" if="{{item.Prix}}">
--->
+
+    <template is="dom-if" if="{{item.Prix}}">
+
       <paper-item>
         <paper-item-body two-line>
-          <div><paper-input label="item: " value="{{item.Name}}"></paper-input></div>
           <div>Commande-item: <span>{{item.Name}}</span></div>
           <div secondary>Detail: <span>{{item.Detail}}</span></div>
-          <div >Qte1: <span>{{item.Qte}}</span></div>
-
+          <div >Prix: <span>{{item.Prix}}</span></div>
+          <div><paper-input label="Qte: " value="{{item.Qte}}"></paper-input></div>
+          <div>Total:<span>{{item_total}}</span></div>
         </paper-item-body>
       </paper-item>
+
       <paper-button raised on-click="_updateItem">update</paper-button>
-<!--    </template>
--->
+
+    </template>
+
   </template>
 </dom-module>
 <script>
@@ -43,7 +46,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Object,
         notify: true,
         observer: '_commandeItemChanged'
+      },
+      item_total: {
+        computed: 'multiply(item.Qte, item.Prix)'
       }
+    },
+    multiply: function(qte, prix){
+      return qte*prix;
     },
     _commandeItemChanged: function(){
       console.log('COMMANDE ITEM CHANGED');
