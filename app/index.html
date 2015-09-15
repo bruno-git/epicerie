@@ -83,28 +83,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <span class="flex"></span>
 
           <!-- Toolbar icons -->
-          <template is="dom-if" if="{{logged_user}}">
-            <iron-image src="{{logged_user.google.cachedUserProfile.picture}}"
+          <template is="dom-if" if="{{myuser}}">
+            <paper-icon-button icon="menu"
+                               data-dialog="usermenu"></paper-icon-button
+                               on-click="menuclick">
+            <iron-image src="{{myuser.google.cachedUserProfile.picture}}"
                         style="width:30px; height:30px; border-radius:100%"
                         sizing="contain" preload fade></iron-image>
+
           </template>
           <paper-icon-button icon="search"></paper-icon-button>
 
           <!-- Application name -->
           <div class="middle paper-font-display2 app-name">Mon Garde Manger</div>
 
-          <!-- Application sub title -->
-          <div class="bottom title">
-            <template is="dom-if" if="{{logged_user}}">
-              <span>{{logged_user.google.displayName}}</span>
-            </template>
-          </div>
-
         </paper-toolbar>
 
         <!-- Main Content -->
         <div class="content">
-          <paper-item>index user: <span>{{myuser.google.displayName}}</span></paper-item>
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
             <section data-route="login">
               <app-login is-logged="{{isLoggedUser}}"
@@ -118,55 +114,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           </iron-pages>
 
-
-<!-- Hidden, to be removed once completely replaced by sub polymer elements
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
-
-            <section data-route="users">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Users</h2>
-                <p>This is the users section</p>
-                <a href="/users/Rob">Rob</a>
-              </paper-material>
-            </section>
-
-            <section data-route="user-info">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">
-                User:<span>{{params.name}}</span>
-                </h2>
-                <div>This is <span>{{params.name}}</span>'s section</div>
-              </paper-material>
-            </section>
-
-            <section data-route="epicerie">
-              <paper-material elevation="1">
-                <epicerie-login myuser={{logged_user}}></epicerie-login>
-              </paper-material>
-
-              <template is="dom-if" if="{{logged_user}}">
-                <paper-material elevation="1">
-                  <paper-button  raised>
-                    Remplir mon congelateur
-                  </paper-button>
-                  <paper-button  raised>
-                    Remplir mon garde-manger2
-                  </paper-button>
-                </paper-material>
-                <paper-material elevation="1">
-                  <liste-epicerie connected-to-firebase></liste-epicerie>
-                </paper-material>
-            </template>
-          </section>
-
-          <section data-route='neon'>
-            <paper-material elevation="1">
-              <neon-test><neon-test>
-            </paper-material>
-          </section>
-
-          </iron-pages>
--->
         </div>
       </paper-header-panel>
 <!--

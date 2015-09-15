@@ -30,6 +30,12 @@ scope._users = function() {
 
 /* End of Animated pages script */
 
+/* Handle the user icon paper-icon-button action*/
+scope.menuclick = function() {
+  console.log('CLICK HANDLER TRIGGERED');
+  alert('a');
+}
+/* End of User icon action*/
 
   // Grab a reference to our auto-binding template
   // and give it some initial binding values

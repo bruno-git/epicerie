@@ -15,23 +15,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
+    .list {
+      padding-top: 12px;
+      background-color: white;
+      display: inline-block;
+      width: 240px;
+      margin: 12px;
+      @apply(--shadow-elevation-2dp);
+    }
+
   </style>
   <template>
 
     <template is="dom-if" if="{{item.Prix}}">
+      <div  class="list ">
+        <paper-item>
+          <paper-item-body two-line>
+            <div>{{item.Name}}</div>
+            <div secondary>{{item.Detail}}</div>
+          </paper-item-body>
+        </paper-item>
 
-      <paper-item>
-        <paper-item-body two-line>
-          <div>Commande-item: <span>{{item.Name}}</span></div>
-          <div secondary>Detail: <span>{{item.Detail}}</span></div>
-          <div >Prix: <span>{{item.Prix}}</span></div>
-          <div><paper-input label="Qte: " value="{{item.Qte}}"></paper-input></div>
-          <div>Total:<span>{{item_total}}</span></div>
-        </paper-item-body>
-      </paper-item>
+        <paper-item>
+          <paper-item-body>
+            <div>Categorie: <span>[[item.Categorie]]</span></div>
+            <div>
+              Prix: <span>{{item.Prix}}</span>
+              <paper-input label="Qte: " value="{{item.Qte}}"></paper-input>
+              Total:<span>{{item_total}}</span>
+            </div>
+          </paper-item-body>
+        </paper-item>
 
-      <paper-button raised on-click="_updateItem">update</paper-button>
+        <paper-button raised on-click="_updateItem">update</paper-button>
 
+      </div>
     </template>
 
   </template>
