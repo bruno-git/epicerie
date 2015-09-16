@@ -84,14 +84,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <!-- Toolbar icons -->
           <template is="dom-if" if="{{myuser}}">
-            <paper-icon-button icon="menu"
-                               data-dialog="usermenu"></paper-icon-button
-                               on-click="menuclick">
+            <paper-menu-button>
+              <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
+              <paper-menu class="dropdown-content">
+                  <paper-item>Déconnecter</paper-item>
+              </paper-menu>
+            </paper-menu-button>
             <iron-image src="{{myuser.google.cachedUserProfile.picture}}"
                         style="width:30px; height:30px; border-radius:100%"
                         sizing="contain" preload fade></iron-image>
-
           </template>
+
+
           <paper-icon-button icon="search"></paper-icon-button>
 
           <!-- Application name -->
