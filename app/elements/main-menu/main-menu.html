@@ -34,28 +34,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'main-menu',
 
-    properties: {
-      menuItemSelected: {
-        type: String,
-        notify: true,
-        observer: '_menuItemSelectedChange'
-      }
-    },
 //SELECT CONGELATEUR
     _selectCongelateur: function() {
-      this.menuItemSelected = 'commandeCongelateur';
+      this.fire('change-page', {page: 'commandeCongelateur'});
+      //this.menuItemSelected = 'commandeCongelateur';
     },
 //SELECT MER
     _selectMer: function() {
-      this.menuItemSelected = 'mer';
+      this.fire('change-page', {page: 'mer'});
+      //this.menuItemSelected = 'mer';
     },
 //SELECT COMMANDE
     _selectCommande: function() {
-      this.menuItemSelected = 'commande';
-    },
-//MENU ITEM SELECTED CHANGE
-    _menuItemSelectedChange: function(newValue, oldValue) {
-      console.log('main-menu/menuItemSelected changed to: ' + this.menuItemSelected);
+      this.fire('change-page', {page: 'commande'});
+      //this.menuItemSelected = 'commande';
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior

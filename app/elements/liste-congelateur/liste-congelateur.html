@@ -24,8 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <div class="congelateur">Mon congelateur (commande)</div>
-    <paper-button raised on-click="_selectBack">Back</paper-button>
-
+    <paper-button raised on-click="_selectMenu">Back</paper-button>
     <firebase-collection id="fireProject"
                          location="https://epicerieenligne.firebaseio.com/Commandes/Commande1"
                          data="{{commande}}"
@@ -46,20 +45,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'liste-congelateur',
 
-    properties: {
-      menuItemSelected: {
-        type: String,
-        notify: true,
-        observer: '_menuItemSelectedChange'
-      }
-    },
-//SELECT BACK
-    _selectBack: function(){
-      this.menuItemSelected = 'menu';
-    },
-//MENU ITEM SELECTED CHANGE
-    _menuItemSelectedChange: function(newValue, oldValue) {
-      console.log('liste-congelateur/menuItemSelected changed to: ' + this.menuItemSelected);
+    _selectMenu: function(){
+      this.fire('change-page', {page: 'menu'});
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior

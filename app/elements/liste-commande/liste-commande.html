@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template class="commande">
     <div class="commande">
       <div>Ma Commande</div>
-      <paper-button raised on-click="_selectBack">Back</paper-button>
+      <paper-button raised on-click="_selectMenu">Back</paper-button>
     </div>
   </template>
 </dom-module>
@@ -34,24 +34,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'liste-commande',
 
-    properties: {
-      menuItemSelected: {
-        type: String,
-        notify: true,
-        observer: '_menuItemSelectedChange'
-      }
-    },
 //READY
     ready: function(){
       console.log('liste-commande ready');
     },
-//MENU ITEM SELECTED CHANGE
-    _menuItemSelectedChange: function(newValue, oldValue){
-      console.log('liste-commande/menuItemSelected changed to: ' + this.menuItemSelected);
-    },
 //SELECT BACK
-    _selectBack: function() {
-        this.menuItemSelected = 'menu';
+    _selectMenu: function() {
+      this.fire('change-page', {page: 'menu'});
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior

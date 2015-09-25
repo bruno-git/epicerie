@@ -23,12 +23,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          entry-animation="[[entryAnimation]]"
                          exit-animation="[[exitAnimation]]"
                          animateInitialSelection>
-      <main-menu menu-item-selected="{{selection}}"></main-menu>
-      <liste-congelateur menu-item-selected="{{selection}}"></liste-congelateur>
+      <main-menu on-change-page="_changePage"></main-menu>
+      <liste-congelateur on-change-page="_changePage"></liste-congelateur>
       <liste-epicerie connected-to-firebase
                       filter-category="viande"
-                      menu-item-selected="{{selection}}"></liste-epicerie>
-      <liste-commande menu-item-selected="{{selection}}"></liste-commande>
+                      on-change-page="_changePage"></liste-epicerie>
+      <liste-commande on-change-page="_changePage"></liste-commande>
 
     </neon-animated-pages>
   </template>
@@ -42,46 +42,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       catSelected: {
         value: 0,
         notify: true
-      },
-      selection: {
-        type: String,
-        value: 'menu',
-        notify: true,
-        observer: '_selectionChanged'
       }
     },
 //SELECTION CHANGED
-    _selectionChanged: function() {
-      if (this.selection == 'menu') {
-        console.log('menu selected');
+    _changePage: function(e){
+      var newPageName = e.detail.page;
+      if (newPageName == 'menu') {
         this._moveRight(0);
       }
-      if (this.selection == 'commandeCongelateur') {
-        console.log('CONGELATEUR selected');
+      if (newPageName == 'commandeCongelateur') {
         this._moveLeft(1);
       }
-      if (this.selection == 'mer') {
-        console.log('mer selected');
+      if (newPageName == 'mer') {
         this._moveLeft(2);
       }
-      if (this.selection == 'commande') {
-        console.log('commande selected');
+      if (newPageName == 'commande') {
         this._moveLeft(3);
       }
+
     },
 //MOVE RIGHT
     _moveRight: function(newPage) {
       this.entryAnimation = 'fade-in-animation';
       this.exitAnimation = 'slide-right-animation';
       this.catSelected = newPage;
-      console.log('move right to: ' + this.catSelected);
     },
 //MOVE LEFT
     _moveLeft: function(newPage){
       this.entryAnimation = 'slide-from-right-animation';
       this.exitAnimation = 'fade-out-animation';
       this.catSelected = newPage;
-      console.log('move left to: ' + this.catSelected);
     }
   });
 

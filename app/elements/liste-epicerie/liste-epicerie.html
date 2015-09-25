@@ -7,7 +7,7 @@
 
   <template>
     <div>Category: <span>{{filterCategory}}</span></div>
-    <paper-button raised on-click="_selectBack">Back</paper-button>
+    <paper-button raised on-click="_selectMenu">Back</paper-button>
 
     <template is="dom-if" if="{{connectedToFirebase}}">
       <firebase-collection id="fireProject"
@@ -47,11 +47,6 @@
     properties: {
       connectedToFirebase: {
         type: Boolean
-      },
-      menuItemSelected: {
-        type: String,
-        notify: true,
-        observer: '_menuItemSelectedChange'
       }
     },
 //READY
@@ -59,12 +54,8 @@
       console.log('liste-epicerie ready');
     },
 //MENU ITEM SELECTED CHANGE
-    _menuItemSelectedChange: function(newValue, oldValue){
-      console.log('liste-epicerie/menuItemSelected changed to: ' + this.menuItemSelected);
-    },
-//SELECT BACK
-    _selectBack: function() {
-        this.menuItemSelected = 'menu';
+    _selectMenu: function(){
+      this.fire('change-page', {page: 'menu'});
     },
 //_CLICKHANDLER
     _clickHandler: function(e){
