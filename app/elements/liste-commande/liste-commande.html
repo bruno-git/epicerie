@@ -17,16 +17,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <style is="custom-style">
-    .commande {
-      background: #71a7f3;
+    .congelateur {
+      background: #a9bad1;
     }
 
   </style>
-  <template class="commande">
-    <div class="commande">
-      <div>Ma Commande</div>
-      <paper-button raised on-click="_selectMenu">Back</paper-button>
-    </div>
+  <template>
+    <div class="congelateur">Ma commande (<span>{{filterZone}}</span>)</div>
+    <paper-button raised on-click="_selectMenu">Back</paper-button>
+    <firebase-collection id="fireProject"
+                         location="https://epicerieenligne.firebaseio.com/Commandes/Commande1"
+                         data="{{commande}}"
+                         order-by-child="zone"
+                         equal-to="{{filterZone}}"
+                         log
+                         on-error="_errorHandler"></firebase-collection>
+
+    <div hidden={{showme}}>showme</div>
+    <template is="dom-repeat" items="{{commande}}" as="commande_item">
+      <commande-item  item="{{commande_item}}"></commande-item>
+    </template>
+
+
+
   </template>
 </dom-module>
 <script>
@@ -34,12 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'liste-commande',
 
-//READY
-    ready: function(){
-      console.log('liste-commande ready');
-    },
-//SELECT BACK
-    _selectMenu: function() {
+    _selectMenu: function(){
       this.fire('change-page', {page: 'menu'});
     },
     behaviors: [

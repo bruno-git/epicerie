@@ -23,10 +23,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
   <template>
-    <div class="congelateur">Main Menu page</div>
-    <div><paper-button raised on-click="_selectCongelateur">Remplir mon congelateur</paper-button></div>
-    <div><paper-button raised on-click="_selectMer">Mer</paper-button></div>
-    <div><paper-button raised on-click="_selectCommande">Ma Commande</paper-button></div>
+    <div class="congelateur">
+      <div><paper-button raised on-click="_selectCongelateur">Remplir mon congelateur</paper-button></div>
+      <div><paper-button raised on-click="_selectMer">Remplir mon garde-manger</paper-button></div>
+      <div><paper-button raised on-click="_selectCommande">Ma Commande</paper-button></div>
+    </div>
   </template>
 </dom-module>
 <script>
@@ -36,12 +37,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 //SELECT CONGELATEUR
     _selectCongelateur: function() {
-      this.fire('change-page', {page: 'commandeCongelateur'});
+      this.fire('change-page', {page: 'congelateur'});
       //this.menuItemSelected = 'commandeCongelateur';
     },
 //SELECT MER
     _selectMer: function() {
-      this.fire('change-page', {page: 'mer'});
+      this.fire('change-page', {page: 'gardemanger'});
       //this.menuItemSelected = 'mer';
     },
 //SELECT COMMANDE

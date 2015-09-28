@@ -1,0 +1,76 @@
+{
+  "Categories" : {
+    "cat1" : "viande",
+    "cat2" : "mer",
+    "cat3" : "epicerie"
+  },
+  "Commandes" : {
+    "Commande1" : {
+      "Item1" : {
+        "Categorie" : "viande",
+        "Detail" : "C bon du boeuf!",
+        "Name" : "Boeuf haché maigre 90%",
+        "Prix" : 10,
+        "Qte" : "",
+        "req1" : 2,
+        "req2" : 4,
+        "zone" : "congelateur"
+      },
+      "Item2" : {
+        "Categorie" : "viande",
+        "Detail" : "400g",
+        "Name" : "Steak tu roi 1/2",
+        "Prix" : 2,
+        "Qte" : "",
+        "req1" : 1,
+        "req2" : 2,
+        "zone" : "congelateur"
+      },
+      "Item3" : {
+        "Categorie" : "mer",
+        "Detail" : "C'est bon des moules!",
+        "Name" : "Moules dans le beurre à l'ail",
+        "Prix" : 3,
+        "Qte" : "",
+        "req1" : 10,
+        "req2" : 20,
+        "zone" : "congelateur"
+      },
+      "item4" : {
+        "Categorie" : "cat111",
+        "Detail" : "Au miel et aux noix!",
+        "Name" : "Cheerios",
+        "Prix" : 4,
+        "Qte" : "1",
+        "req1" : 0,
+        "req2" : 1,
+        "zone" : "gardemanger"
+      },
+      "itemkey" : "asdfkey",
+      "userkey" : "google:111173609460124076100"
+    }
+  },
+  "Epicerie" : {
+    "Item1" : {
+      "Categorie" : "viande",
+      "Name" : "Boeuf haché maigre 900%",
+      "Prix" : 10
+    },
+    "Item2" : {
+      "Categorie" : "viande",
+      "Name" : "Steack du roi 1/2",
+      "Prix" : 22
+    },
+    "Item3" : {
+      "Categorie" : "mer",
+      "Name" : "Moules dans le beurre à l'ail",
+      "Prix" : 3
+    }
+  },
+  "users" : {
+    "google:111173609460124076100" : {
+      "city" : "Mourial",
+      "name" : "Bruno"
+    }
+  }
+}

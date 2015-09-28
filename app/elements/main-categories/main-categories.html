@@ -17,19 +17,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <div>Main Categories page</div>
+    <div>Main Categories page (Moderator)</div>
 
     <neon-animated-pages selected="[[catSelected]]"
                          entry-animation="[[entryAnimation]]"
                          exit-animation="[[exitAnimation]]"
                          animateInitialSelection>
       <main-menu on-change-page="_changePage"></main-menu>
-      <liste-congelateur on-change-page="_changePage"></liste-congelateur>
+      <liste-commande on-change-page="_changePage"
+                         filter-zone="congelateur"></liste-commande>
+      <liste-commande on-change-page="_changePage"
+                         filter-zone="gardemanger"></liste-commande>
+      <liste-commande on-change-page="_changePage"
+      showme></liste-commande>
+<!--
       <liste-epicerie connected-to-firebase
-                      filter-category="viande"
+                      filter-zone="gardemanger"
                       on-change-page="_changePage"></liste-epicerie>
-      <liste-commande on-change-page="_changePage"></liste-commande>
-
+-->
     </neon-animated-pages>
   </template>
 </dom-module>
@@ -50,10 +55,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (newPageName == 'menu') {
         this._moveRight(0);
       }
-      if (newPageName == 'commandeCongelateur') {
+      if (newPageName == 'congelateur') {
         this._moveLeft(1);
       }
-      if (newPageName == 'mer') {
+      if (newPageName == 'gardemanger') {
         this._moveLeft(2);
       }
       if (newPageName == 'commande') {
