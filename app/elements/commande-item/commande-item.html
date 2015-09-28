@@ -15,20 +15,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
-    .list {
-      padding-top: 12px;
-      background-color: white;
-      display: inline-block;
-      width: 240px;
-      margin: 12px;
+    [card] {
+      @apply(--layout-vertical);
+      @apply(--layout-center-center);
       @apply(--shadow-elevation-2dp);
-    }
 
+      max-width: 800px;
+      margin: 16px auto;
+      font-weight: bold;
+      background-color: var(--paper-grey-200);
+    }
+    [mydiv]{
+      background-color: var(--paper-grey-400);
+    }
   </style>
   <template>
-
     <template is="dom-if" if="{{item.Prix}}">
-      <div  class="list ">
+      <div  card>
         <paper-item>
           <paper-item-body two-line>
             <div>{{item.Name}}</div>
@@ -40,20 +43,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-item-body>
             <div>Categorie: <span>[[item.Categorie]]</span></div>
             <div>
-              Prix: <span>{{item.Prix}}</span>
+              Prix: <span>{{item.Prix}}</span>$
               <paper-input label="Qte: " value="{{item.Qte}}"></paper-input>
-              Total:<span>{{item_total}}</span>
+              Total:<span>{{item_total}}</span>$
             </div>
           </paper-item-body>
+          <paper-icon-item>
+            <iron-icon icon="face" item-icon></iron-icon>
+            <span>{{item.req1}}</span>
+          </paper-icon-item>
+          <paper-icon-item>
+            <iron-icon icon="face" item-icon></iron-icon>
+            <iron-icon icon="face" item-icon></iron-icon>
+            <span>{{item.req2}}</span>
+          </paper-icon-item>
         </paper-item>
-
-        <paper-button raised on-click="_updateItem">update</paper-button>
 
       </div>
     </template>
-
   </template>
 </dom-module>
+
 <script>
 
   Polymer({
@@ -74,11 +84,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     _commandeItemChanged: function(){
       console.log('COMMANDE ITEM CHANGED');
-    },
-    _updateItem: function(){
-      console.log('ITEM DETAIL: ' + this.item.Detail);
-      this.item.Detail = 'detail changed';
-      console.log('ITEM UPDATED: ' + this.item.Detail);
     }
   });
 
