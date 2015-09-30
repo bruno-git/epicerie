@@ -32,6 +32,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <template is="dom-if" if="{{item.Prix}}">
       <div  card>
+        <iron-image style="width:200px;height:200px;background-color:lightgray;
+                           border-radius:10%"
+                    sizing="cover"
+                    src="{{item_image}}"
+                    preload
+                    fade></iron-image>
         <paper-item>
           <paper-item-body two-line>
             <div>{{item.Name}}</div>
@@ -77,7 +83,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       item_total: {
         computed: 'multiply(item.Qte, item.Prix)'
+      },
+      item_image: {
+        type: String,
+        computed: 'computeImage(item.code)'
       }
+    },
+    computeImage: function(image){
+      return '../../images/' + image + '.jpg';
     },
     multiply: function(qte, prix){
       return qte*prix;
