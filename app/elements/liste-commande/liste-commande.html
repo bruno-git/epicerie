@@ -15,8 +15,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
-  </style>
-  <style is="custom-style">
     .congelateur {
       background: #a9bad1;
     }
@@ -34,11 +32,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          on-error="_errorHandler"></firebase-collection>
 
     <div hidden={{showme}}>showme</div>
-    <template is="dom-repeat" items="{{commande}}" as="commande_item">
-      <commande-item  item="{{commande_item}}"></commande-item>
-    </template>
-
-
+    <div class="horizontal layout wrap">
+      <template is="dom-repeat" items="{{commande}}" as="commande_item">
+        <commande-item  item="{{commande_item}}"></commande-item>
+      </template>
+    </div>
 
   </template>
 </dom-module>

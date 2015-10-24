@@ -11,10 +11,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
 <dom-module id="commande-item">
+
   <style>
     :host {
       display: block;
     }
+
     [card] {
       @apply(--layout-vertical);
       @apply(--layout-center-center);
@@ -29,9 +31,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: var(--paper-grey-400);
     }
   </style>
+
   <template>
     <template is="dom-if" if="{{item.Prix}}">
-      <div  card>
+      <div card>
         <iron-image style="width:200px;height:200px;background-color:lightgray;
                            border-radius:10%"
                     sizing="cover"
