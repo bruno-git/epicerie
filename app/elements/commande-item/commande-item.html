@@ -16,58 +16,90 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
-
-    [card] {
-      @apply(--layout-vertical);
-      @apply(--layout-center-center);
-      @apply(--shadow-elevation-2dp);
-
+    .detail_autre {
+      border-top: 1px solid #E0E0E0;
+    }
+    .card {
       max-width: 800px;
-      margin: 16px auto;
-      font-weight: bold;
+      margin: 1em;
       background-color: var(--paper-grey-200);
     }
-    [mydiv]{
-      background-color: var(--paper-grey-400);
+    .quantity {
+      font-weight: bold;
+      font-size: 100px;
+      margin: auto;
+    }
+    .prix_unitaire {
+      font-size: 14px;
+      color: grey;
+    }
+    .nom_item {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .emballage {
+      font-size: 14px;
+      color: grey;
+    }
+    .cercle_categorie {
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        background: black;
+        color: white;
+        line-height: 32px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0.5em;
     }
   </style>
 
   <template>
     <template is="dom-if" if="{{item.Prix}}">
-      <div card>
-        <iron-image style="width:200px;height:200px;background-color:lightgray;
-                           border-radius:10%"
-                    sizing="cover"
-                    src="{{item_image}}"
-                    preload
-                    fade></iron-image>
-        <paper-item>
-          <paper-item-body two-line>
-            <div>{{item.Name}}</div>
-            <div secondary>{{item.Detail}}</div>
-          </paper-item-body>
-        </paper-item>
+      <div class="vertical layout card">
+        <!--titre-->
+        <div class="horizontal layout">
+          <div class="cercle_categorie">V</div>
+          <div class="vertical layout">
 
-        <paper-item>
-          <paper-item-body>
-            <div>Categorie: <span>[[item.Categorie]]</span></div>
-            <div>
-              Prix: <span>{{item.Prix}}</span>$
-              <paper-input label="Qte: " value="{{item.Qte}}"></paper-input>
-              Total:<span>{{item_total}}</span>$
+            <div class="nom_item">{{item.Name}}</div>
+            <div class="emballage">[[item.detail_emballage]]</div>
+          </div>
+        </div>
+        <div class="horizontal layout">
+          <div class="vertical layout">
+            <iron-image style="width:200px;height:200px;background-color:lightgray;
+                               border-radius:10%"
+                        sizing="cover"
+                        src="{{item_image}}"
+                        preload
+                        fade></iron-image>
+          </div>
+          <div class="vertical layout">
+            <paper-icon-item>
+              <iron-icon icon="face" item-icon></iron-icon>
+              =<span>{{item.req1}}</span>
+            </paper-icon-item>
+            <paper-icon-item>
+              <iron-icon icon="face" item-icon></iron-icon>
+              <iron-icon icon="face" item-icon></iron-icon>
+              =<span>{{item.req2}}</span>
+            </paper-icon-item>
+            <div class="horizontal layout prix_unitaire">
+              Prix unitaire:&nbsp;<span>{{item.Prix}}</span>$
             </div>
-          </paper-item-body>
-          <paper-icon-item>
-            <iron-icon icon="face" item-icon></iron-icon>
-            <span>{{item.req1}}</span>
-          </paper-icon-item>
-          <paper-icon-item>
-            <iron-icon icon="face" item-icon></iron-icon>
-            <iron-icon icon="face" item-icon></iron-icon>
-            <span>{{item.req2}}</span>
-          </paper-icon-item>
-        </paper-item>
-
+            <span class="quantity">[[item.Qte]]</span>
+            <paper-input label="Qte: " value="{{item.Qte}}"></paper-input>
+          </div>
+        </div>
+        <div class="detail_autre">
+          <div><span>[[item.detail_autre]]</span></div>
+          <div>
+            Total:<span>{{item_total}}</span>$
+          </div>
+        </div>
       </div>
     </template>
   </template>
