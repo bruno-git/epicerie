@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
+      transition: all 0.3s;
     }
     .detail_autre {
       border-top: 1px solid #E0E0E0;
@@ -58,6 +59,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
         margin: 0.5em;
     }
+    paper-button.colorful {
+      color: #4285f4;
+      background-color: rgba(66, 133, 244, 0.25);
+      font-family: 'Passion One', cursive;
+      font-size: 25px;
+      padding-top: 0.25em;
+      padding-bottom: 0.25em;
+    }
   </style>
 
   <template>
@@ -82,20 +91,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         fade></iron-image>
           </div>
           <div class="vertical layout">
-            <paper-icon-item>
-              <iron-icon icon="face" item-icon></iron-icon>
-              =<span>{{item.req1}}</span>
-            </paper-icon-item>
-            <paper-icon-item>
+            <paper-item>
               <iron-icon icon="face" item-icon></iron-icon>
               <iron-icon icon="face" item-icon></iron-icon>
-              =<span>{{item.req2}}</span>
-            </paper-icon-item>
+              x&nbsp;<span>{{item.req2}}</span>
+              <paper-tooltip>Quantitée recommandée pour 2 personnes</paper-tooltip>
+            </paper-item>
             <div class="horizontal layout prix_unitaire">
               Prix unitaire:&nbsp;<span>{{item.Prix}}</span>$
             </div>
             <span class="quantity">[[item.Qte]]</span>
-            <paper-input label="Qte: " value="{{item.Qte}}"></paper-input>
+            <div>
+            <paper-button class="colorful" on-click="_lessFormat">-</paper-button>
+            <paper-button class="colorful" on-click="_addFormat">+</paper-button>
+          </div>
           </div>
         </div>
         <div class="detail_autre">
@@ -120,6 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         notify: true,
         observer: '_commandeItemChanged'
       },
+
       item_total: {
         computed: 'multiply(item.Qte, item.Prix)'
       },
@@ -136,6 +146,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     _commandeItemChanged: function(){
       console.log('COMMANDE ITEM CHANGED');
+    },
+    _addFormat: function() {
+      this.set('item.Qte', this.item.Qte + 1);
+      //this.translate3d('100px', '100px', '100px');
+    },
+    _lessFormat: function() {
+      if (this.item.Qte > 0) {
+        this.set('item.Qte', this.item.Qte - 1);
+      }
     }
   });
 
