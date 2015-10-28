@@ -9,35 +9,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 
 <dom-module id="commande-item">
-
   <style>
     :host {
       display: block;
     }
     .detail_autre {
       border-top: 1px solid #E0E0E0;
+      color: grey;
     }
     .card {
       max-width: 800px;
       margin: 1em;
       background-color: var(--paper-grey-200);
+
     }
     .quantity {
       font-weight: bold;
       font-size: 100px;
       margin: auto;
+      font-family: 'Passion One', cursive;
+      color: black;
     }
     .prix_unitaire {
       font-size: 14px;
       color: grey;
     }
     .nom_item {
-      font-weight: bold;
       font-size: 16px;
+      font-family: 'Passion One', cursive;
     }
-    .emballage {
+    .format {
       font-size: 14px;
       color: grey;
     }
@@ -65,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="vertical layout">
 
             <div class="nom_item">{{item.Name}}</div>
-            <div class="emballage">[[item.detail_emballage]]</div>
+            <div class="format">[[item.format]]</div>
           </div>
         </div>
         <div class="horizontal layout">
