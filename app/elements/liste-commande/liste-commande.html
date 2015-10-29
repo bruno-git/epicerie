@@ -16,15 +16,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
     }
     .congelateur {
-      background: #a9bad1;
+      background-color: var(--paper-grey-200);
     }
 
   </style>
   <template>
     <div class="congelateur">Ma commande (<span>{{filterZone}}</span>)</div>
+
     <paper-button raised on-click="_selectMenu">Back</paper-button>
     <firebase-collection id="fireProject"
-                         location="https://epicerieenligne.firebaseio.com/Commandes/Commande1"
+                         location="{{url}}"
                          data="{{commande}}"
                          order-by-child="zone"
                          equal-to="{{filterZone}}"
@@ -42,9 +43,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 <script>
 
+
   Polymer({
     is: 'liste-commande',
 
+    properties: {
+      myuser: {
+        type: Object
+      },
+      url: {
+        computed: '_computeUrl(myuser.uid)'
+      }
+    },
+    _computeUrl: function(myuserid) {
+      return ['https://epicerieenligne.firebaseio.com/Commandes', this.myuser.uid.replace(':', '%3A'), 'commande1/items'].join('/');
+    },
     _selectMenu: function(){
       this.fire('change-page', {page: 'menu'});
     },

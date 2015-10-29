@@ -17,15 +17,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
       transition: all 0.3s;
     }
-    .detail_autre {
+    .detail {
       border-top: 1px solid #E0E0E0;
+      font-size: 14px;
       color: grey;
     }
     .card {
       max-width: 800px;
       margin: 1em;
       background-color: var(--paper-grey-200);
-
     }
     .quantity {
       font-weight: bold;
@@ -39,8 +39,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       color: grey;
     }
     .nom_item {
-      font-size: 16px;
-      font-family: 'Passion One', cursive;
+      font-size: 18px;
+      font-weight: bold;
     }
     .format {
       font-size: 14px;
@@ -66,18 +66,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       font-size: 25px;
       padding-top: 0.25em;
       padding-bottom: 0.25em;
+      min-width: 3.5em;
     }
   </style>
 
   <template>
-    <template is="dom-if" if="{{item.Prix}}">
-      <div class="vertical layout card">
+    <template is="dom-if" if="[[item.prix]]">
+      <paper-material elevation="[[item_elevation]]" class="vertical layout card">
         <!--titre-->
         <div class="horizontal layout">
           <div class="cercle_categorie">V</div>
           <div class="vertical layout">
 
-            <div class="nom_item">{{item.Name}}</div>
+            <div class="nom_item">[[item.nom]]</div>
             <div class="format">[[item.format]]</div>
           </div>
         </div>
@@ -86,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-image style="width:200px;height:200px;background-color:lightgray;
                                border-radius:10%"
                         sizing="cover"
-                        src="{{item_image}}"
+                        src="[[item_image]]"
                         preload
                         fade></iron-image>
           </div>
@@ -94,26 +95,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-item>
               <iron-icon icon="face" item-icon></iron-icon>
               <iron-icon icon="face" item-icon></iron-icon>
-              x&nbsp;<span>{{item.req2}}</span>
+              x&nbsp;<span>[[item.recommandation2]]</span>
               <paper-tooltip>Quantitée recommandée pour 2 personnes</paper-tooltip>
             </paper-item>
             <div class="horizontal layout prix_unitaire">
-              Prix unitaire:&nbsp;<span>{{item.Prix}}</span>$
+              Prix unitaire:&nbsp;<span>[[item.prix]]</span>$
             </div>
-            <span class="quantity">[[item.Qte]]</span>
+            <span class="quantity">[[item.quantite]]</span>
             <div>
             <paper-button class="colorful" on-click="_lessFormat">-</paper-button>
             <paper-button class="colorful" on-click="_addFormat">+</paper-button>
           </div>
           </div>
         </div>
-        <div class="detail_autre">
-          <div><span>[[item.detail_autre]]</span></div>
+        <div class="detail">
+          <div><span>[[item.detail]]</span></div>
           <div>
-            Total:<span>{{item_total}}</span>$
+            Total:<span>[[item_total]]</span>$
           </div>
         </div>
-      </div>
+      </paper-material>
     </template>
   </template>
 </dom-module>
@@ -126,17 +127,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
       item: {
         type: Object,
-        notify: true,
-        observer: '_commandeItemChanged'
+        notify: true
       },
-
       item_total: {
-        computed: 'multiply(item.Qte, item.Prix)'
+        computed: 'multiply(item.quantite, item.prix)'
       },
       item_image: {
         type: String,
         computed: 'computeImage(item.code)'
+      },
+      item_elevation: {
+        type: Number,
+        value: 1
       }
+    },
+    ready: function() {
+      this._updateElevation();
     },
     computeImage: function(image){
       return '../../images/' + image + '.jpg';
@@ -144,16 +150,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     multiply: function(qte, prix){
       return qte*prix;
     },
-    _commandeItemChanged: function(){
-      console.log('COMMANDE ITEM CHANGED');
-    },
     _addFormat: function() {
-      this.set('item.Qte', this.item.Qte + 1);
+      this.set('item.quantite', this.item.quantite + 1);
+      this._updateElevation();
       //this.translate3d('100px', '100px', '100px');
     },
     _lessFormat: function() {
-      if (this.item.Qte > 0) {
-        this.set('item.Qte', this.item.Qte - 1);
+      if (this.item.quantite > 0) {
+        this.set('item.quantite', this.item.quantite - 1);
+        this._updateElevation();
+      }
+    },
+    _updateElevation: function() {
+      if (this.item.quantite > 0) {
+        this.set('item_elevation', 5);
+      } else {
+        this.set('item_elevation', 1);
       }
     }
   });

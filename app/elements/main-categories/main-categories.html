@@ -23,13 +23,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          entry-animation="[[entryAnimation]]"
                          exit-animation="[[exitAnimation]]"
                          animateInitialSelection>
-      <main-menu on-change-page="_changePage"></main-menu>
+      <main-menu on-change-page="_changePage" myuser="[[myuser]]"></main-menu>
       <liste-commande on-change-page="_changePage"
-                      filter-zone="congelateur"></liste-commande>
+                      filter-zone="congelateur"
+                      myuser="[[myuser]]"></liste-commande>
       <liste-commande on-change-page="_changePage"
-                      filter-zone="gardemanger"></liste-commande>
+                      filter-zone="gardemanger"
+                      myuser="[[myuser]]"></liste-commande>
       <liste-commande on-change-page="_changePage"
-                      showme></liste-commande> 
+                      showme></liste-commande>
 
     </neon-animated-pages>
   </template>
