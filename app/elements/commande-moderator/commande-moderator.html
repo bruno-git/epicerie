@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="main-categories">
+<dom-module id="commande-moderator">
   <style>
     :host {
       display: block;
@@ -23,15 +23,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          entry-animation="[[entryAnimation]]"
                          exit-animation="[[exitAnimation]]"
                          animateInitialSelection>
-      <main-menu on-change-page="_changePage" myuser="[[myuser]]"></main-menu>
-      <liste-commande on-change-page="_changePage"
+      <commande-zone-liste on-change-page="_changePage" myuser="[[myuser]]"></commande-zone-liste>
+      <commande-zone-items on-change-page="_changePage"
                       filter-zone="congelateur"
-                      myuser="[[myuser]]"></liste-commande>
-      <liste-commande on-change-page="_changePage"
+                      myuser="[[myuser]]"></commande-zone-items>
+      <commande-zone-items on-change-page="_changePage"
                       filter-zone="gardemanger"
-                      myuser="[[myuser]]"></liste-commande>
-      <liste-commande on-change-page="_changePage"
-                      showme></liste-commande>
+                      myuser="[[myuser]]"></commande-zone-items>
+      <commande-zone-items on-change-page="_changePage"
+                      showme></commande-zone-items>
 
     </neon-animated-pages>
   </template>
@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
 
   Polymer({
-    is: 'main-categories',
+    is: 'commande-moderator',
 
     properties: {
       catSelected: {

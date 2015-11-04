@@ -10,20 +10,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="liste-commande">
+<dom-module id="commande-zone-items">
   <style>
     :host {
       display: block;
     }
-    .congelateur {
-      background-color: var(--paper-grey-200);
-    }
+
 
   </style>
   <template>
-    <div class="congelateur">Ma commande (<span>{{filterZone}}</span>)</div>
+    <div>
+      <paper-button raised on-click="_selectMenu"><</paper-button>
+      Mon <span>{{filterZone}}</span>
+    </div>
 
-    <paper-button raised on-click="_selectMenu">Back</paper-button>
+
     <firebase-collection id="fireProject"
                          location="{{url}}"
                          data="{{commande}}"
@@ -32,7 +33,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          log
                          on-error="_errorHandler"></firebase-collection>
 
-    <div hidden={{showme}}>showme</div>
     <div class="horizontal layout wrap">
       <template is="dom-repeat" items="{{commande}}" as="commande_item">
         <commande-item  item="{{commande_item}}"></commande-item>
@@ -45,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
   Polymer({
-    is: 'liste-commande',
+    is: 'commande-zone-items',
 
     properties: {
       myuser: {
