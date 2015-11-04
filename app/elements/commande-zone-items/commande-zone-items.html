@@ -15,15 +15,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
-    .congelateur {
-      background-color: var(--paper-grey-200);
-    }
 
   </style>
   <template>
-    <div class="congelateur">Ma commande (<span>{{filterZone}}</span>)</div>
+    <div>
+      <paper-button raised on-click="_selectMenu"><</paper-button>
+      Mon <span>{{filterZone}}</span>
+    </div>
 
-    <paper-button raised on-click="_selectMenu">Back</paper-button>
+
     <firebase-collection id="fireProject"
                          location="{{url}}"
                          data="{{commande}}"
