@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template>
     <template is="dom-if" if="[[item.prix]]">
-      <paper-material elevation="[[item_elevation]]" class="vertical layout card">
+      <paper-material elevation="[[itemElevation]]" class="vertical layout card">
         <!--titre-->
         <div class="horizontal layout">
           <div class="cercle_categorie">V</div>
@@ -87,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-image style="width:200px;height:200px;background-color:lightgray;
                                border-radius:10%"
                         sizing="cover"
-                        src="[[item_image]]"
+                        src="[[itemImage]]"
                         preload
                         fade></iron-image>
           </div>
@@ -111,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="detail">
           <div><span>[[item.detail]]</span></div>
           <div>
-            Total:<span>[[item_total]]</span>$
+            Total:<span>[[itemTotal]]</span>$
           </div>
         </div>
       </paper-material>
@@ -129,14 +129,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Object,
         notify: true
       },
-      item_total: {
+      itemTotal: {
         computed: 'multiply(item.quantite, item.prix)'
       },
-      item_image: {
+      itemImage: {
         type: String,
         computed: 'computeImage(item.code)'
       },
-      item_elevation: {
+      itemElevation: {
         type: Number,
         value: 1
       }
@@ -163,9 +163,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     _updateElevation: function() {
       if (this.item.quantite > 0) {
-        this.set('item_elevation', 5);
+        this.set('itemElevation', 5);
       } else {
-        this.set('item_elevation', 1);
+        this.set('itemElevation', 1);
       }
     }
   });

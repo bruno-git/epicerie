@@ -10,33 +10,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 (function(document) {
   'use strict';
 
-/* Animated pages script */
-var scope = document.querySelector('#app');
-scope.selected = 0;
-
-scope._epicerie = function() {
-  console.log('epicerie');
-  this.entryAnimation = 'slide-from-left-animation';
-  this.exitAnimation = 'slide-right-animation';
-  this.selected = 0;
-}
-
-scope._users = function() {
-  console.log('users');
-  this.entryAnimation = 'slide-from-right-animation';
-  this.exitAnimation = 'slide-left-animation';
-  this.selected = 1;
-}
-
-/* End of Animated pages script */
-
-/* Handle the user icon paper-icon-button action*/
-scope.menuclick = function() {
-  console.log('CLICK HANDLER TRIGGERED');
-  alert('a');
-}
-/* End of User icon action*/
-
   // Grab a reference to our auto-binding template
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g

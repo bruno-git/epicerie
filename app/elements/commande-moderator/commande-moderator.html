@@ -50,16 +50,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //SELECTION CHANGED
     _changePage: function(e){
       var newPageName = e.detail.page;
-      if (newPageName == 'menu') {
+      if (newPageName === 'menu') {
         this._moveRight(0);
       }
-      if (newPageName == 'congelateur') {
+      if (newPageName === 'congelateur') {
         this._moveLeft(1);
       }
-      if (newPageName == 'gardemanger') {
+      if (newPageName === 'gardemanger') {
         this._moveLeft(2);
       }
-      if (newPageName == 'commande') {
+      if (newPageName === 'commande') {
         this._moveLeft(3);
       }
 

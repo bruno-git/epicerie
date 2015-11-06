@@ -26,10 +26,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <br>
       <paper-input label="Email" type="email"></paper-input>
       <paper-input label="Password" type="password"></paper-input>
-      <paper-button raised style="width:100%" on-click="_fake_login">Login</paper-button>
+      <paper-button raised style="width:100%" on-click="_fakeLogin">Login</paper-button>
       <div class="text-login">or</div>
-      <paper-button raised style="width:100%" on-click="_fake_login">Connect with Facebook</paper-button>
-      <paper-button raised style="width:100%" on-click="_fake_login">Connect with Google</paper-button>
+      <paper-button raised style="width:100%" on-click="_fakeLogin">Connect with Facebook</paper-button>
+      <paper-button raised style="width:100%" on-click="_fakeLogin">Connect with Google</paper-button>
       <div>
         Don't have an account?
         <paper-button raised on-click="_switchExisting">Sign up</paper-button>
@@ -61,9 +61,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       console.log(this.isNewUser);
     },
 //FAKE LOGIN
-    _fake_login: function(){
+    _fakeLogin: function(){
       this.fakeUserLogged = true;
-      console.log('fakeUserLogged: ' + this.fakeUserLogged)
+      console.log('fakeUserLogged: ' + this.fakeUserLogged);
     },
 //BEHAVIORS
     behaviors: [

@@ -49,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     on-click="_triggerLogin"
                     style="width:100%">Login with Google</paper-button>
       <div>
-        Already have an accoun?
+        Already have an account?
         <paper-button raised accesskey=""on-click="_switchExisting">Sign in</paper-button>
       </div>
     </div>
@@ -80,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 //FIRELOGIN
     _fireLogin: function(e) {
-      console.log("firelogin");
+      console.log('firelogin');
       console.log(e.detail.user.uid);
       this.myuser = e.detail.user;
       this.isConnected = true;
@@ -91,16 +91,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var exists = snapshot.val() !== null;
         if (!exists) {
           //TODO replace this by a real callback function
-          newUserNode.set({name: "Bruno", city: "Mourial"});
+          newUserNode.set({name: 'Bruno', city: 'Mourial'});
         }
-      })
+      });
       app.route='epicerie';
     //  page('/epicerie');
     },
 
 //FIRELOGOUT
     _fireLogout: function(e) {
-      console.log("firelogout");
+      console.log('firelogout');
       this.myuser =  null;
       this.isConnected = false;
     },
@@ -111,12 +111,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       console.log(this.isNewUser);
     },
     _myuserChanged: function(newValue, oldValue) {
-      console.log("userchanged");
+      console.log('userchanged');
       console.log(newValue);
     },
 //IS NEW USER CHANGED
     _isNewUserChanged: function(newValue, oldValue) {
-      console.log('(from new-user.html) isNewUser changed from: ' + oldValue + ' to: ' + newValue)
+      console.log('(from new-user.html) isNewUser changed from: ' + oldValue + ' to: ' + newValue);
     },
 //BEHAVIORS
     behaviors: [

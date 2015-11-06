@@ -24,7 +24,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          animatedInitialSelection>
       <new-user is-new-user="{{isNew}}" myuser="{{myuser}}"></new-user>
       <existing-user is-new-user="{{isNew}}" fake-user-logged="{{isLogged}}"></existing-user>
-      <main-categories></main-categories>
     </neon-animated-pages>
   </template>
 </dom-module>
@@ -53,26 +52,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //READY
     ready: function() {
       this.isNew = true;
-      
+
     },
 //IS NEW CHANGED
     _isNewChanged(newValue, oldValue){
       console.log('is new changed triggered, new value: ' + this.isNew);
-      if (this.isNew == true) {
-        this.selected = 0
+      if (this.isNew === true) {
+        this.selected = 0;
       }
       else {
-        this.selected = 1
-      }
-    },
-//IS LOGGED CHANGED
-    _isLoggedChanged(newValue, oldValue){
-      console.log('is logged (fake) changed triggered: new value: ' + this.isLogged);
-      if (this.isLogged == true){
-        this.selected = 2;
+        this.selected = 1;
       }
     }
-
   });
 
 </script>
