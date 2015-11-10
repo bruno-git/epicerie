@@ -15,27 +15,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
-    .text-login {
-      text-align:center;
+    .card {
+      width: 375px;
+      margin: auto auto 24px auto;
+      padding: 16px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333333;
+    }
+    .input {
+      width: 300px;
+      margin: auto;
+    }
+    .btn {
+      color: #fff;
+      width: 250px;
+      margin-top: 10px;
+    }
+    .btn-default {
+      background-color: #333333;
+
+    }
+    .btn-facebook {
+      background-color: #3b5992;
+    }
+    .btn-google {
+      background-color: #4285f4;
+    }
+    .or-section {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      color: #333333;
     }
   </style>
   <template>
-    <div style="width:275px; margin: auto">
-      <br>
-      <div class="text-login">Existing user page</div>
-      <br>
-      <paper-input label="Email" type="email"></paper-input>
-      <paper-input label="Password" type="password"></paper-input>
-      <paper-button raised style="width:100%" on-click="_fakeLogin">Login</paper-button>
-      <div class="text-login">or</div>
-      <paper-button raised style="width:100%" on-click="_fakeLogin">Connect with Facebook</paper-button>
-      <paper-button raised style="width:100%" on-click="_fakeLogin">Connect with Google</paper-button>
-      <div>
-        Don't have an account?
-        <paper-button raised on-click="_switchExisting">Sign up</paper-button>
-      </div>
-      <a data-route="epicerie" href="/epicerie">open epicerie</a>
-    </div>
+    <paper-material class="card" elevation="2">
+      <div class="card-title">Client existant</div>
+      <paper-input class="input" label="Courriel" type="email"></paper-input>
+      <paper-input class="input" label="Mot de passe" type="password"></paper-input>
+      <paper-button class="btn btn-default" on-click="_fakeLogin">Connexion</paper-button>
+      <div class="or-section">ou</div>
+      <paper-button class="btn btn-facebook" on-click="_fakeLogin">Connexion avec Facebook</paper-button>
+      <paper-button class="btn btn-google" on-click="_fakeLogin">Connexion avec Google</paper-button>
+    </paper-material>
+    <paper-material class="card" elevation="2">
+      <div class="card-title">Nouveau client?</div>
+      <paper-button class="btn btn-default" on-click="_switchExisting">Creer un compte</paper-button>
+    </paper-material>
   </template>
 </dom-module>
 <script>

@@ -17,6 +17,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
+    <commande-auth id="auth"></commande-auth>
+    <paper-button on-click="test">test</paper-button>
     <span>app-login myuser: <span>{{myuser.google.displayName}}</span></span>
     <neon-animated-pages selected="[[selected]]"
                          entry-animation="fade-in-animation"
@@ -40,8 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       isLogged:{
         type: Boolean,
-        notify: true,
-        observer: '_isLoggedChanged'
+        notify: true
       },
       myuser: {
         type: Object,
@@ -51,8 +52,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 //READY
     ready: function() {
-      this.isNew = true;
+      this.isNew = false;
 
+    },
+// TEST
+    test: function() {
+      alert('test');
+      this.$.auth.signIn();
     },
 //IS NEW CHANGED
     _isNewChanged(newValue, oldValue){

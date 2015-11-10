@@ -70,7 +70,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
+          <neon-animated-pages attr-for-selected="data-route"
+                               selected="{{route}}"
+                               entry-animation="fade-in-animation"
+                               exit-animation="fade-out-animation"
+                               animateInitialSelection>
+<!--
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
+-->
             <section data-route="login">
               <app-login is-logged="{{isLoggedUser}}"
                          myuser="{{myuser}}"></app-login>
@@ -80,9 +87,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="epicerie">
               <commande-moderator myuser="[[myuser]]"></commande-moderator>
             </section>
-
+          </neon-animated-pages>
+<!--
           </iron-pages>
-
+-->
         </div>
       </paper-header-panel>
 

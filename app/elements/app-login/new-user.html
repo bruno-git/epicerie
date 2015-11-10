@@ -15,8 +15,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
-    .text-login {
-      text-align:center;
+    .card {
+      width: 375px;
+      margin: auto auto 24px auto;
+      padding: 16px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333333;
+    }
+    .input {
+      width: 300px;
+      margin: auto;
+    }
+    .btn {
+      color: #fff;
+      width: 250px;
+      margin-top: 10px;
+    }
+    .btn-default {
+      background-color: #333333;
+
+    }
+    .btn-facebook {
+      background-color: #3b5992;
+    }
+    .btn-google {
+      background-color: #4285f4;
+    }
+    .or-section {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      color: #333333;
     }
   </style>
   <template>
@@ -33,26 +66,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          data="{{firebaseUsers}}"
                          log></firebase-collection>
 
-    <div style="width:275px; margin: auto">
+    <paper-material class="card">
       <br>
-      <div class="text-login">New User Page</div>
+      <div class="card-title">Nouveau client</div>
       <br>
-      <paper-input label="First Name"></paper-input>
-      <paper-input label="Last Name"></paper-input>
-      <paper-input label="Email" type="email" style="width:100%"></paper-input>
-      <paper-input label="Password" type="password" style="width:100%"></paper-input>
-      <paper-input label="Phone" type="tel" style="width:100%"></paper-input>
-      <paper-button raised style="width:100%">Create Account</paper-button>
-      <div class="text-login">or</div>
-      <paper-button raised style="width:100%">Login with Facebook</paper-button>
-      <paper-button raised
-                    on-click="_triggerLogin"
-                    style="width:100%">Login with Google</paper-button>
-      <div>
-        Already have an account?
-        <paper-button raised accesskey=""on-click="_switchExisting">Sign in</paper-button>
-      </div>
-    </div>
+      <paper-input class="input" label="Prenom"></paper-input>
+      <paper-input class="input" label="Nom de famille"></paper-input>
+      <paper-input class="input" label="Courriel" type="email"></paper-input>
+      <paper-input class="input" label="Mot de passe" type="password"></paper-input>
+      <paper-input class="input" label="Telephone" type="tel"></paper-input>
+      <paper-button class="btn btn-default">Creer compte</paper-button>
+      <div class="or-section">ou</div>
+      <paper-button class="btn btn-facebook">Connexion avec Facebook</paper-button>
+      <paper-button class="btn btn-google" on-click="_triggerLogin">Connexion avec Google</paper-button>
+    </paper-material>
+    <paper-material class="card">
+      <div class="card-title">Client existant?</div>
+      <paper-button class="btn btn-default" on-click="_switchExisting">Connectez-vous!</paper-button>
+    </paper-material>
   </template>
 </dom-module>
 <script>
@@ -76,6 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 //TRIGGER LOGIN
     _triggerLogin: function() {
+      console.log('triggerlogin');
       this.$.firebaseLogin.login();
     },
 //FIRELOGIN
@@ -94,8 +126,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           newUserNode.set({name: 'Bruno', city: 'Mourial'});
         }
       });
+      console.log('Routing to epicerie...');
       app.route='epicerie';
-    //  page('/epicerie');
     },
 
 //FIRELOGOUT
