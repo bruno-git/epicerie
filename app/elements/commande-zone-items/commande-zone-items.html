@@ -48,15 +48,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'commande-zone-items',
 
     properties: {
-      myuser: {
+      user: {
         type: Object
       },
       url: {
-        computed: '_computeUrl(myuser.uid)'
+        computed: '_computeUrl(user.uid)'
       }
     },
-    _computeUrl: function(myuserid) {
-      return ['https://epicerieenligne.firebaseio.com/Commandes', this.myuser.uid.replace(':', '%3A'), 'commande1/items'].join('/');
+    _computeUrl: function(userid) {
+      return ['https://epicerieenligne.firebaseio.com/Commandes', this.user.uid.replace(':', '%3A'), 'commande1/items'].join('/');
     },
     _selectMenu: function(){
       this.fire('change-page', {page: 'menu'});

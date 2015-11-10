@@ -53,19 +53,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <firebase-auth id="firebaseLogin"
-                   user="{{user}}"
-                   statusKnown="{{statusKnown2}}"
-                   location="https://epicerieenligne.firebaseio.com"
-                   provider="google"
-                   on-login="_fireLogin"
-                   on-logout="_fireLogout"></firebase-auth>
-
-    <firebase-collection id="firebaseUsers"
-                         location="https://epicerieenligne.firebaseio.com/users"
-                         data="{{firebaseUsers}}"
-                         log></firebase-collection>
-
     <paper-material class="card">
       <br>
       <div class="card-title">Nouveau client</div>
@@ -82,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </paper-material>
     <paper-material class="card">
       <div class="card-title">Client existant?</div>
-      <paper-button class="btn btn-default" on-click="_switchExisting">Connectez-vous!</paper-button>
+      <paper-button class="btn btn-default" on-click="_changeMenu">Connectez-vous!</paper-button>
     </paper-material>
   </template>
 </dom-module>
@@ -92,63 +79,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'new-user',
 
     properties: {
-      isNewUser: {
-        type: Boolean,
-        notify: true,
-        readOnly: false,
-        observer: '_isNewUserChanged'
-      },
-      myuser: {
+      user: {
         type: Object,
         notify: true,
         readOnly: false,
-        observer: '_myuserChanged'
+        observer: '_userChanged'
       }
     },
 //TRIGGER LOGIN
     _triggerLogin: function() {
+      //global function in the app.js file
+      app.signIn();
+      app.route = 'epicerie';
+
+      //this.fire('sign-in', {provider: 'google'});
       console.log('triggerlogin');
-      this.$.firebaseLogin.login();
     },
-//FIRELOGIN
-    _fireLogin: function(e) {
-      console.log('firelogin');
-      console.log(e.detail.user.uid);
-      this.myuser = e.detail.user;
-      this.isConnected = true;
-      //Create the new user node if user doesn't already exists
-      var userId = e.detail.user.uid;
-      var newUserNode = this.$.firebaseUsers.query.ref().child(userId);
-      newUserNode.once('value', function(snapshot) {
-        var exists = snapshot.val() !== null;
-        if (!exists) {
-          //TODO replace this by a real callback function
-          newUserNode.set({name: 'Bruno', city: 'Mourial'});
-        }
-      });
-      console.log('Routing to epicerie...');
-      app.route='epicerie';
-    },
-
-//FIRELOGOUT
-    _fireLogout: function(e) {
-      console.log('firelogout');
-      this.myuser =  null;
-      this.isConnected = false;
-    },
-
 //SWITCH EXISTING USER STATE
-    _switchExisting: function() {
-      this.isNewUser = false;
-      console.log(this.isNewUser);
+    _changeMenu: function() {
+      this.fire('change-menu', {menu: 'existing'});
     },
-    _myuserChanged: function(newValue, oldValue) {
-      console.log('userchanged');
-      console.log(newValue);
-    },
-//IS NEW USER CHANGED
-    _isNewUserChanged: function(newValue, oldValue) {
-      console.log('(from new-user.html) isNewUser changed from: ' + oldValue + ' to: ' + newValue);
+    _userChanged: function(newValue, oldValue) {
+      console.log('new-user: user changed');
     },
 //BEHAVIORS
     behaviors: [

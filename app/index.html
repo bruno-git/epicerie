@@ -15,7 +15,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="Bruno QA App" />
   <title>Bruno Epicerie</title>
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -41,58 +40,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
 
-
   <template is="dom-bind" id="app">
+<!-- AUTHENTICATION OBJECT -->
+    <commande-auth id="auth"
+                   user="{{user}}"
+                   url="[[firebaseURL]]"></commande-auth>
 
-      <paper-header-panel main mode="standard">
+    <paper-header-panel main mode="standard">
 
-        <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar">
-          <span class="flex"></span>
+      <!-- Main Toolbar -->
+      <paper-toolbar id="mainToolbar">
+        <span class="flex"></span>
 
-          <!-- Toolbar icons -->
-          <template is="dom-if" if="{{myuser}}">
-            <paper-menu-button>
-              <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
-              <paper-menu class="dropdown-content">
-                  <paper-item>Déconnecter</paper-item>
-              </paper-menu>
-            </paper-menu-button>
-            <iron-image src="{{myuser.google.cachedUserProfile.picture}}"
-                        style="width:30px; height:30px; border-radius:100%"
-                        sizing="contain" preload fade></iron-image>
-          </template>
+        <!-- Toolbar icons -->
+        <template is="dom-if" if="{{user}}">
+          <paper-menu-button>
+            <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
+            <paper-menu class="dropdown-content">
+                <paper-item>Déconnecter</paper-item>
+            </paper-menu>
+          </paper-menu-button>
 
-          <!-- Application name -->
-          <div class="middle paper-font-display2 app-name">Mon Garde Manger</div>
+          <paper-button on-click="signOut">Deconnecter</paper-button>
+          <iron-image src="{{user.google.cachedUserProfile.picture}}"
+                      style="width:30px; height:30px; border-radius:100%"
+                      sizing="contain" preload fade></iron-image>
+        </template>
+        
+        <!-- Application name -->
+        <div class="middle paper-font-display2 app-name">Mon Garde Manger</div>
 
-        </paper-toolbar>
+      </paper-toolbar>
 
-        <!-- Main Content -->
-        <div class="content">
-          <neon-animated-pages attr-for-selected="data-route"
-                               selected="{{route}}"
-                               entry-animation="fade-in-animation"
-                               exit-animation="fade-out-animation"
-                               animateInitialSelection>
+      <!-- Main Content -->
+      <div class="content">
+        <neon-animated-pages attr-for-selected="data-route"
+                             selected="{{route}}"
+                             entry-animation="fade-in-animation"
+                             exit-animation="fade-out-animation"
+                             animateInitialSelection>
 <!--
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+        <iron-pages attr-for-selected="data-route" selected="{{route}}">
 -->
-            <section data-route="login">
-              <app-login is-logged="{{isLoggedUser}}"
-                         myuser="{{myuser}}"></app-login>
+          <section data-route="login">
+            <app-login url="[[firebaseURL]]"
+                       user="{{user}}">
+            </app-login>
+          </section>
 
-            </section>
-
-            <section data-route="epicerie">
-              <commande-moderator myuser="[[myuser]]"></commande-moderator>
-            </section>
-          </neon-animated-pages>
+          <section data-route="epicerie">
+            <commande-moderator user="[[user]]"></commande-moderator>
+          </section>
+        </neon-animated-pages>
 <!--
-          </iron-pages>
+        </iron-pages>
 -->
-        </div>
-      </paper-header-panel>
+      </div>
+    </paper-header-panel>
 
   </template>
 

@@ -60,11 +60,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-button class="btn btn-default" on-click="_fakeLogin">Connexion</paper-button>
       <div class="or-section">ou</div>
       <paper-button class="btn btn-facebook" on-click="_fakeLogin">Connexion avec Facebook</paper-button>
-      <paper-button class="btn btn-google" on-click="_fakeLogin">Connexion avec Google</paper-button>
+      <paper-button class="btn btn-google" on-click="_triggerLogin">Connexion avec Google</paper-button>
     </paper-material>
     <paper-material class="card" elevation="2">
       <div class="card-title">Nouveau client?</div>
-      <paper-button class="btn btn-default" on-click="_switchExisting">Creer un compte</paper-button>
+      <paper-button class="btn btn-default" on-click="_changeMenu">Creer un compte</paper-button>
     </paper-material>
   </template>
 </dom-module>
@@ -73,27 +73,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'existing-user',
 
     properties: {
-      isNewUser: {
-        type: Boolean,
+      user: {
+        type: Object,
         notify: true,
-        readOnly: false
-      },
-      fakeUserLogged: {
-        type: Boolean,
-        notify: true,
-        value: false,
         readOnly: false
       }
     },
 //SWITCH EXISTING USER STATUS
-    _switchExisting: function(){
-      this.isNewUser = true;
-      console.log(this.isNewUser);
+    _changeMenu: function(){
+      this.fire('change-menu', {menu: 'new'});
     },
-//FAKE LOGIN
-    _fakeLogin: function(){
-      this.fakeUserLogged = true;
-      console.log('fakeUserLogged: ' + this.fakeUserLogged);
+//SIGN IN
+    _triggerLogin: function() {
+      app.signIn();
+      app.route = 'epicerie';
     },
 //BEHAVIORS
     behaviors: [

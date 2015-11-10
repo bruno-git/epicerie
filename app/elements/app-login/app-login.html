@@ -17,15 +17,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <commande-auth id="auth"></commande-auth>
-    <paper-button on-click="test">test</paper-button>
-    <span>app-login myuser: <span>{{myuser.google.displayName}}</span></span>
+<!--
+    <span>app-login user: <span>{{user.google.displayName}}</span></span>
+-->
     <neon-animated-pages selected="[[selected]]"
                          entry-animation="fade-in-animation"
                          exit-animation="fade-out-animation"
                          animatedInitialSelection>
-      <new-user is-new-user="{{isNew}}" myuser="{{myuser}}"></new-user>
-      <existing-user is-new-user="{{isNew}}" fake-user-logged="{{isLogged}}"></existing-user>
+      <new-user on-change-menu="_changeMenu" user="{{user}}"></new-user>
+      <existing-user on-change-menu="_changeMenu"></existing-user>
     </neon-animated-pages>
   </template>
 </dom-module>
@@ -35,38 +35,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'app-login',
 
     properties: {
-      isNew: {
-        type: Boolean,
-        notify: true,
-        observer: '_isNewChanged'
-      },
-      isLogged:{
-        type: Boolean,
-        notify: true
-      },
-      myuser: {
+      user: {
         type: Object,
         notify: true,
         readOnly: false
+      },
+      selected: {
+        value: 1
       }
     },
-//READY
-    ready: function() {
-      this.isNew = false;
-
-    },
-// TEST
-    test: function() {
-      alert('test');
-      this.$.auth.signIn();
-    },
-//IS NEW CHANGED
-    _isNewChanged(newValue, oldValue){
-      console.log('is new changed triggered, new value: ' + this.isNew);
-      if (this.isNew === true) {
+    _changeMenu: function(e) {
+      menu = e.detail.menu;
+      if (menu === 'new') {
         this.selected = 0;
       }
-      else {
+      if (menu === 'existing') {
         this.selected = 1;
       }
     }

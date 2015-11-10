@@ -19,11 +19,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <firebase-auth id="authenticate"
                    user="{{user}}"
-                   statusKnown="{{statusKnown}}"
-                   location="https://epicerieenligne.firebaseio.com"
+                   location="[[url]]"
                    provider="google"
-                   on-login="_fireLogin"
-                   on-logout="_fireLogout"></firebase-auth>
+                   on-login="_loginFired"
+                   on-logout="_logoutFired"
+                   log>
+    </firebase-auth>
+    <firebase-collection id="firebaseUsers"
+                         location="https://epicerieenligne.firebaseio.com/users"
+                         log>
+    </firebase-collection>
   </template>
 </dom-module>
 <script>
@@ -34,15 +39,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
       user: {
         notify: true
+      },
+      userListURL: {
+        computed: '_computedUserListURL()'
       }
     },
+    _computedUserListURL: function(){
+      return [this.url, 'users'].join('/');
+    },
     signIn: function() {
-      //this.$.authenticate.login();
-      alert('COMMANDE-AUTH SIGNIN');
+      this.$.authenticate.login();
+      console.log('COMMANDE-AUTH SIGN IN');
     },
     signOut: function() {
       this.$.authenticate.logout();
       this.user = null;
+      console.log('COMMANDE-AUTH SIGN OUT');
+      app.route = 'login';
+    },
+    _loginFired: function(e) {
+      console.log('commande-auth login fired');
+      //Create the new user node if user doesn't already exists
+      var userId = e.detail.user.uid;
+      console.log(userId);
+      var newUserNode = this.$.firebaseUsers.query.ref().child(userId);
+      newUserNode.once('value', function(snapshot) {
+        var exists = snapshot.val() !== null;
+        if (!exists) {
+          console.log('commande-auth: user logged new in firebase');
+          //TODO replace this by a real callback function
+          newUserNode.set({name: 'Bruno', city: 'Mourial'});
+        }
+        console.log('commande-auth: user logged already in firebase');
+      });
+    },
+    _logoutFired: function() {
+      console.log('commande-auth logout fired');
     }
   });
 

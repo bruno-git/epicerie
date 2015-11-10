@@ -17,8 +17,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.firebaseURL = 'https://epicerieenligne.firebaseio.com';
   app.signOut = function() {
-    this.$.auth.sighOut();
+    this.$.auth.signOut();
   };
+  app.signIn = function() {
+    this.$.auth.signIn();
+  }
 
 /*
   app.displayInstalledToast = function() {
