@@ -54,9 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <paper-material class="card">
-      <br>
       <div class="card-title">Nouveau client</div>
-      <br>
       <paper-input class="input" label="Prenom"></paper-input>
       <paper-input class="input" label="Nom de famille"></paper-input>
       <paper-input class="input" label="Courriel" type="email"></paper-input>
@@ -90,10 +88,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _triggerLogin: function() {
       //global function in the app.js file
       app.signIn();
-      app.route = 'epicerie';
 
       //this.fire('sign-in', {provider: 'google'});
-      console.log('triggerlogin');
     },
 //SWITCH EXISTING USER STATE
     _changeMenu: function() {

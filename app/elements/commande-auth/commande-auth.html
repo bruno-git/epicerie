@@ -48,8 +48,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return [this.url, 'users'].join('/');
     },
     signIn: function() {
-      this.$.authenticate.login();
-      console.log('COMMANDE-AUTH SIGN IN');
+      //validate that the user is not already logged
+      if (this.user !== null) {
+        console.log('User already logged. Sign in action cancelled.');
+      }
+      else{
+        this.$.authenticate.login();
+        console.log('COMMANDE-AUTH SIGN IN');
+        app.route = 'epicerie';
+      }
     },
     signOut: function() {
       this.$.authenticate.logout();
