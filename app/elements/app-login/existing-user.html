@@ -14,58 +14,73 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
+      margin: 100px 0 0 0;
     }
     .card {
       width: 375px;
       margin: auto auto 24px auto;
       padding: 16px;
+      background-color: rgba(255, 255, 255, 0.8);
     }
     .card-title {
       font-size: 16px;
       font-weight: bold;
       color: #333333;
     }
+    .card-content {
+      margin: auto;
+      max-width: 250px;
+    }
     .input {
-      width: 300px;
+      width: 100%;
       margin: auto;
     }
     .btn {
       color: #fff;
-      width: 250px;
-      margin-top: 10px;
+      width: 100%;
+      margin: 10px auto 0 auto;
     }
     .btn-default {
       background-color: #333333;
 
     }
     .btn-facebook {
-      background-color: #3b5992;
+      background-color: var(--facebook-color);
     }
     .btn-google {
-      background-color: #4285f4;
+      background-color: var(--google-color);
     }
     .or-section {
-      margin-top: 10px;
+      margin: 10px auto 0 auto;
       font-size: 14px;
       font-weight: bold;
       text-align: center;
-      color: #333333;
+      color: var(--primary-text-color);
     }
+
   </style>
   <template>
-    <paper-material class="card" elevation="2">
-      <div class="card-title">Client existant</div>
-      <paper-input class="input" label="Courriel" type="email"></paper-input>
-      <paper-input class="input" label="Mot de passe" type="password"></paper-input>
-      <paper-button class="btn btn-default" on-click="_fakeLogin">Connexion</paper-button>
-      <div class="or-section">ou</div>
-      <paper-button class="btn btn-facebook" on-click="_fakeLogin">Connexion avec Facebook</paper-button>
-      <paper-button class="btn btn-google" on-click="_triggerLogin">Connexion avec Google</paper-button>
-    </paper-material>
-    <paper-material class="card" elevation="2">
-      <div class="card-title">Nouveau client?</div>
-      <paper-button class="btn btn-default" on-click="_changeMenu">Creer un compte</paper-button>
-    </paper-material>
+    <div>
+      <paper-material class="card " elevation="2">
+        <div class="card-title">Client existant</div>
+        <div class="card-content">
+          <paper-input class="input" label="Courriel" type="email"></paper-input>
+          <paper-input class="input" label="Mot de passe" type="password"></paper-input>
+          <paper-button class="btn btn-default" on-click="_fakeLogin">Connexion</paper-button>
+          <div class="or-section">ou</div>
+          <paper-button class="btn btn-facebook" on-click="_fakeLogin">Connexion avec Facebook</paper-button>
+          <paper-button class="btn btn-google" on-click="_triggerLogin">Connexion avec Google</paper-button>
+        </div>
+      </paper-material>
+
+      <paper-material class="card" elevation="2">
+        <div class="card-title">Nouveau client?</div>
+        <div class="card-content">
+          <paper-button class="btn btn-default" on-click="_changeMenu">Créer un compte</paper-button>
+        </div>
+      </paper-material>
+
+    </div>
   </template>
 </dom-module>
 <script>
@@ -85,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 //SIGN IN
     _triggerLogin: function() {
-      app.signIn();      
+      app.signIn();
     },
 //BEHAVIORS
     behaviors: [

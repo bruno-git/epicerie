@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
+      background-color: black;
     }
   </style>
   <template>
@@ -23,15 +24,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          entry-animation="[[entryAnimation]]"
                          exit-animation="[[exitAnimation]]"
                          animateInitialSelection>
-      <commande-zone-liste on-change-page="_changePage" user="[[user]]"></commande-zone-liste>
-      <commande-zone-items on-change-page="_changePage"
-                      filter-zone="congelateur"
-                      user="[[user]]"></commande-zone-items>
-      <commande-zone-items on-change-page="_changePage"
-                      filter-zone="gardemanger"
-                      user="[[user]]"></commande-zone-items>
-      <commande-zone-items on-change-page="_changePage"
-                      showme></commande-zone-items>
+      <commande-zone-liste user="[[user]]"
+                           on-change-page="_changePage" >
+      </commande-zone-liste>
+      <commande-zone-items filter-zone="congelateur"
+                           user="[[user]]"
+                           on-change-page="_changePage">
+      </commande-zone-items>
+      <commande-zone-items filter-zone="gardemanger"
+                           user="[[user]]"
+                           on-change-page="_changePage">
+      </commande-zone-items>
+      <commande-zone-items on-change-page="_changePage"></commande-zone-items>
 
     </neon-animated-pages>
   </template>

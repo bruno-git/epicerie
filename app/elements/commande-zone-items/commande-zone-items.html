@@ -32,7 +32,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          log
                          on-error="_errorHandler"></firebase-collection>
 
-    <div hidden={{showme}}>showme</div>
     <div class="horizontal layout wrap">
       <template is="dom-repeat" items="{{commande}}" as="commande_item">
         <commande-item  item="{{commande_item}}"></commande-item>
@@ -42,7 +41,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 </dom-module>
 <script>
-
 
   Polymer({
     is: 'commande-zone-items',

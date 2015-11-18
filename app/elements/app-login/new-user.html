@@ -14,16 +14,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
+      margin: 50px 0 0 0;
     }
     .card {
       width: 375px;
       margin: auto auto 24px auto;
       padding: 16px;
+      background-color: rgba(255, 255, 255, 0.8);
     }
     .card-title {
       font-size: 16px;
       font-weight: bold;
       color: #333333;
+    }
+    .card-content {
+      margin: auto;
+      max-width: 250px;
     }
     .input {
       width: 300px;
@@ -39,10 +45,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     }
     .btn-facebook {
-      background-color: #3b5992;
+      background-color: var(--facebook-color);
     }
     .btn-google {
-      background-color: #4285f4;
+      background-color: var(--google-color);
     }
     .or-section {
       margin-top: 10px;
@@ -55,19 +61,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <paper-material class="card">
       <div class="card-title">Nouveau client</div>
-      <paper-input class="input" label="Prenom"></paper-input>
-      <paper-input class="input" label="Nom de famille"></paper-input>
-      <paper-input class="input" label="Courriel" type="email"></paper-input>
-      <paper-input class="input" label="Mot de passe" type="password"></paper-input>
-      <paper-input class="input" label="Telephone" type="tel"></paper-input>
-      <paper-button class="btn btn-default">Creer compte</paper-button>
-      <div class="or-section">ou</div>
-      <paper-button class="btn btn-facebook">Connexion avec Facebook</paper-button>
-      <paper-button class="btn btn-google" on-click="_triggerLogin">Connexion avec Google</paper-button>
+      <div class="card-content">
+        <paper-input class="input" label="Prénom"></paper-input>
+        <paper-input class="input" label="Nom de famille"></paper-input>
+        <paper-input class="input" label="Courriel" type="email"></paper-input>
+        <paper-input class="input" label="Mot de passe (8 caractères minimum)" type="password"></paper-input>
+        <paper-button class="btn btn-default">Créer mon compte</paper-button>
+        <div class="or-section">ou</div>
+        <paper-button class="btn btn-facebook">Connexion avec Facebook</paper-button>
+        <paper-button class="btn btn-google" on-click="_triggerLogin">Connexion avec Google</paper-button>
+      </div>
     </paper-material>
     <paper-material class="card">
       <div class="card-title">Client existant?</div>
-      <paper-button class="btn btn-default" on-click="_changeMenu">Connectez-vous!</paper-button>
+      <div class="card-content">
+        <paper-button class="btn btn-default" on-click="_changeMenu">Connectez-vous!</paper-button>
+      </div>
     </paper-material>
   </template>
 </dom-module>

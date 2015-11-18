@@ -15,18 +15,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
-  </style>
-  <style is="custom-style">
-    .congelateur {
-      background: #a9bab1;
+    .zone-cards {
+      margin: 60px 60px 0;
+      width: 75%;
+    }
+    .zone-card {
+      position: relative;
+      margin: 16px 0 16px 16px;
+      background-color: #fff;
+      line-height: 1.5;
+      border-radius: 4px;
+      width: 100%;
+      min-width: 375px;
+    }
+    .card-actions paper-button {
+      color:#771114;
+    }
+
+    .card-actions {
+      color: #607d8b;
+    }
+    .fancy {
+      --paper-card-header-color:#333333;
     }
 
   </style>
+
   <template>
-    <div class="congelateur">
-      <div><paper-button raised on-click="_selectCongelateur">Remplir mon congelateur</paper-button></div>
-      <div><paper-button raised on-click="_selectMer">Remplir mon garde-manger</paper-button></div>
-      <div><paper-button raised on-click="_selectCommande">Ma Commande</paper-button></div>
+    <div class="zone-cards">
+      <paper-card heading="Budget et préférences" class="zone-card ">
+        <div class="card-content">Déterminer mon budget et mes préférences alimentaires.</div>
+          <div class="card-actions">
+            <iron-icon icon="schedule"></iron-icon><span>5 min</span>
+            <paper-button>Démarrer</paper-button>
+          </div>
+      </paper-card>
+      <paper-card heading="Remplir mon congélateur" class="zone-card">
+        <div class="card-content">Choisir mes items congelés et surgelés. (viande, poisson, etc.) </div>
+        <div class="card-actions">
+          <iron-icon icon="schedule"></iron-icon><span>20 min</span>
+          <paper-button on-click="_selectCongelateur">Démarrer</paper-button>
+        </div>
+      </paper-card>
+      <paper-card heading="Remplir mon garde-manger" class="zone-card">
+        <div class="card-content">Lister les zones du garde manger...</div>
+        <div class="card-actions">
+          <iron-icon icon="schedule"></iron-icon><span>15 min</span>
+          <paper-button on-click="_selectGargeManger">Démarrer</paper-button>
+        </div>
+      </paper-card>
+      <paper-card heading="Mes livraisons" class="zone-card">
+        <div class="card-content">Choisir mes dates de livraison</div>
+        <div class="card-actions">
+          <iron-icon icon="schedule"></iron-icon><span>10 min</span>
+          <paper-button>Démarrer</paper-button>
+        </div>
+      </paper-card>
     </div>
   </template>
 </dom-module>
@@ -41,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //this.menuItemSelected = 'commandeCongelateur';
     },
 //SELECT MER
-    _selectMer: function() {
+    _selectGargeManger: function() {
       this.fire('change-page', {page: 'gardemanger'});
       //this.menuItemSelected = 'mer';
     },
