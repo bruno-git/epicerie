@@ -21,8 +21,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
   app.signIn = function() {
     this.$.auth.signIn();
-  }
-
+  };
+  app.showUserPicture = function() {
+    this.$.userPicture.removeAttribute("disabled");
+  };
+  app.hideUserPicture = function() {
+    this.$.userPicture.setAttribute("disabled", "true");
+  };
 /*
   app.displayInstalledToast = function() {
     document.querySelector('#caching-complete').show();

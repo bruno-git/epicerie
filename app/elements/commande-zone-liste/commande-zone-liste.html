@@ -16,7 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
     }
     .zone-cards {
-      margin: 60px 60px 0;
+      margin: 20px auto 10px auto;
       width: 75%;
     }
     .zone-card {
@@ -28,12 +28,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 100%;
       min-width: 375px;
     }
-    .card-actions paper-button {
-      color:#771114;
-    }
-
     .card-actions {
+      display: flex;
+      justify-content: space-between;
+      margin: auto;
+    }
+    .duration {
       color: #607d8b;
+      margin: auto 0;
+    }
+    .action {
+      margin: auto 0;
+      color: #771114;
     }
     .fancy {
       --paper-card-header-color:#333333;
@@ -46,29 +52,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-card heading="Budget et préférences" class="zone-card ">
         <div class="card-content">Déterminer mon budget et mes préférences alimentaires.</div>
           <div class="card-actions">
-            <iron-icon icon="schedule"></iron-icon><span>5 min</span>
-            <paper-button>Démarrer</paper-button>
+            <div class="duration">
+              <iron-icon icon="schedule"></iron-icon><span>5 min</span>
+            </div>
+            <div class="action">
+              <paper-button>Démarrer</paper-button>
+            </div>
           </div>
       </paper-card>
       <paper-card heading="Remplir mon congélateur" class="zone-card">
         <div class="card-content">Choisir mes items congelés et surgelés. (viande, poisson, etc.) </div>
         <div class="card-actions">
-          <iron-icon icon="schedule"></iron-icon><span>20 min</span>
-          <paper-button on-click="_selectCongelateur">Démarrer</paper-button>
+          <div class="duration">
+            <iron-icon icon="schedule"></iron-icon><span>20 min</span>
+          </div>
+          <div class="action">
+            <paper-button on-click="_selectCongelateur">Démarrer</paper-button>
+          </div>
         </div>
       </paper-card>
       <paper-card heading="Remplir mon garde-manger" class="zone-card">
         <div class="card-content">Lister les zones du garde manger...</div>
         <div class="card-actions">
-          <iron-icon icon="schedule"></iron-icon><span>15 min</span>
-          <paper-button on-click="_selectGargeManger">Démarrer</paper-button>
+          <div class="duration">
+            <iron-icon icon="schedule"></iron-icon><span>15 min</span>
+          </div>
+          <div class="action">
+            <paper-button on-click="_selectGargeManger">Démarrer</paper-button>
+          </div>
         </div>
       </paper-card>
       <paper-card heading="Mes livraisons" class="zone-card">
         <div class="card-content">Choisir mes dates de livraison</div>
         <div class="card-actions">
-          <iron-icon icon="schedule"></iron-icon><span>10 min</span>
-          <paper-button>Démarrer</paper-button>
+          <div class="duration">
+            <iron-icon icon="schedule"></iron-icon><span>10 min</span>
+          </div>
+          <div class="action">
+            <paper-button>Démarrer</paper-button>
+          </div>
         </div>
       </paper-card>
     </div>

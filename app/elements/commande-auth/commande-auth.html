@@ -63,6 +63,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.user = null;
       console.log('COMMANDE-AUTH SIGN OUT');
       app.route = 'login';
+
+//TODO: cet appel devra etre deplace dans app.js dans un call THEN
+      app.hideUserPicture();
     },
     _loginFired: function(e) {
       console.log('commande-auth login fired');
@@ -78,6 +81,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           newUserNode.set({name: 'Bruno', city: 'Mourial'});
         }
       });
+//TODO: cet appel devra etre deplace dans app.js dans un call THEN
+      app.showUserPicture();
     },
     _logoutFired: function() {
       console.log('commande-auth logout fired');
