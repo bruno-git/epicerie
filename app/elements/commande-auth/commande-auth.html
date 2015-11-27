@@ -55,6 +55,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       else{
         this.$.authenticate.login();
         console.log('COMMANDE-AUTH SIGN IN');
+//TODO: a corriger...
+        //window.location.href = '/#!/epicerie';
         app.route = 'epicerie';
       }
     },
@@ -62,6 +64,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.$.authenticate.logout();
       this.user = null;
       console.log('COMMANDE-AUTH SIGN OUT');
+//TODO: a corriger...
+      //window.location.href = '/';
       app.route = 'login';
 
 //TODO: cet appel devra etre deplace dans app.js dans un call THEN

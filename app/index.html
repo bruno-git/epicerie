@@ -66,12 +66,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       z-index: 1;
       transition: transform 300ms ease-in-out;
     }
-/*    .user-image:hover {
-      transform: scale(0);
-    }*/
-    .user-image:disabled {
-      transform: scale(0);
-    }
     .user-image[disabled] {
       transform: scale(0);
     }
@@ -95,22 +89,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    user="{{user}}"
                    url="[[firebaseURL]]"></commande-auth>
 
-
     <paper-header-panel main mode="standard">
 
       <!-- Main Toolbar -->
       <paper-toolbar id="mainToolbar">
         <span class="flex"></span>
 
-        <iron-image  src="images/1000.jpg"
+        <iron-image id="userPicture" src="{{user.google.cachedUserProfile.picture}}"
                     class="user-image"
-                    sizing="contain" preload fade disabled></iron-image>
-                    <iron-image id="userPicture" src="{{user.google.cachedUserProfile.picture}}"
-                                class="user-image"
-                                sizing="contain"
-                                preload
-                                
-                                disabled></iron-image>
+                    sizing="contain"
+                    preload
+                    disabled>
+        </iron-image>
         <!-- Toolbar icons -->
         <template is="dom-if" if="{{user}}">
           <paper-menu-button>
@@ -120,12 +110,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-menu>
           </paper-menu-button>
 
-
-
         </template>
 
         <!-- Application name -->
-        <div class="middle paper-font-display2 app-name">Mon Garde Manger</div>
+        <iron-image src="../images/epicier-original.png"
+                    class="middle"></iron-image>
+<!--
+        <div class="middle paper-font-display2 app-name">Alimentation L'Épicier</div>
+-->        
 
       </paper-toolbar>
 

@@ -54,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
     _computeUrl: function(userid) {
-      return ['https://epicerieenligne.firebaseio.com/Commandes', this.user.uid.replace(':', '%3A'), 'commande1/items'].join('/');
+      return ['https://epicerieenligne.firebaseio.com/Commandes', userid.replace(':', '%3A'), 'commande1/items'].join('/');
     },
     _selectMenu: function(){
       this.fire('change-page', {page: 'menu'});

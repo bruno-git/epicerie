@@ -23,10 +23,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this.$.auth.signIn();
   };
   app.showUserPicture = function() {
-    this.$.userPicture.removeAttribute("disabled");
+    this.$.userPicture.removeAttribute('disabled');
   };
   app.hideUserPicture = function() {
-    this.$.userPicture.setAttribute("disabled", "true");
+    this.$.userPicture.setAttribute('disabled', 'true');
   };
 /*
   app.displayInstalledToast = function() {

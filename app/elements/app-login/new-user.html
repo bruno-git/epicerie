@@ -89,8 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       user: {
         type: Object,
         notify: true,
-        readOnly: false,
-        observer: '_userChanged'
+        readOnly: false
       }
     },
 //TRIGGER LOGIN
@@ -103,9 +102,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //SWITCH EXISTING USER STATE
     _changeMenu: function() {
       this.fire('change-menu', {menu: 'existing'});
-    },
-    _userChanged: function(newValue, oldValue) {
-      console.log('new-user: user changed');
     },
 //BEHAVIORS
     behaviors: [
