@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-icon icon="schedule"></iron-icon><span>5 min</span>
             </div>
             <div class="action">
-              <paper-button>Démarrer</paper-button>
+              <paper-button on-click="_selectProfil">Démarrer</paper-button>
             </div>
           </div>
       </paper-card>
@@ -101,6 +101,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'commande-zone-liste',
 
+//SELECT profil
+    _selectProfil: function() {
+      this.fire('change-page', {page: 'profil'});
+    },
 //SELECT CONGELATEUR
     _selectCongelateur: function() {
       this.fire('change-page', {page: 'congelateur'});

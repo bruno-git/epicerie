@@ -25,6 +25,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <commande-zone-liste user="[[user]]"
                            on-change-page="_changePage" >
       </commande-zone-liste>
+      <profil-usager user="[[user]]"
+                     on-change-page="_changePage">
+      </profil-usager>
       <commande-zone-items filter-zone="congelateur"
                            user="[[user]]"
                            on-change-page="_changePage">
@@ -55,14 +58,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (newPageName === 'menu') {
         this._moveRight(0);
       }
-      if (newPageName === 'congelateur') {
+      if (newPageName === 'profil') {
         this._moveLeft(1);
       }
-      if (newPageName === 'gardemanger') {
+      if (newPageName === 'congelateur') {
         this._moveLeft(2);
       }
-      if (newPageName === 'commande') {
+      if (newPageName === 'gardemanger') {
         this._moveLeft(3);
+      }
+      if (newPageName === 'commande') {
+        this._moveLeft(4);
       }
 
     },
