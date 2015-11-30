@@ -18,15 +18,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.firebaseURL = 'https://epicerieenligne.firebaseio.com';
   app.signOut = function() {
     this.$.auth.signOut();
+//    hideUserPicture();
   };
   app.signIn = function() {
     this.$.auth.signIn();
+//    showUserPicture();
   };
   app.showUserPicture = function() {
     this.$.userPicture.removeAttribute('disabled');
   };
   app.hideUserPicture = function() {
     this.$.userPicture.setAttribute('disabled', 'true');
+  };
+  app.triggerUserMenu = function() {
+    if (this.$.userMenu.getAttribute('hidden') === 'true') {
+      this.$.userMenu.removeAttribute('hidden');
+    }
+    else {
+      this.$.userMenu.setAttribute('hidden', 'true');
+    }
+
   };
 /*
   app.displayInstalledToast = function() {

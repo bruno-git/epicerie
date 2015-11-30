@@ -1,0 +1,52 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="menu-profil">
+  <style>
+    :host {
+      display: block;
+    }
+    .button-profil {
+      background: var(--default-primary-color);
+      color: white;
+    }
+    .button-action {
+      color: var(--card-action-button-color);
+      background: var(--card-action-button-bgcolor);
+    }
+  </style>
+  <template>
+    <paper-card heading="[[user.google.displayName]]">
+      <div class="card-content">
+        <paper-button class="button-profil">Mon profil</paper-button>
+      </div>
+      <paper-button class="button-action" on-click="_signOut">Déconnecter</paper-button>
+    </paper-card>
+  </template>
+</dom-module>
+<script>
+
+  Polymer({
+    is: 'menu-profil',
+
+    properties: {
+      user: {
+        type: Object
+      }
+    },
+    _signOut : function() {
+      this.fire('sign-out');
+      this.setAttribute('hidden', 'true');
+    }
+  });
+
+</script>

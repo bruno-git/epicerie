@@ -76,11 +76,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //Create the new user node if user doesn't already exists
       var userId = e.detail.user.uid;
       console.log(userId);
+      console.log(this.user);      
       var newUserNode = this.$.firebaseUsers.query.ref().child(userId);
       newUserNode.once('value', function(snapshot) {
         var exists = snapshot.val() !== null;
         if (!exists) {
-          console.log('commande-auth: user logged new in firebase');
+          console.log('commande-auth: new user logged in firebase');
           //TODO replace this by a real callback function
           newUserNode.set({name: 'Bruno', city: 'Mourial'});
         }

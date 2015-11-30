@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     .action {
       margin: auto 0;
-      color: #771114;
+      color: var(--card-action-button-color);
     }
     .fancy {
       --paper-card-header-color:#333333;
@@ -51,14 +51,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="zone-cards">
       <paper-card heading="Mon profil" class="zone-card ">
         <div class="card-content">Déterminer mon budget et mes préférences alimentaires.</div>
-          <div class="card-actions">
-            <div class="duration">
-              <iron-icon icon="schedule"></iron-icon><span>5 min</span>
-            </div>
-            <div class="action">
-              <paper-button on-click="_selectProfil">Démarrer</paper-button>
-            </div>
+        <div class="card-actions">
+          <div class="duration">
+            <iron-icon icon="schedule"></iron-icon><span>5 min</span>
           </div>
+          <div class="action">
+            <paper-button on-click="_selectProfil">Démarrer</paper-button>
+          </div>
+        </div>
       </paper-card>
       <paper-card heading="Remplir mon congélateur" class="zone-card">
         <div class="card-content">Choisir mes items congelés et surgelés. (viande, poisson, etc.) </div>

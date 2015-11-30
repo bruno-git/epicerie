@@ -58,10 +58,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .user-image {
       position: fixed;
       opacity: 1.0;
-      top: 30px;
-      right: 20px;
-      width:60px;
-      height:60px;
+      top: 10px;
+      right: 30px;
+      width:40px;
+      height:40px;
       border-radius:100%;
       z-index: 1;
       transition: transform 300ms ease-in-out;
@@ -72,15 +72,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .toolbar-custom {
       opacity: 0.1;
     }
+    .user-menu {
+      position: absolute;
+      top: 65px;
+      right: 20px;
+      background-color: white;
+      color: black;
+      z-index: 1;
+    }
   </style>
 
 </head>
 
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
-<!-- ah ben ta! mon fond d'ecran ajuste! -->
+<!-- ah ben ta! mon fond d'ecran ajusté! -->
   <div class="main-background"></div>
-  <div class="darkener"></div>
+<!--  <div class="darkener"></div> -->
 
   <template is="dom-bind" id="app">
 
@@ -95,29 +103,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-toolbar id="mainToolbar">
         <span class="flex"></span>
 
+        <!-- image photo usager -->
         <iron-image id="userPicture" src="{{user.google.cachedUserProfile.picture}}"
                     class="user-image"
                     sizing="contain"
                     preload
-                    disabled>
+                    disabled
+                    on-click="triggerUserMenu">
         </iron-image>
+
+        <!-- menu usager -->
+        <menu-profil id="userMenu"
+                     class="user-menu"
+                     user="[[user]]"
+                     hidden
+                     on-sign-out="signOut"></menu-profil>
+
         <!-- Toolbar icons -->
-        <template is="dom-if" if="{{user}}">
+<!--        <template is="dom-if" if="[[user]]">
           <paper-menu-button>
             <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
             <paper-menu class="dropdown-content">
                 <paper-item on-click="signOut">Déconnecter</paper-item>
             </paper-menu>
           </paper-menu-button>
-
         </template>
+-->
 
         <!-- Application name -->
         <iron-image src="../images/epicier-original.png"
                     class="middle"></iron-image>
 <!--
         <div class="middle paper-font-display2 app-name">Alimentation L'Épicier</div>
--->        
+-->
 
       </paper-toolbar>
 
