@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    user="{{user}}"
                    url="[[firebaseURL]]"></commande-auth>
 
-    <paper-header-panel main mode="standard">
+    <paper-header-panel main mode="cover">
 
       <!-- Main Toolbar -->
       <paper-toolbar id="mainToolbar">
@@ -118,17 +118,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      user="[[user]]"
                      hidden
                      on-sign-out="signOut"></menu-profil>
-
-        <!-- Toolbar icons -->
-<!--        <template is="dom-if" if="[[user]]">
-          <paper-menu-button>
-            <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
-            <paper-menu class="dropdown-content">
-                <paper-item on-click="signOut">Déconnecter</paper-item>
-            </paper-menu>
-          </paper-menu-button>
-        </template>
--->
 
         <!-- Application name -->
         <iron-image src="../images/epicier-original.png"

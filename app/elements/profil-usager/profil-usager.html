@@ -15,6 +15,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
+    .section-titre {
+      margin-bottom: 3em;
+    }
+    .titre {
+      font-size: 2em;
+      color: black;
+    }
+    .detail {
+      font-size: 1em;
+      color: rgb(100, 100, 100);
+    }
+    .section-profil {
+      width: 75%;
+      margin: 2em auto;
+    }
+    .question{
+      font-size: 1.5em;
+      color: black;
+    }
+
+    paper-slider {
+      width: 75%;
+      /*--paper-slider-bar-color: rgba(200, 200, 200, 0.9);*/
+      --paper-slider-active-color: var(--epicier-primary-color);
+      --paper-slider-knob-color: var(--epicier-primary-color);
+      --paper-slider-pin-color: var(--epicier-primary-color);
+      margin-bottom: 1.5em;
+    }
+    paper-fab {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+    paper-fab.green {
+      --paper-fab-background: var(--paper-green-700);
+    }
+    paper-material {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+    }
   </style>
   <template>
     <paper-button on-click="_selectMenu">back</paper-button>
@@ -25,9 +65,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          log>
     </firebase-document>
     <paper-material elevation="1">
-      <paper-input label="Budget minimum" value="{{profil.budget.min}}"></paper-input>
-      <paper-input label="Budget maximum" value="{{profil.budget.max}}"></paper-input>
-      <paper-input label="Nombre de personnes" value="{{profil.nbPersonnes}}"></paper-input>
+      <div class="section-titre">
+        <div class="titre">Mon profil alimentaire</div>
+        <div class="detail">
+          Afin de mieux vous aider à faire votre épicerie en répondant à vos besoins sans dépasser votre budget, veuillez entrer les informations suivantes.
+        </div>
+      </div>
+      <div class="section-profil">
+        <div class="question">Budget hebdomadaire d'épicerie</div>
+        <div class="detail">Cette information nous permettra de valider que vous respectez votre budget pour la durée de votre plan alimentaire.</div>
+        <paper-slider pin value="{{profil.budget.max}}" max="400" editable></paper-slider>
+        <div class="question">Nombre de personnes à nourir</div>
+        <div class="detail">Nombre de portions requises par repas. Une portion correspond à une portion d'adulte.</div>
+        <paper-slider pin value="{{profil.nbPersonnes}}" min="1" max="4" editable></paper-slider>
+        <paper-fab class="green" icon="done"></paper-fab>
+      </div>
     </paper-material>
   </template>
 </dom-module>
