@@ -34,6 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin: auto;
     }
     .duration {
+      display: flex;
       color: #607d8b;
       margin: auto 0;
     }
@@ -41,15 +42,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin: auto 0;
       color: var(--card-action-button-color);
     }
-    .fancy {
-      --paper-card-header-color:#333333;
-    }
 
   </style>
 
   <template>
     <div class="zone-cards">
-      <paper-card heading="Mon profil alimentaire" class="zone-card ">
+      <paper-card heading="Mon profil alimentaire" class="zone-card">
         <div class="card-content">Déterminer mon budget et mes préférences alimentaires.</div>
         <div class="card-actions">
           <div class="duration">
