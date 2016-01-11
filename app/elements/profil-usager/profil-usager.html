@@ -44,9 +44,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-bottom: 1.5em;
     }
     paper-fab {
-      position: absolute;
+      position: fixed;
       bottom: 20px;
-      right: 20px;
+      right: 40px;
     }
     paper-fab.green {
       --paper-fab-background: var(--paper-green-700);
@@ -57,7 +57,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <paper-button on-click="_selectMenu">back</paper-button>
 
     <firebase-document id="fireProfil"
                          location="{{url}}"
@@ -78,9 +77,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="question">Nombre de personnes à nourir</div>
         <div class="detail">Nombre de portions requises par repas. Une portion correspond à une portion d'adulte.</div>
         <paper-slider pin value="{{profil.nbPersonnes}}" min="1" max="4" editable></paper-slider>
-        <paper-fab class="green" icon="done"></paper-fab>
       </div>
     </paper-material>
+
+    <paper-fab class="green" icon="done" on-click="_selectMenu"></paper-fab>
   </template>
 </dom-module>
 <script>
