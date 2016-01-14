@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
-      margin: 100px 0 0 0;
+      margin: 0 0 0 0;
     }
     .card {
       width: 375px;
@@ -42,7 +42,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     .btn-default {
       background-color: #333333;
-
     }
     .btn-facebook {
       background-color: var(--facebook-color);
@@ -57,10 +56,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       text-align: center;
       color: var(--primary-text-color);
     }
+    .main-background {
+      position: absolute;
 
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      /*z-index: -2;*/
+      background: no-repeat center/cover url('../../images/instacart_bg.jpg');
+    }
   </style>
   <template>
-    <div>
+    existing user
+    <!-- ah ben ta! mon fond d'ecran ajusté! -->
+
+      <div class="main-background fullbleed layout vertical"></div>
+
+      <div>
       <paper-material class="card " elevation="2">
         <div class="card-title">Client existant</div>
         <div class="card-content">

@@ -89,7 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
-<!-- ah ben ta! mon fond d'ecran ajusté! -->
+<!-- ah ben ta! mon fond d'ecran ajusté!
   <div class="main-background"></div>
 <!--  <div class="darkener"></div> -->
 
@@ -99,14 +99,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <commande-auth id="auth"
                    user="{{user}}"
                    url="[[firebaseURL]]"></commande-auth>
-
-    <paper-header-panel main mode="cover">
-
+<!--
+    <paper-header-panel mode="cover">
+-->
       <!-- Main Toolbar -->
+<!--
       <paper-toolbar id="mainToolbar">
         <span class="flex"></span>
 
         <!-- image photo usager -->
+<!--
         <iron-image id="userPicture" src="{{user.google.cachedUserProfile.picture}}"
                     class="user-image"
                     sizing="contain"
@@ -116,6 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </iron-image>
 
         <!-- menu usager -->
+<!--
         <menu-profil id="userMenu"
                      class="user-menu"
                      user="[[user]]"
@@ -123,24 +126,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      on-sign-out="signOut"></menu-profil>
 
         <!-- Application name -->
-        <iron-image src="../images/epicier-original.png"
-                    class="middle"></iron-image>
 <!--
-        <div class="middle paper-font-display2 app-name">Alimentation L'Épicier</div>
--->
+       <iron-image src="../images/epicier-original.png"
+                    class="middle"></iron-image>
 
       </paper-toolbar>
 
+
       <!-- Main Content -->
-      <div class="main">
+      <div>
         <neon-animated-pages attr-for-selected="data-route"
                              selected="{{route}}"
                              entry-animation="fade-in-animation"
                              exit-animation="fade-out-animation"
                              animateInitialSelection>
-<!--
-        <iron-pages attr-for-selected="data-route" selected="{{route}}">
--->
+
           <section data-route="login">
             <app-login user="{{user}}">
             </app-login>
@@ -152,12 +152,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </commande-moderator>
           </section>
         </neon-animated-pages>
-<!--
-        </iron-pages>
--->
-      </div>
-    </paper-header-panel>
 
+      </div>
+<!--
+    </paper-header-panel>
+-->
   </template>
 
   <!-- build:js scripts/app.js -->

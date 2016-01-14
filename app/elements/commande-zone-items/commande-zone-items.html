@@ -28,10 +28,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template>
 
-    <div>
-      Mon <span>{{filterZone}}</span>
-    </div>
-
     <firebase-collection id="fireProject"
                          location="{{url}}"
                          data="{{commande}}"
@@ -40,10 +36,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          log
                          on-error="_errorHandler"></firebase-collection>
 
-    <div class="horizontal layout wrap">
+
+    <div >
+      Mon <span>{{filterZone}}</span>
+    </div>
+
+
+    <div  class="horizontal layout wrap">
       <template is="dom-repeat" items="{{commande}}" as="commande_item">
         <commande-item  item="{{commande_item}}"></commande-item>
-      </template>
+    </template>
     </div>
 
     <paper-fab class="green" icon="done" on-click="_selectMenu"></paper-fab>
