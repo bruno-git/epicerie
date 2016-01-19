@@ -23,6 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    provider="google"
                    on-login="_loginFired"
                    on-logout="_logoutFired"
+                   autologin="false"
                    log>
     </firebase-auth>
     <firebase-collection id="firebaseUsers"
@@ -38,11 +39,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
       user: {
+        notify: false,
+        observer: '_userChanged'
+      },
+      useruid: {
+        type: String,
         notify: true
       },
       userListURL: {
         computed: '_computedUserListURL()'
       }
+    },
+    _userChanged: function(newValue, oldValue) {
+//TODO add a validate to make sure the new value is a logged user
+      if (newValue !== null) {
+        this.useruid = newValue.uid;
+        //console.log('COMMANDE-AUTH: new user UID:' + this.useruid);
+      };
     },
     _computedUserListURL: function(){
       return [this.url, 'users'].join('/');
@@ -51,13 +64,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //validate that the user is not already logged
       if (this.user !== null) {
         console.log('User already logged. Sign in action cancelled.');
+        this.useruid = this.user.uid;
+        console.log('USER UID:' + this.useruid);
+//temporaire... pour fin de test
+        app.route = 'commandes';
       }
       else{
         this.$.authenticate.login();
         console.log('COMMANDE-AUTH SIGN IN');
 //TODO: a corriger...
         //window.location.href = '/#!/epicerie';
-        app.route = 'epicerie';
+
+        //app.route = 'epicerie';
+        app.route = 'commandes';
       }
     },
     signOut: function() {
@@ -69,14 +88,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.route = 'login';
 
 //TODO: cet appel devra etre deplace dans app.js dans un call THEN
-      app.hideUserPicture();
+      //app.hideUserPicture();
     },
     _loginFired: function(e) {
-      console.log('commande-auth login fired');
-      //Create the new user node if user doesn't already exists
+      console.log('commande-auth login fired. e: '+ e );
+      console.log(e);
+    //Create the new user node if user doesn't already exists
       var userId = e.detail.user.uid;
-      console.log(userId);
-      console.log(this.user);      
+      //console.log(userId);
+      //console.log(this.user);
       var newUserNode = this.$.firebaseUsers.query.ref().child(userId);
       newUserNode.once('value', function(snapshot) {
         var exists = snapshot.val() !== null;
@@ -87,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       });
 //TODO: cet appel devra etre deplace dans app.js dans un call THEN
-      app.showUserPicture();
+      //app.showUserPicture();
     },
     _logoutFired: function() {
       console.log('commande-auth logout fired');

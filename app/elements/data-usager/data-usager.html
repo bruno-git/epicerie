@@ -17,12 +17,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-    <firebase-document id="firebaseUser"
-                         location="[[userURL]]"
-                         data={{userData}}
-                         log>
-    </firebase-document>
 
+<!--
+    <firebase-document id="firebaseUser"
+                       location="[[userURL]]"
+                       data="{{userdata}}"
+                       log>
+    </firebase-document>
+-->
+<firebase-document id="firebaseUser"
+                   location="[[url]]"
+                   data="{{userdata}}"
+                   log>
+</firebase-document>
+    <paper-button>allo</paper-button>
+    <div >
+      <h1>Bienvenue chez votre epicier111222</h1>
+      <div>USER-DATA user unique identifier: <span>[[useruid]]</span></div>
+    </div>
   </template>
   <script>
   (function() {
@@ -33,21 +45,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
       //data provider for external elements
-        userData: {
+        userdata: {
+          type: Object,
           notify: true
         },
       //atrribute needed to compute the user URL
-        userUID: {
+        useruid: {
           type: String,
-          notify: false
+          observer: '_useruidchanged'
         },
-        userURL: {
-          computed: '_computedUserURL()'
+        url: {
+          type: String,
+          value: null
         }
       },
-      _computedUserURL: function(){
-        return ['https://epicerieenligne.firebaseio.com/users', this.userUID].join('/');
-//        return [this.url, 'users'].join('/');
+      _useruidchanged: function() {
+        if (this.useruid !== null) {
+          console.log('DATA-USAGER - USER UID CHANGED' + this.useruid);
+          this.url = "https://epicerieenligne.firebaseio.com/users/" + this.useruid;
+          //alert(this.url);
+        };
       }
     });
   })();

@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!-- AUTHENTICATION OBJECT -->
     <commande-auth id="auth"
-                   user="{{user}}"
+                   useruid="{{useruid}}"
                    url="[[firebaseURL]]"></commande-auth>
 <!--
     <paper-header-panel mode="cover">
@@ -150,6 +150,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <commande-moderator url="[[firebaseURL]]"
                                 user="[[user]]">
             </commande-moderator>
+          </section>
+          <section data-route="commandes">
+            <app-main useruid="[[useruid]]"></app-main>
           </section>
         </neon-animated-pages>
 
