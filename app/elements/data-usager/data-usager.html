@@ -30,10 +30,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    data="{{userdata}}"
                    log>
 </firebase-document>
-    <paper-button>allo</paper-button>
-    <div >
-      <h1>Bienvenue chez votre epicier111222</h1>
+    <div style="padding:50px">
       <div>USER-DATA user unique identifier: <span>[[useruid]]</span></div>
+      <div>USER-DATA user url: <span>[[url]]</span></div>
     </div>
   </template>
   <script>
@@ -49,22 +48,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Object,
           notify: true
         },
-      //atrribute needed to compute the user URL
+      //attribute needed to compute the user URL
         useruid: {
           type: String,
           observer: '_useruidchanged'
         },
+      //internal property used to dynamically load the firebase content based on useruid
         url: {
           type: String,
-          value: null
+          value: null,
+          notify: false
         }
       },
+      //useruid on change method event handler that generates the firebase URL
       _useruidchanged: function() {
         if (this.useruid !== null) {
           console.log('DATA-USAGER - USER UID CHANGED' + this.useruid);
           this.url = "https://epicerieenligne.firebaseio.com/users/" + this.useruid;
-          //alert(this.url);
-        };
+        }
+        else {
+          this.url = null;
+        }
       }
     });
   })();

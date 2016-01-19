@@ -52,10 +52,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     _userChanged: function(newValue, oldValue) {
 //TODO add a validate to make sure the new value is a logged user
-      if (newValue !== null) {
+      if (newValue) {
+        this.useruid = newValue.uid;
+      }
+      else {
+        this.useruid = null;
+      }
+      /*if (newValue !== null) {
         this.useruid = newValue.uid;
         //console.log('COMMANDE-AUTH: new user UID:' + this.useruid);
-      };
+      }
+      else {
+        console.log('COMMANDE-AUTH - _userChanged to null');
+      }
+      */
     },
     _computedUserListURL: function(){
       return [this.url, 'users'].join('/');
