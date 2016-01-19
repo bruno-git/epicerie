@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          entry-animation="fade-in-animation"
                          exit-animation="fade-out-animation"
                          animatedInitialSelection>
-      <new-user on-change-menu="_changeMenu" user="{{user}}"></new-user>
+      <new-user on-change-menu="_changeMenu"></new-user>
       <existing-user on-change-menu="_changeMenu"></existing-user>
     </neon-animated-pages>
   </template>
@@ -37,11 +37,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'app-login',
 
     properties: {
-      user: {
-        type: Object,
-        notify: true,
-        readOnly: false
-      },
       selected: {
         value: 1
       }
