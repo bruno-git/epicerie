@@ -22,18 +22,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          entry-animation="[[entryAnimation]]"
                          exit-animation="[[exitAnimation]]"
                          animateInitialSelection>
-      <commande-zone-liste user="[[user]]"
-                           on-change-page="_changePage" >
+      <commande-zone-liste on-change-page="_changePage" >
       </commande-zone-liste>
-      <profil-usager user="[[user]]"
+      <profil-usager user="[[userauth]]"
                      on-change-page="_changePage">
       </profil-usager>
       <commande-zone-items filter-zone="congelateur"
-                           user="[[user]]"
+                           user="[[userauth]]"
                            on-change-page="_changePage">
       </commande-zone-items>
       <commande-zone-items filter-zone="gardemanger"
-                           user="[[user]]"
+                           user="[[userauth]]"
                            on-change-page="_changePage">
       </commande-zone-items>
       <commande-zone-items on-change-page="_changePage"></commande-zone-items>
@@ -47,6 +46,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'commande-moderator',
 
     properties: {
+    //propriété recue en attribut
+      userauth: {
+        type: Object
+      },
       catSelected: {
         value: 0,
         notify: true

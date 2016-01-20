@@ -18,15 +18,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-<firebase-document id="firebaseUser"
-                   location="[[url]]"
-                   data="{{userdata}}"
-                   log>
-</firebase-document>
+    <firebase-document id="firebaseUser"
+                       location="[[url]]"
+                       data="{{userdata}}"
+                       log>
+    </firebase-document>
+
     <div style="padding:50px">
-      <div>USER-DATA user unique identifier: <span>[[useruid]]</span></div>
+      <div>USER-DATA user unique identifier: <span>[[userauth.uid]]</span></div>
       <div>USER-DATA user url: <span>[[url]]</span></div>
     </div>
+    
   </template>
   <script>
   (function() {
@@ -42,9 +44,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           notify: true
         },
       //attribute needed to compute the user URL
-        useruid: {
-          type: String,
-          observer: '_useruidchanged'
+        userauth: {
+          type: Object,
+          observer: '_userauthchanged'
         },
       //internal property used to dynamically load the firebase content based on useruid
         url: {
@@ -54,10 +56,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       //useruid on change method event handler that generates the firebase URL
-      _useruidchanged: function() {
-        if (this.useruid !== null) {
-          console.log('DATA-USAGER - USER UID CHANGED' + this.useruid);
-          this.url = "https://epicerieenligne.firebaseio.com/users/" + this.useruid;
+      _userauthchanged: function() {
+        if (this.userauth !== null) {
+          this.url = "https://epicerieenligne.firebaseio.com/users/" + this.userauth.uid;
         }
         else {
           this.url = null;

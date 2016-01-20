@@ -38,10 +38,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   height="40">
       </iron-image>
       Mon epicier
+      <iron-image id="userPicture"
+                  src="{{userauth.google.cachedUserProfile.picture}}"
+                  sizing="contain"
+                  preload>
+      </iron-image>
     </header>
     <div class="bienvenue">
       <h1>Bienvenue chez votre epicier</h1>
-      <div>user name: <span>[[userdata.compte.nom]]</span></div>
+      <div>user name: <span>[[userauth.google.displayName]]</span></div>
       <paper-button on-click="logoff">log off</paper-button>
     </div>
     <content></content>
@@ -54,13 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'page-commandes',
 
       properties: {
-        userdata: {
-          type: Object,
-          notify: true
+        userauth: {
+          type: Object
         }
       },
       logoff: function() {
-//TODO corriger cet appel pour le rendre fonctionnel
         app.signOut();
       }
     });

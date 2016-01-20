@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!-- AUTHENTICATION OBJECT -->
     <commande-auth id="auth"
-                   useruid="{{useruid}}"
+                   userauth="{{userauth}}"
                    url="[[firebaseURL]]"></commande-auth>
 <!--
     <paper-header-panel mode="cover">
@@ -142,17 +142,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                              animateInitialSelection>
 
           <section data-route="login">
-            <app-login user="{{user}}">
-            </app-login>
+            <app-login></app-login>
           </section>
 
           <section data-route="epicerie">
             <commande-moderator url="[[firebaseURL]]"
-                                user="[[user]]">
+                                userauth="[[userauth]]">
             </commande-moderator>
           </section>
           <section data-route="commandes">
-            <app-main useruid="[[useruid]]"></app-main>
+            <app-main userauth="[[userauth]]"></app-main>
           </section>
         </neon-animated-pages>
 

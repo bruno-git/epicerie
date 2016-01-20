@@ -18,8 +18,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <data-usager useruid="[[useruid]]" userdata="{{userdata}}"></data-usager>
-    <page-commandes userdata="{{userdata}}"></page-commandes>
+    <data-usager userauth="[[userauth]]" userdata="{{userdata}}"></data-usager>
+    <page-commandes userauth="[[userauth]]">
+      <vue-commandes userauth="[[userauth]]"></vue-commandes>
+    </page-commandes>
 
   </template>
   <script>
@@ -30,8 +32,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'app-main',
 
       properties: {
-        useruid: {
-          type: String
+        userauth: {
+          type: Object
         },
         userdata: {
           type: Object

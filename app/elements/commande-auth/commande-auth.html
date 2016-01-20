@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <firebase-auth id="authenticate"
-                   user="{{user}}"
+                   user="{{userauth}}"
                    location="[[url]]"
                    provider="google"
                    on-login="_loginFired"
@@ -38,25 +38,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'commande-auth',
 
     properties: {
-      user: {
-        notify: false,
-        observer: '_userChanged'
-      },
-      useruid: {
-        type: String,
+      userauth: {
         notify: true
       },
       userListURL: {
         computed: '_computedUserListURL()'
-      }
-    },
-    _userChanged: function(newValue, oldValue) {
-//TODO add a validate to make sure the new value is a logged user
-      if (newValue) {
-        this.useruid = newValue.uid;
-      }
-      else {
-        this.useruid = null;
       }
     },
     _computedUserListURL: function(){
@@ -66,8 +52,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //validate that the user is not already logged
       if (this.user !== null) {
         console.log('User already logged. Sign in action cancelled.');
-        this.useruid = this.user.uid;
-        console.log('USER UID:' + this.useruid);
 //temporaire... pour fin de test
         app.route = 'commandes';
       }
@@ -80,6 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         //app.route = 'epicerie';
         app.route = 'commandes';
       }
+
     },
     signOut: function() {
       this.$.authenticate.logout();
@@ -93,8 +78,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //app.hideUserPicture();
     },
     _loginFired: function(e) {
-      console.log('commande-auth login fired. e: '+ e );
-      console.log(e);
     //Create the new user node if user doesn't already exists
       var userId = e.detail.user.uid;
       //console.log(userId);
@@ -110,6 +93,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 //TODO: cet appel devra etre deplace dans app.js dans un call THEN
       //app.showUserPicture();
+    //afficher l'object userauth dans la console
+      console.log(this.userauth);
     },
     _logoutFired: function() {
       console.log('commande-auth logout fired');
