@@ -90,18 +90,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
       user: {
-        type: Object
+        type: Object,
+        notify: false,
+        observer: '_userchanged'
       },
       profil: {
         type: Object
       },
       url: {
-        computed: '_computeUrl(user.uid)'
+        type: String,
+        value: null,
+        notiy: false
       }
     },
-    _computeUrl: function(userid) {
-      return ['https://epicerieenligne.firebaseio.com/users', userid.replace(':', '%3A'), 'preferences'].join('/');
+    _userchanged: function(newValue, oldValue) {
+      if (newValue !== null){
+        this.url = 'https://epicerieenligne.firebaseio.com/users/' + newValue.uid;
+      }
+      else {
+        this.url = null;
+      }
     },
+//    _computeUrl: function(userid) {
+//      return ['https://epicerieenligne.firebaseio.com/users', userid.replace(':', '%3A'), 'preferences'].join('/');
+//    },
     _selectMenu: function() {
       this.fire('change-page', {page: 'menu'});
     },
