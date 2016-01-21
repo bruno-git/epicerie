@@ -10,16 +10,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="app-main">
+<dom-module id="commande-carte">
   <template>
     <style>
       :host {
-        display: block;
+        display: inline;
       }
     </style>
 
-    <data-usager userauth="[[userauth]]" userdata="{{userdata}}"></data-usager>
-    <page-commandes userauth="[[userauth]]" on-ouvre-commande="ouvreCommande"></page-commandes>
+    <paper-card heading="[[commande.cle]]">
+      <div class="card-content"><span>[[commande.detail]]</span></div>
+      <div class="card-actions">
+        <paper-button on-click="_ouvreCommande">Modifier</paper-button>
+      </div>
+    </paper-card>
 
   </template>
   <script>
@@ -27,18 +31,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'app-main',
+      is: 'commande-carte',
 
       properties: {
-        userauth: {
-          type: Object
-        },
-        userdata: {
-          type: Object
+        commande: {
+          type: Object,
+          notify: false
         }
       },
-      ouvreCommande: function(e) {
-        console.log(e.detail.commande.detail);
+      _ouvreCommande: function(e) {
+        //console.log(this.commande.detail);
+        this.fire('ouvre-commande', {commande: this.commande});
       }
     });
   })();

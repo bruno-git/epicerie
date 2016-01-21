@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+        padding: 20px;
       }
     </style>
 
@@ -32,12 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </paper-card>
     <template is="dom-repeat" items="[[listecommandes]]" as="commande">
-      <paper-card heading="[[commande.cle]]">
-        <div class="card-content"><span>[[commande.detail]]</span></div>
-        <div class="card-actions">
-          <paper-button on-click="_ouvreCommande">Modifier</paper-button>
-        </div>
-      </paper-card>
+      <commande-carte commande="[[commande]]"></commande-carte>
     </template>
   </template>
   <script>
@@ -66,10 +62,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         else {
           this.url = null;
         }
-      },
-      _ouvreCommande: function(e) {
-        console.log('OUVRE COMMANDE...' + e);
-        console.log(e);
       }
     });
   })();

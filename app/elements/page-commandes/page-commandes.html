@@ -30,26 +30,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 50px 20px;
         text-align: center;
       }
+      .user-image2 {
+        width:40px;
+        height:40px;
+        border-radius: 100%;
+        transition: transform 300ms ease-in-out;
+      }
+      .lamain {
+        cursor: pointer;
+      }
     </style>
-    <header class="nav-top">
-      <iron-image src="../../images/epicier.png"
-                  sizing="contain"
-                  width="40"
-                  height="40">
-      </iron-image>
-      Mon epicier
-      <iron-image id="userPicture"
+    <header class="nav-top horizontal layout">
+      <div>
+        <iron-image src="../../images/epicier.png"
+                    sizing="contain"
+                    width="40"
+                    height="40">
+        </iron-image>
+        <span>Mon epicier</span>
+      </div>
+      <div class="lamain">
+        <iron-image id="userPicture"
                   src="{{userauth.google.cachedUserProfile.picture}}"
+                  class="user-image2"
                   sizing="contain"
                   preload>
-      </iron-image>
+        </iron-image>
+        <span>[[userauth.google.displayName]]</span>
+      </div>
+      <div>
+
+      </div>
     </header>
     <div class="bienvenue">
       <h1>Bienvenue chez votre epicier</h1>
       <div>user name: <span>[[userauth.google.displayName]]</span></div>
       <paper-button on-click="logoff">log off</paper-button>
     </div>
-    <content></content>
+
+    <vue-commandes userauth="[[userauth]]"></vue-commandes>
+
   </template>
   <script>
   (function() {
