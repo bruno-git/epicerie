@@ -16,10 +16,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+      .nav-top{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: 50px;
+        background: #1d232b;
+        color: #fff;
+      }
+      .user-image2 {
+        width:40px;
+        height:40px;
+        border-radius: 100%;
+        transition: transform 300ms ease-in-out;
+      }
+      .lamain {
+        cursor: pointer;
+      }
     </style>
 
     <data-usager userauth="[[userauth]]" userdata="{{userdata}}"></data-usager>
-    <page-commandes userauth="[[userauth]]" on-ouvre-commande="ouvreCommande"></page-commandes>
+    <header class="nav-top horizontal layout">
+      <div>
+        <iron-image src="../../images/epicier.png"
+                    sizing="contain"
+                    width="40"
+                    height="40">
+        </iron-image>
+        <span>Mon epicier</span>
+      </div>
+      <div class="lamain">
+        <iron-image id="userPicture"
+                  src="{{userauth.google.cachedUserProfile.picture}}"
+                  class="user-image2"
+                  sizing="contain"
+                  preload>
+        </iron-image>
+        <span>[[userauth.google.displayName]]</span>
+      </div>
+    </header>
+    <!-- div pour compenser l'espace du header -->
+    <div style="height: 50px"></div>
+
+    <neon-animated-pages selected="[[pageSelected]]" 
+                         entry-animation="fade-in-animation"
+                         exit-animation="fade-out-animation">
+      <page-commandes userauth="[[userauth]]" on-ouvre-commande="ouvreCommande"></page-commandes>
+      <page-commandes on-ouvre-commande="ouvreCommande"></page-commandes>
+    </neon-animated-pages>
+
+
 
   </template>
   <script>
@@ -35,10 +83,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         userdata: {
           type: Object
+        },
+        pageSelected: {
+          type: Number,
+          value: 0
         }
       },
       ouvreCommande: function(e) {
         console.log(e.detail.commande.detail);
+        this.pageSelected = (this.pageSelected + 1) % 2;
       }
     });
   })();

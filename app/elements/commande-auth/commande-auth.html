@@ -80,8 +80,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _loginFired: function(e) {
     //Create the new user node if user doesn't already exists
       var userId = e.detail.user.uid;
-      //console.log(userId);
-      //console.log(this.user);
       var newUserNode = this.$.firebaseUsers.query.ref().child(userId);
       newUserNode.once('value', function(snapshot) {
         var exists = snapshot.val() !== null;
@@ -94,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //TODO: cet appel devra etre deplace dans app.js dans un call THEN
       //app.showUserPicture();
     //afficher l'object userauth dans la console
-      console.log(this.userauth);
+      console.log('COMMANDE-AUTH - login Fired userauth: ' + this.userauth);
     },
     _logoutFired: function() {
       console.log('commande-auth logout fired');

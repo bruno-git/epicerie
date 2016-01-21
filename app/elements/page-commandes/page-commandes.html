@@ -16,52 +16,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
-      .nav-top{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        height: 50px;
-        background: #1d232b;
-        color: #fff;
-      }
+
       .bienvenue {
         padding: 50px 20px;
         text-align: center;
       }
-      .user-image2 {
-        width:40px;
-        height:40px;
-        border-radius: 100%;
-        transition: transform 300ms ease-in-out;
-      }
-      .lamain {
-        cursor: pointer;
-      }
-    </style>
-    <header class="nav-top horizontal layout">
-      <div>
-        <iron-image src="../../images/epicier.png"
-                    sizing="contain"
-                    width="40"
-                    height="40">
-        </iron-image>
-        <span>Mon epicier</span>
-      </div>
-      <div class="lamain">
-        <iron-image id="userPicture"
-                  src="{{userauth.google.cachedUserProfile.picture}}"
-                  class="user-image2"
-                  sizing="contain"
-                  preload>
-        </iron-image>
-        <span>[[userauth.google.displayName]]</span>
-      </div>
-      <div>
 
-      </div>
-    </header>
+    </style>
+
     <div class="bienvenue">
       <h1>Bienvenue chez votre epicier</h1>
       <div>user name: <span>[[userauth.google.displayName]]</span></div>
@@ -85,7 +47,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       logoff: function() {
         app.signOut();
-      }
+      },
+      behaviors: [
+        Polymer.NeonAnimatableBehavior
+      ]
     });
   })();
   </script>

@@ -96,6 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template is="dom-bind" id="app">
 
 <!-- AUTHENTICATION OBJECT -->
+
     <commande-auth id="auth"
                    userauth="{{userauth}}"
                    url="[[firebaseURL]]"></commande-auth>
@@ -150,7 +151,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 userauth="[[userauth]]">
             </commande-moderator>
           </section>
--->          
+-->
+
           <section data-route="commandes">
             <app-main userauth="[[userauth]]"></app-main>
           </section>
