@@ -10,59 +10,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="vue-commandes">
+<dom-module id="data-commande-items">
   <template>
     <style>
       :host {
         display: block;
-        padding: 20px;
       }
     </style>
 
-    <firebase-collection id="firebaseUserCommandes"
-                         location="[[url]]"
-                         data="{{listecommandes}}"
+    <firebase-collection id="firebaseCommandeItems"
+                         url="[[url]]"
+                         data="{{commandeitems}}"
+                         order-by-child="zone"
+                         equal-to="[[filterZone]]"
                          log>
     </firebase-collection>
 
-    <div>VUE COMMANDES</div>
-    <paper-card heading="Nouvelle commande">
-      <div class="card-content">Cliquez ici pour créer une nouvelle commande</div>
-      <div class="card-actions">
-        <paper-button>Créer</paper-button>
-      </div>
-    </paper-card>
-    <template is="dom-repeat" items="[[listecommandes]]" as="commande">
-      <commande-carte commande="[[commande]]"></commande-carte>
-    </template>
   </template>
   <script>
   (function() {
     'use strict';
 
     Polymer({
-      is: 'vue-commandes',
+      is: 'data-commande-items',
 
       properties: {
         userauth: {
           type: Object,
+          notify: false
+        },
+        commandeSelected: {
+          type: String,
+          value: null,
           notify: false,
-          observer: '_userauthchanged'
+          observer: '_commandeSelectedChanged'
         },
         url: {
           type: String,
           value: null,
           notify: false
+        },
+        filterZone: {
+          type: String,
+          value: null,
+          notify: false
         }
       },
-      _userauthchanged: function(newValue, oldValue) {
-        if (this.userauth !== null) {
-          this.url = 'https://epicerieenligne.firebaseio.com/users/' + this.userauth.uid + "/commandes";
+      _commandeSelectedChanged: function(newValue, oldValue){
+        if (newValue !== null) {
+          this.url = 'https://epicerieenligne.firebaseio.com/Commandes/'+this.userauth.uid+'/'+this.commandeSelected+'/items';
         }
         else {
           this.url = null;
         }
-        console.log('VUE-COMMANDES URL CHANGED: ' + this.url);
+        console.log('DATA-COMMANDE-ITEMS URL UPADTED: ' + this.url);
       }
     });
   })();

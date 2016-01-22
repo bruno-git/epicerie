@@ -10,20 +10,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="commande-carte">
+<dom-module id="page-commande-items">
   <template>
     <style>
       :host {
-        display: inline;
+        display: block;
+      }
+      paper-fab {
+        position: fixed;
+        bottom: 20px;
+        right: 40px;
+      }
+      paper-fab.green {
+        --paper-fab-background: var(--paper-green-700);
       }
     </style>
+    <div>Hello from <span>{{foo}}</span></div>
 
-    <paper-card heading="[[commande.cle]]">
-      <div class="card-content"><span>[[commande.detail]]</span></div>
-      <div class="card-actions">
-        <paper-button on-click="_ouvreCommande">Modifier</paper-button>
-      </div>
-    </paper-card>
+    <paper-fab class="green" icon="done" on-click="_selectMenu"></paper-fab>
 
   </template>
   <script>
@@ -31,18 +35,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'commande-carte',
+      is: 'page-commande-items',
 
       properties: {
-        commande: {
-          type: Object,
-          notify: false
+        foo: {
+          type: String,
+          value: 'page-commande-items',
+          notify: true
         }
       },
-      _ouvreCommande: function(e) {
-        this.fire('ouvre-commande', {commande: this.commande});
-        //console.log('COMMANDE-CARDE FIRED: ' + this.commande);
-        //console.log(this.commande);
+      _selectMenu: function() {
+        console.log('PAGE-COMMANDE-ITEMS _selectMenu selectionne');
       }
     });
   })();

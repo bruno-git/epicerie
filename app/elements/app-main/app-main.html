@@ -36,8 +36,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         cursor: pointer;
       }
     </style>
-
+<!-- presentement non utilise...
     <data-usager userauth="[[userauth]]" userdata="{{userdata}}"></data-usager>
+-->
+
+    <data-commande-items userauth="[[userauth]]"
+                         commande-selected="[[commandeSelected]]"
+                         filter-zone="[[filterZone]]"
+                         commandeitems="{{commandeitems}}">
+    </data-commande-items>
+
     <header class="nav-top horizontal layout">
       <div>
         <iron-image src="../../images/epicier.png"
@@ -60,14 +68,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- div pour compenser l'espace du header -->
     <div style="height: 50px"></div>
 
-    <neon-animated-pages selected="[[pageSelected]]" 
+    <neon-animated-pages selected="[[pageSelected]]"
                          entry-animation="fade-in-animation"
                          exit-animation="fade-out-animation">
-      <page-commandes userauth="[[userauth]]" on-ouvre-commande="ouvreCommande"></page-commandes>
-      <page-commandes on-ouvre-commande="ouvreCommande"></page-commandes>
+      <page-commandes userauth="[[userauth]]"
+                      on-ouvre-commande="ouvreCommande"></page-commandes>
+      <page-ma-commande commandeitems="{{commandeitems}}"
+                        on-change-page="changePage"></page-ma-commande>
+      <page-commande-items></page-commande-items>
     </neon-animated-pages>
-
-
 
   </template>
   <script>
@@ -87,11 +96,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         pageSelected: {
           type: Number,
           value: 0
+        },
+        commandeSelected: {
+          type: String,
+          value: null
+        },
+        filterZone: {
+          type: String,
+          value: null
         }
       },
+      //ouvreCommande recoit un objet commande depuis firebase (users>uid>commandes>fbkey)
       ouvreCommande: function(e) {
-        console.log(e.detail.commande.detail);
-        this.pageSelected = (this.pageSelected + 1) % 2;
+        //console.log('APP-MAIN OUVRE COMMANDE: ' + e.detail.commande.cle);
+        //console.log(e.detail);
+        this.commandeSelected = e.detail.commande.cle;
+        this.pageSelected = 1;
+      },
+      changePage: function(e) {
+        console.log(e);
+        if (e.detail.page == 'menu') {
+          this.pageSelected = 0;
+        }
       }
     });
   })();
