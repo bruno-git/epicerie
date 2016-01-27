@@ -33,10 +33,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 20px 20px;
         text-align: center;
       }
+      /*
       paper-tabs {
-        background-color: var(--paper-blue-900);
-        color: #fff;
+        background-color: #ECEFF1;
+        color: black;
       }
+      */
     </style>
 
     <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
@@ -46,14 +48,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-button>fermer</paper-button>
     </paper-material>
 
-    <paper-button>button 1</paper-button>
-    <paper-button>button 2</paper-button>
-    <paper-button>button 3</paper-button>
-
     <paper-tabs selected="0">
-      <paper-tab>TAB 1</paper-tab>
-      <paper-tab>TAB 2</paper-tab>
-      <paper-tab>TAB 3</paper-tab>
+      <paper-tab>Poulet</paper-tab>
+      <paper-tab>Boeuf</paper-tab>
+      <paper-tab>Porc</paper-tab>
+      <paper-tab>Poisson</paper-tab>
     </paper-tabs>
 
     <template is="dom-repeat" items="{{commandeitems}}" as="{{item}}">
