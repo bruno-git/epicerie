@@ -1,0 +1,84 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="page-congelateur">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .nav-congelateur{
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        height: 150px;
+        background: #33ccff;
+        color: black;
+      }
+      .temp {
+        padding-top: 30px;
+      }
+      .intro{
+        padding: 20px 20px;
+        text-align: center;
+      }
+      paper-tabs {
+        background-color: var(--paper-blue-900);
+        color: #fff;
+      }
+    </style>
+
+    <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
+
+    <paper-material class="intro">
+      <h1>items dans cette section: poulet, boeuf, porc, poisson</h1>
+      <paper-button>fermer</paper-button>
+    </paper-material>
+
+    <paper-button>button 1</paper-button>
+    <paper-button>button 2</paper-button>
+    <paper-button>button 3</paper-button>
+
+    <paper-tabs selected="0">
+      <paper-tab>TAB 1</paper-tab>
+      <paper-tab>TAB 2</paper-tab>
+      <paper-tab>TAB 3</paper-tab>
+    </paper-tabs>
+
+    <template is="dom-repeat" items="{{commandeitems}}" as="{{item}}">
+      <commande-item-carte item="{{item}}"></commande-item-carte>
+    </template>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'page-congelateur',
+
+      properties: {
+        commandeitems: {
+          type: Array,
+          value: null,
+          notify: true
+        }
+      },
+      _back: function() {
+        this.fire("change-page", {page: 'ma-commande'});
+      }
+    });
+  })();
+  </script>
+</dom-module>

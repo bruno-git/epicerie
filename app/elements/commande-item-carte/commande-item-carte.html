@@ -10,27 +10,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="page-commandes">
+<dom-module id="commande-item-carte">
   <template>
     <style>
       :host {
         display: block;
+        padding: 20px 20px 0px 20px;
+        background: #ECEFF1;
       }
-
-      .bienvenue {
-        padding: 50px 20px;
-        text-align: center;
-      }
-
     </style>
 
-    <paper-material class="bienvenue">
-      <h1>Bienvenue chez votre epicier</h1>
-      <div>user name: <span>[[userauth.google.displayName]]</span></div>
-      <paper-button on-click="logoff">log off</paper-button>
-    </paper-material>
-
-    <vue-commandes userauth="[[userauth]]"></vue-commandes>
+    <paper-card heading="[[item.nom]]" on-click="test">
+      <div class="card-content">[[item.detail]]</div>
+    </paper-card>
 
   </template>
   <script>
@@ -38,19 +30,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'page-commandes',
+      is: 'commande-item-carte',
 
       properties: {
-        userauth: {
-          type: Object
+        item: {
+          type: Object,
+          notify: true
         }
       },
-      logoff: function() {
-        app.signOut();
-      },
-      behaviors: [
-        Polymer.NeonAnimatableBehavior
-      ]
+      test: function(){
+        console.log('COMMANDE-ITEM-CARTE ITEM: ' + this.item);
+        console.log(this.item);
+      }
     });
   })();
   </script>

@@ -18,8 +18,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <div> <paper-button on-click="_back"> < BACK</paper-button>
-      MA COMMANDE <span>[[commandeSelected]]</span>
+    <div>
+      <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
+      PAGE MA COMMANDE <span>[[commandeSelected]]</span>
     </div>
 
     <paper-card heading="Mon congelateur">
@@ -55,9 +56,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           notify: false
         }
       },
-
       _back: function() {
         this.fire('change-page', {page: 'menu'});
+      },
+      _ouvreCongelateur: function() {
+        this.fire('change-page', {page: 'congelateur'});
       },
       behaviors: [
         Polymer.NeonAnimatableBehavior

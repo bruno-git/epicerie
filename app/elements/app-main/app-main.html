@@ -35,6 +35,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .lamain {
         cursor: pointer;
       }
+      .test{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
     </style>
 <!-- presentement non utilise...
     <data-usager userauth="[[userauth]]" userdata="{{userdata}}"></data-usager>
@@ -46,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          commandeitems="{{commandeitems}}">
     </data-commande-items>
 
-    <header class="nav-top horizontal layout">
+    <paper-material elevation="1" class="nav-top horizontal layout">
       <div>
         <iron-image src="../../images/epicier.png"
                     sizing="contain"
@@ -64,19 +71,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </iron-image>
         <span>[[userauth.google.displayName]]</span>
       </div>
-    </header>
-    <!-- div pour compenser l'espace du header -->
-    <div style="height: 50px"></div>
+    </paper-material>
 
-    <neon-animated-pages selected="[[pageSelected]]"
-                         entry-animation="fade-in-animation"
-                         exit-animation="fade-out-animation">
-      <page-commandes userauth="[[userauth]]"
-                      on-ouvre-commande="ouvreCommande"></page-commandes>
-      <page-ma-commande commandeitems="{{commandeitems}}"
-                        on-change-page="changePage"></page-ma-commande>
-      <page-commande-items></page-commande-items>
-    </neon-animated-pages>
+
+        <!-- div pour compenser l'espace du header -->
+
+        <div style="height: 50px"></div>
+
+
+        <neon-animated-pages selected="[[pageSelected]]"
+                             entry-animation="fade-in-animation"
+                             exit-animation="fade-out-animation">
+          <page-commandes userauth="[[userauth]]"
+                          on-ouvre-commande="ouvreCommande"></page-commandes>
+          <page-ma-commande commandeitems="{{commandeitems}}"
+                            commande-selected="[[commandeSelected]]"
+                            on-change-page="changePage"></page-ma-commande>
+          <page-congelateur commandeitems="{{commandeitems}}"
+                            on-change-page="changePage"></page-congelateur>
+          <page-commande-items></page-commande-items>
+        </neon-animated-pages>
+
+    </paper-header-panel>
 
   </template>
   <script>
@@ -103,12 +119,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         filterZone: {
           type: String,
-          value: null
+          value: 'null'
         }
       },
       //ouvreCommande recoit un objet commande depuis firebase (users>uid>commandes>fbkey)
       ouvreCommande: function(e) {
-        //console.log('APP-MAIN OUVRE COMMANDE: ' + e.detail.commande.cle);
+        console.log('APP-MAIN OUVRE COMMANDE: ' + e.detail.commande.cle);
         //console.log(e.detail);
         this.commandeSelected = e.detail.commande.cle;
         this.pageSelected = 1;
@@ -117,6 +133,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         console.log(e);
         if (e.detail.page == 'menu') {
           this.pageSelected = 0;
+        }
+        if (e.detail.page == 'ma-commande') {
+          this.pageSelected = 1;
+        }
+        if (e.detail.page == 'congelateur') {
+          console.log('APP-MAIN CHANGE PAGE: CONGELATEUR');
+
+          this.filterZone = 'congelateur';
+          this.pageSelected = 2;
+
+          console.log('filterZone: ' + this.filterZone);
         }
       }
     });

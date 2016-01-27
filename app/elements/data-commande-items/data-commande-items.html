@@ -17,9 +17,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
+<!--
+    <firebase-collection id="firebaseCommandeItems"
+                         location="[[url]]"
+                         data="{{commandeitems}}"
+                         log>
+    </firebase-collection>
+  -->
 
     <firebase-collection id="firebaseCommandeItems"
-                         url="[[url]]"
+                         location="[[url]]"
                          data="{{commandeitems}}"
                          order-by-child="zone"
                          equal-to="[[filterZone]]"
@@ -54,6 +61,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           value: null,
           notify: false
+        },
+        commandeitems: {
+          type: Array,
+          value: null,
+          notify: true,
+          observer: '_commandeitemsChanged'
         }
       },
       _commandeSelectedChanged: function(newValue, oldValue){
@@ -64,6 +77,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.url = null;
         }
         console.log('DATA-COMMANDE-ITEMS URL UPADTED: ' + this.url);
+        console.log(this.commandeitems);
+        console.log('filterzone: ' + this.filterZone);
+
+      },
+      _commandeitemsChanged: function() {
+        console.log('DATA-COMMANDE-ITEMS COMMANDE ITEMS CHANGED');
       }
     });
   })();

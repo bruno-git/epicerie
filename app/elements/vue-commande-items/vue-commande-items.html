@@ -10,47 +10,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="page-commandes">
+<dom-module id="vue-commande-items">
   <template>
     <style>
       :host {
         display: block;
       }
-
-      .bienvenue {
-        padding: 50px 20px;
-        text-align: center;
-      }
-
     </style>
-
-    <paper-material class="bienvenue">
-      <h1>Bienvenue chez votre epicier</h1>
-      <div>user name: <span>[[userauth.google.displayName]]</span></div>
-      <paper-button on-click="logoff">log off</paper-button>
-    </paper-material>
-
-    <vue-commandes userauth="[[userauth]]"></vue-commandes>
-
+    <div>Hello from <span>{{foo}}</span></div>
   </template>
   <script>
   (function() {
     'use strict';
 
     Polymer({
-      is: 'page-commandes',
+      is: 'vue-commande-items',
 
       properties: {
-        userauth: {
-          type: Object
+        foo: {
+          type: String,
+          value: 'vue-commande-items',
+          notify: true
         }
-      },
-      logoff: function() {
-        app.signOut();
-      },
-      behaviors: [
-        Polymer.NeonAnimatableBehavior
-      ]
+      }
     });
   })();
   </script>
