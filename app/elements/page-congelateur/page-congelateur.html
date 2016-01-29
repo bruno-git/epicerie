@@ -35,10 +35,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       /*
       paper-tabs {
+        @apply(--layout-start-justified);
         background-color: #ECEFF1;
-        color: black;
-      }
-      */
+        color: blue;
+
+      }*/
+
     </style>
 
     <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
@@ -48,17 +50,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-button>fermer</paper-button>
     </paper-material>
 
-    <paper-tabs selected="0">
+    <paper-tabs selected="{{selected}}" noink>
       <paper-tab>Poulet</paper-tab>
       <paper-tab>Boeuf</paper-tab>
       <paper-tab>Porc</paper-tab>
       <paper-tab>Poisson</paper-tab>
     </paper-tabs>
+    <div>selection: <span>[[selected]]</span></div>
 
-    <template is="dom-repeat" items="{{commandeitems}}" as="{{item}}">
-      <commande-item-carte item="{{item}}"></commande-item-carte>
-    </template>
-
+    <div class="horizontal layout flex wrap">
+      <template is="dom-repeat"
+                items="{{commandeitems}}"
+                as="item"
+                filter="isPoulet">
+        <commande-item-carte item="{{item}}"></commande-item-carte>
+      </template>
+    </div>
   </template>
   <script>
   (function() {
@@ -72,7 +79,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Array,
           value: null,
           notify: true
+        },
+        selected: {
+          type: Number,
+          value: 1,
+          observer: '_selectedChanged'
+        },
+        categorie2: {
+          type: String,
+          value: '*'
         }
+      },
+      isPoulet: function(item){
+        console.log('PAGE-CONGELATEUR - IS POULET METHOD CALLED');
+        if (this.selected == 1) {
+          console.log('this.selected == 1');
+          return item.categorie == 'boeuf';
+        }
+        else {
+          return null;
+        }
+        //return item.categorie == this.categorie2;
+
+      },
+      _selectedChanged: function(newValue){
+        if (newValue === 0) {
+          this.categorie2 = 'poulet';
+        }
+        else if (newValue === 1) {
+          this.categorie2 = 'boeuf';
+        }
+        else {
+          this.categorie2 = '*';
+        }
+        console.log('PAGE-CONGELATEUR - CATEGORIE2: '+ this.categorie2);
       },
       _back: function() {
         this.fire("change-page", {page: 'ma-commande'});

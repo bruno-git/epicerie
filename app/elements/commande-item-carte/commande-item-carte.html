@@ -18,11 +18,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 20px 20px 0px 20px;
         background: #ECEFF1;
       }
+      paper-material {
+        background: white;
+        width: 550px;
+      }
+      paper-button {
+        font-weight: bold;
+      }
+      paper-icon-button {
+        color: #90c3d4;
+        width: 50px;
+        height: 50px;
+      }
+      .section-nom {
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+        background: #90c3d4;
+        font-weight: bold;
+        font-size: 1.5em;
+      }
+      .section-detail {
+        width:200px;
+      }
+      .section-qte {
+        width: 150px;
+      }
+      .qte {
+        font-size: 75px;
+        font-weight: bold;
+        margin: auto;
+      }
     </style>
 
-    <paper-card heading="[[item.nom]]" on-click="test">
-      <div class="card-content">[[item.detail]]</div>
-    </paper-card>
+    <paper-material>
+      <div class="horizontal layout">
+        <iron-image style="width:200px;height:200px;background-color:lightgray;
+                           border-radius:10%"
+                    sizing="cover"
+                    src="../../images/[[item.code]].jpg"
+                    preload
+                    fade>
+        </iron-image>
+        <div class="vertical layout">
+          <div class="section-nom">[[item.nom]]<iron-icon icon="icons:star-border"></iron-icon></div>
+          <div class="horizontal layout">
+            <div class="vertical layout section-detail">
+              <div>Prix: [[item.prix]]$</div>
+              <div>Format: [[item.format]]</div>
+              <div>Detail: [[item.detail]]</div>
+            </div>
+            <div class="vertical layout section-qte">
+              <div class="qte">[[item.quantite]]</div>
+              <div>Recommandation: [[item.recommandation2]]</div>
+              <div class="horizontal layout around-justified">
+                <paper-icon-button icon="icons:remove-circle-outline"
+                                   on-click="_qteMoins"></paper-icon-button>
+                <paper-icon-button icon="icons:add-circle-outline"
+                                   on-click="_qtePlus"></paper-icon-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </paper-material>
 
   </template>
   <script>
@@ -41,6 +99,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test: function(){
         console.log('COMMANDE-ITEM-CARTE ITEM: ' + this.item);
         console.log(this.item);
+      },
+      _qtePlus: function(){
+        this.set('item.quantite', this.item.quantite + 1);
+      },
+      _qteMoins: function() {
+        if (this.item.quantite >0) {
+          this.set('item.quantite', this.item.quantite - 1);
+        }
       }
     });
   })();

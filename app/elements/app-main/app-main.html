@@ -25,6 +25,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 50px;
         background: #1d232b;
         color: #fff;
+        padding: 5px 5px;
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+        @apply(--layout-center);
       }
       .user-image2 {
         width:40px;
@@ -42,6 +46,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         bottom: 0;
         left: 0;
       }
+      .nav-block {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+      }
+      .nav-block > * {
+        padding-left: 10px;
+      }
     </style>
 <!-- presentement non utilise...
     <data-usager userauth="[[userauth]]" userdata="{{userdata}}"></data-usager>
@@ -53,23 +64,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          commandeitems="{{commandeitems}}">
     </data-commande-items>
 
-    <paper-material elevation="1" class="nav-top horizontal layout">
-      <div>
-        <iron-image src="../../images/epicier.png"
-                    sizing="contain"
-                    width="40"
-                    height="40">
-        </iron-image>
+    <paper-material elevation="1" class="nav-top">
+      <div class="nav-block">
+        <div>
+          <iron-image src="../../images/epicier.png"
+                      sizing="contain"
+                      width="40"
+                      height="40">
+          </iron-image>
+        </div>
         <span>Mon epicier</span>
       </div>
-      <div class="lamain">
-        <iron-image id="userPicture"
-                  src="{{userauth.google.cachedUserProfile.picture}}"
-                  class="user-image2"
-                  sizing="contain"
-                  preload>
-        </iron-image>
+      <div class="lamain nav-block">
+        <div>
+          <iron-image id="userPicture"
+                    src="{{userauth.google.cachedUserProfile.picture}}"
+                    class="user-image2"
+                    sizing="contain"
+                    preload>
+          </iron-image>
+        </div>
         <span>[[userauth.google.displayName]]</span>
+        <iron-icon icon="icons:arrow-drop-down"></iron-icon>
       </div>
     </paper-material>
 
