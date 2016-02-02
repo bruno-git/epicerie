@@ -36,8 +36,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-radius: 100%;
         transition: transform 300ms ease-in-out;
       }
-      .lamain {
+      .nav-bouton {
         cursor: pointer;
+      }
+      .nom {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .test{
         position: absolute;
@@ -52,6 +58,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .nav-block > * {
         padding-left: 10px;
+      }
+      paper-dialog.size-position {
+        position: fixed;
+        top: 60px;
+        right: 0px;
+        width: auto;
+        height: auto;
+        overflow: auto;
+        z-index: 2000;
+        margin: 0;
+      }
+      paper-dialog > *:first-child {
+        margin-top: 0;
+      }
+      paper-dialog > *:last-child {
+        margin-bottom: 0;
+      }
+      paper-item {
+        --paper-item: {
+          cursor: pointer;
+          margin: 0;
+        };
+      }
+      paper-button.red-button {
+        background: red;
+        color: yellow;
       }
     </style>
 <!-- presentement non utilise...
@@ -75,25 +107,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
         <span>Mon epicier</span>
       </div>
-      <div class="lamain nav-block">
-        <div>
-          <iron-image id="userPicture"
-                    src="{{userauth.google.cachedUserProfile.picture}}"
-                    class="user-image2"
-                    sizing="contain"
-                    preload>
-          </iron-image>
+
+      <paper-menu-button>
+        <div class="nav-bouton nav-block dropdown-trigger">
+          <div>
+            <iron-image id="userPicture"
+                      src="{{userauth.google.cachedUserProfile.picture}}"
+                      class="user-image2"
+                      sizing="contain"
+                      preload>
+            </iron-image>
+          </div>
+          <div class="nom">[[userauth.google.displayName]]</div>
+          <iron-icon icon="icons:arrow-drop-down"></iron-icon>
         </div>
-        <span>[[userauth.google.displayName]]</span>
-        <iron-icon icon="icons:arrow-drop-down"></iron-icon>
-      </div>
+        <paper-menu id="menuSelection" class="dropdown-content" on-iron-select="_menuSelection">
+          <paper-item>Mes commandes</paper-item>
+          <paper-item>Mon profil</paper-item>
+          <paper-item>Me déconnecter</paper-item>
+        </paper-menu>
+      </paper-menu-button>
+
     </paper-material>
 
-
         <!-- div pour compenser l'espace du header -->
-
-        <div style="height: 50px"></div>
-
+        <div style="height: 60px"></div>
 
         <neon-animated-pages selected="[[pageSelected]]"
                              entry-animation="fade-in-animation"
@@ -160,6 +198,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.pageSelected = 2;
 
           console.log('filterZone: ' + this.filterZone);
+        }
+      },
+      _menuSelection: function(e) {
+        var _selection = this.$.menuSelection.selected;
+        //reset the selection
+        this.$.menuSelection.selected = null;
+        if (_selection === 0){
+          console.log('Action mes commandes');
+        }
+        else if (_selection ===1) {
+          console.log('Action mon profil');
+        }
+        else if (_selection === 2) {
+          console.log('Action deconnexion');
+          app.signOut();
         }
       }
     });
