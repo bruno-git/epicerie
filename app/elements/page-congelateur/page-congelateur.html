@@ -56,13 +56,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-tab>Porc</paper-tab>
       <paper-tab>Poisson</paper-tab>
     </paper-tabs>
+<!--
     <div>selection: <span>[[selected]]</span></div>
-
+-->
     <div class="horizontal layout flex wrap">
       <template is="dom-repeat"
                 items="{{commandeitems}}"
                 as="item"
-                filter="isPoulet">
+                filter="isPoulet"
+                id="monid">
         <commande-item-carte item="{{item}}"></commande-item-carte>
       </template>
     </div>
@@ -82,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         selected: {
           type: Number,
-          value: 1,
+          value: 0,
           observer: '_selectedChanged'
         },
         categorie2: {
@@ -96,7 +98,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           console.log('this.selected == 1');
           return item.categorie == 'boeuf';
         }
-        else {
+        else if (this.selected == 0){
+          console.log('this.selected == 0');
+          return item.categorie == 'poulet';
+        } else {
           return null;
         }
         //return item.categorie == this.categorie2;
@@ -113,6 +118,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.categorie2 = '*';
         }
         console.log('PAGE-CONGELATEUR - CATEGORIE2: '+ this.categorie2);
+//WOW MAGIE ICI. Faudra trouver d'ou ca vient cette methode
+        this.$.monid.render();
       },
       _back: function() {
         this.fire("change-page", {page: 'ma-commande'});

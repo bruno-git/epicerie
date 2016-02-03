@@ -181,6 +181,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         console.log('APP-MAIN OUVRE COMMANDE: ' + e.detail.commande.cle);
         //console.log(e.detail);
         this.commandeSelected = e.detail.commande.cle;
+        //TODO rendre dynamique base sur la cle...
         this.pageSelected = 1;
       },
       changePage: function(e) {
