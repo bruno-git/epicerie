@@ -89,10 +89,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'profil-usager',
 
     properties: {
-      user: {
+      userauth: {
         type: Object,
         notify: false,
-        observer: '_userchanged'
+        observer: '_userauthchanged'
       },
       profil: {
         type: Object
@@ -103,13 +103,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         notiy: false
       }
     },
-    _userchanged: function(newValue, oldValue) {
-      if (newValue !== null){
-        this.url = 'https://epicerieenligne.firebaseio.com/users/' + newValue.uid;
+    _userauthchanged: function(newValue) {
+      if (newValue !== null) {
+        this.url = 'https://epicerieenligne.firebaseio.com/users/' + newValue.uid + '/preferences';
       }
       else {
         this.url = null;
       }
+      console.log('PROFIL-USAGER URL: ');
+      console.log(this.url);
     },
 //    _computeUrl: function(userid) {
 //      return ['https://epicerieenligne.firebaseio.com/users', userid.replace(':', '%3A'), 'preferences'].join('/');

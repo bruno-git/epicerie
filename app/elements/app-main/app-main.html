@@ -96,6 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          commandeitems="{{commandeitems}}">
     </data-commande-items>
 
+<!-- HEADER PANEL -->
     <paper-material elevation="1" class="nav-top">
       <div class="nav-block">
         <div>
@@ -144,6 +145,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <page-congelateur commandeitems="{{commandeitems}}"
                             on-change-page="changePage"></page-congelateur>
           <page-commande-items></page-commande-items>
+          <profil-usager userauth="[[userauth]]"
+                         on-change-page="changePage">
+          </profil-usager>
         </neon-animated-pages>
 
     </paper-header-panel>
@@ -200,6 +204,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           console.log('filterZone: ' + this.filterZone);
         }
+        if (e.detail.page == 'profil') {
+          console.log('APP-MAIN CHANGE PAGE: PROFIL');
+          this.pageSelected = 4;
+        }
       },
       _menuSelection: function(e) {
         var _selection = this.$.menuSelection.selected;
@@ -210,6 +218,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         else if (_selection ===1) {
           console.log('Action mon profil');
+//TODO FIRE L'EVENT DEPUIS L'ELEMENT QUI SERA EXTRAIT (HEADER PANEL)
+//          this.fire("change-page", {page: 'profil'});
+          this.pageSelected = 4;
         }
         else if (_selection === 2) {
           console.log('Action deconnexion');

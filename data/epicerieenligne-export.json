@@ -1,0 +1,268 @@
+{
+  "Commandes" : {
+    "gabarit" : {
+      "commande1" : {
+        "items" : {
+          "item1" : {
+            "categorie" : "boeuf",
+            "code" : 10100,
+            "detail" : "c bon de la viande",
+            "format" : "5 x 454g",
+            "nom" : "Boeuf haché maigre 90%",
+            "prix" : 39,
+            "quantite" : 0,
+            "recommandation1" : 6,
+            "recommandation2" : 12,
+            "zone" : "congelateur"
+          },
+          "item2" : {
+            "categorie" : "boeuf",
+            "code" : 10310,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "6 x 340g",
+            "nom" : "Cubes de boeuf: choix tendre",
+            "prix" : 58,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item3" : {
+            "categorie" : "boeuf",
+            "code" : 10510,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "10 x 140g",
+            "nom" : "Bifteck de boeuf minute",
+            "prix" : 45,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item4" : {
+            "categorie" : "boeuf",
+            "code" : 10530,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "6 x 300g",
+            "nom" : "Steak du roi 1/2",
+            "prix" : 58,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item5" : {
+            "categorie" : "boeuf",
+            "code" : 10620,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "8 x 220g",
+            "nom" : "Surlonge désossé 3/4",
+            "prix" : 62,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item6" : {
+            "categorie" : "boeuf",
+            "code" : 12270,
+            "detail" : "Un classique pour les fondues chinoises",
+            "format" : "6 x 225g",
+            "nom" : "Fondue chinoise de boeuf",
+            "prix" : 45,
+            "quantite" : 0,
+            "recommandation1" : 2,
+            "recommandation2" : 4,
+            "zone" : "congelateur"
+          },
+          "item7" : {
+            "categorie" : "boeuf",
+            "code" : 10640,
+            "detail" : "Parfait pour un bbq",
+            "format" : "7 x 250g",
+            "nom" : "Steak contre-filet 3/4",
+            "prix" : 85,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          }
+        },
+        "reference" : "code de reference (v0.0.1)"
+      }
+    },
+    "google:111173609460124076100" : {
+      "commande1" : {
+        "items" : {
+          "item1" : {
+            "categorie" : "boeuf",
+            "code" : 10100,
+            "detail" : "c bon de la viande",
+            "format" : "5 x 454g",
+            "nom" : "Boeuf haché maigre 90%",
+            "prix" : 39,
+            "quantite" : 0,
+            "recommandation1" : 6,
+            "recommandation2" : 12,
+            "zone" : "congelateur"
+          },
+          "item2" : {
+            "categorie" : "boeuf",
+            "code" : 10310,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "6 x 340g",
+            "nom" : "Cubes de boeuf: choix tendre",
+            "prix" : 58,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item3" : {
+            "categorie" : "boeuf",
+            "code" : 10510,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "10 x 140g",
+            "nom" : "Bifteck de boeuf minute",
+            "prix" : 45,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item4" : {
+            "categorie" : "boeuf",
+            "code" : 10530,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "6 x 300g",
+            "nom" : "Steak du roi 1/2",
+            "prix" : 58,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item5" : {
+            "categorie" : "boeuf",
+            "code" : 10620,
+            "detail" : "excellent pour bouilli ou recette x",
+            "format" : "8 x 220g",
+            "nom" : "Surlonge désossé 3/4",
+            "prix" : 62,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item6" : {
+            "categorie" : "boeuf",
+            "code" : 12270,
+            "detail" : "Un classique pour les fondues chinoises",
+            "format" : "6 x 225g",
+            "nom" : "Fondue chinoise de boeuf",
+            "prix" : 45,
+            "quantite" : 0,
+            "recommandation1" : 2,
+            "recommandation2" : 4,
+            "zone" : "congelateur"
+          },
+          "item7" : {
+            "categorie" : "boeuf",
+            "code" : 10640,
+            "detail" : "Parfait pour un bbq",
+            "format" : "7 x 250g",
+            "nom" : "Steak contre-filet 3/4",
+            "prix" : 85,
+            "quantite" : 0,
+            "recommandation1" : 1,
+            "recommandation2" : 2,
+            "zone" : "congelateur"
+          },
+          "item8" : {
+            "categorie" : "poulet",
+            "code" : 1001,
+            "detail" : "un excellent poulet",
+            "format" : "9 lbs",
+            "nom" : "Poulet entier",
+            "prix" : 9,
+            "quantite" : 7,
+            "recommandation1" : 6,
+            "recommandation2" : 8,
+            "zone" : "congelateur"
+          },
+          "item9" : {
+            "categorie" : "poulet",
+            "code" : 1002,
+            "detail" : "du bon poulet",
+            "format" : "paquet de 250g",
+            "nom" : "Poulet haché",
+            "prix" : 15,
+            "quantite" : 5,
+            "recommandation1" : 2,
+            "recommandation2" : 4,
+            "zone" : "congelateur"
+          },
+          "item10" : {
+            "categorie" : "dejeuner",
+            "code" : 2000,
+            "detail" : "Au miel et aux noix",
+            "format" : "400g",
+            "nom" : "Cheerios",
+            "prix" : 6,
+            "quantite" : 2,
+            "recommandation1" : 3,
+            "recommandation2" : 6,
+            "zone" : "gardemanger"
+          }
+        },
+        "livraisons" : {
+          "livraison1" : {
+            "date" : "15 avril",
+            "heure" : "8:00",
+            "note" : "porte avant"
+          }
+        }
+      }
+    }
+  },
+  "users" : {
+    "google:111173609460124076100" : {
+      "commandes" : {
+        "fbkey1" : {
+          "active" : "oui",
+          "cle" : "commande1",
+          "detail" : "information supplementaire sur la commande"
+        },
+        "fbkey2" : {
+          "active" : "oui",
+          "cle" : "commande2"
+        },
+        "fbkey3" : {
+          "active" : "non",
+          "cle" : "commande3",
+          "detail" : "aucun detail"
+        }
+      },
+      "compte" : {
+        "bienvenue" : "oui",
+        "nom" : "Bruno",
+        "ville" : "Mourial"
+      },
+      "liste" : {
+        "a" : 1,
+        "b" : 2
+      },
+      "preferences" : {
+        "budget" : {
+          "level1" : {
+            "level2" : "niveau 2"
+          },
+          "max" : 189
+        },
+        "nbPersonnes" : "3",
+        "seul" : "item seul",
+        "test" : "valeur test"
+      }
+    }
+  }
+}
