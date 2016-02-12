@@ -138,7 +138,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                              entry-animation="fade-in-animation"
                              exit-animation="fade-out-animation">
           <page-commandes userauth="[[userauth]]"
-                          on-ouvre-commande="ouvreCommande"></page-commandes>
+                          on-ouvre-commande="ouvreCommande"
+                          on-nouvelle-commande="nouvelleCommande"></page-commandes>
           <page-ma-commande commandeitems="{{commandeitems}}"
                             commande-selected="[[commandeSelected]]"
                             on-change-page="changePage"></page-ma-commande>
@@ -173,18 +174,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         commandeSelected: {
           type: String,
-          value: null
+          value: null,
+          observer: '_commandeChanged'
         },
         filterZone: {
           type: String,
           value: 'null'
         }
       },
+      _commandeChanged(newValue) {
+        console.log('APP-MAIN COMMANDE SELECTED CHANGED' + newValue);
+      },
+      // utilise la commande gabarit pour créer une nouvelle commande, basée sur la clé passée en paramètre
+      // présentement statique, l'état futur sera de choisir la commande source... :D
+      nouvelleCommande: function(e) {
+        //console.log('APP-MAIN NOUVELLE COMMANDE: ' + e.detail.commandeCle);
+        //console.log('user: ' + this.userauth.uid);
+        var uid = this.userauth.uid;
+        var genericRef = new Firebase('https://epicerieenligne.firebaseio.com/Commandes/');
+        // Copie la commande gabarit
+        genericRef.child('gabarit/commande1').once("value", function(snapshot) {
+          var data = snapshot.val();
+          // Inscrit le contenu du gabarit dans la nouvelle commande
+          genericRef.child(uid + '/' + e.detail.commandeCle).set(data);
+        });
+      },
       //ouvreCommande recoit un objet commande depuis firebase (users>uid>commandes>fbkey)
       ouvreCommande: function(e) {
-        console.log('APP-MAIN OUVRE COMMANDE: ' + e.detail.commande.cle);
+        console.log('APP-MAIN OUVRE COMMANDE: ' + e.detail.commandeCle);
         //console.log(e.detail);
-        this.commandeSelected = e.detail.commande.cle;
+        this.commandeSelected = e.detail.commandeCle;
+        console.log('APP-MAIN COMMANDE SELECTED CHANGED: ' + this.commandeSelected);
         //TODO rendre dynamique base sur la cle...
         this.pageSelected = 1;
       },

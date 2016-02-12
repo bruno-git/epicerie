@@ -18,6 +18,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 20px;
         background: #ECEFF1;
       }
+      .zero-commande {
+        min-height: 40px;
+        font-size: 20px;
+        color: #BDBDBD;
+        cursor: default;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      paper-fab {
+        position: fixed;
+        bottom: 20px;
+        right: 40px;
+      }
+      paper-fab.red {
+        --paper-fab-background: var(--paper-red-700);
+      }
     </style>
 
     <firebase-collection id="firebaseUserCommandes"
@@ -26,16 +44,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          log>
     </firebase-collection>
 
-    <div>VUE COMMANDES</div>
+    <div>MES COMMANDES</div>
+    <p class="zero-commande" hidden="[[_commandesVides(listecommandes.length)]]">Aucune commande! Cliquez sur le bouton d'action (+) pour créer votre première commande. ==></p>
+
+<!--
     <paper-card heading="Nouvelle commande">
       <div class="card-content">Cliquez ici pour créer une nouvelle commande</div>
       <div class="card-actions">
         <paper-button>Créer</paper-button>
       </div>
     </paper-card>
+-->
     <template is="dom-repeat" items="[[listecommandes]]" as="commande">
       <commande-carte commande="[[commande]]"></commande-carte>
     </template>
+    <paper-fab class="red" icon="add" on-click="_nouvelleCommande"></paper-fab>
   </template>
   <script>
   (function() {
@@ -55,6 +78,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: null,
           notify: false
         }
+      },
+      _nouvelleCommande: function() {
+        var nouvelleCommande = this.$.firebaseUserCommandes.add({active: 'oui', nom: 'Nouvelle Commande', detail: 'detail de la nouvelle commande!'});
+        this.fire('nouvelle-commande', {commandeCle: nouvelleCommande.key()});
+      },
+      _commandesVides: function(length) {
+        return !!length;
       },
       _userauthchanged: function(newValue, oldValue) {
         if (this.userauth !== null) {

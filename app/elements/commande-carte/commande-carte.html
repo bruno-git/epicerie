@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <paper-card heading="[[commande.cle]]">
+    <paper-card heading="[[commande.nom]]">
       <div class="card-content"><span>[[commande.detail]]</span></div>
       <div class="card-actions">
         <paper-button on-click="_ouvreCommande">Modifier</paper-button>
@@ -40,9 +40,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       _ouvreCommande: function(e) {
-        this.fire('ouvre-commande', {commande: this.commande});
+        this.fire('ouvre-commande', {commandeCle: this.commande.__firebaseKey__});
         //console.log('COMMANDE-CARDE FIRED: ' + this.commande);
-        //console.log(this.commande);
+        console.log(this.commande.__firebaseKey__);
       }
     });
   })();
