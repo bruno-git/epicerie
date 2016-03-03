@@ -16,8 +16,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+      .vue-commande {
+        padding: 20px;
+        background: #ECEFF1;
+      }
       paper-card.items {
         max-width: 600px;
+        margin: 10px;
+      }
+      .section-items {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        @apply(--layout-start);
       }
     </style>
 
@@ -25,48 +35,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
       PAGE MA COMMANDE <span>[[commandeSelected]]</span>
     </div>
-    <div>
-      1- Sélectionnez vos articles de commande
+    <div class="vue-commande">
+      <p>MES ITEMS</p>
+      <div class="section-items">
+        <paper-card class="items" heading="Mon congélateur">
+          <div class="card-content">
+            <b>Le congélateur contient tous les produits surgelés de première qualité</b>
+            <ul>
+              <li>Boeuf Canada AAA</li>
+              <li>Poulet du Québec</li>
+              <li>Porc du Québec</li>
+              <li>Agneau et veau</li>
+              <li>Produits de la mer</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <paper-button on-click="_ouvreCongelateur">Modifier</paper-button>
+          </div>
+        </paper-card>
+        <paper-card class="items" heading="Mon garde-manger">
+          <div class="card-content">
+            <b>Le garde-manger contient une grande variété de nourriture sèche et non périssable tels que:</b>
+            <ul>
+              <li>Pâtes</li>
+              <li>Sauces et conserves</li>
+              <li>Huiles et vinaigrettes</li>
+              <li>Céréales, riz</li>
+            </ul>
+            De quoi combler 90% de vos besoins en épicerie, dans les mêmes marques et format que vous avez l'habitude de consommer.
+          </div>
+          <div class="card-actions">
+            <paper-button on-click="_ouvreGardeManger">Modifier</paper-button>
+          </div>
+        </paper-card>
+      </div>
+      <p>MES LIVRAISONS</p>
+      <paper-card heading="Mes livraisons">
+        <div class="card-content"><span>Lorsque vos achats sont completes, selectionnez le contenu et les dates de vos livraisons</span></div>
+        <div class="card-actions">
+          <paper-button on-click="_ouvreLivraisons">Modifier</paper-button>
+        </div>
+      </paper-card>
     </div>
-    <paper-card class="items" heading="Mon congélateur">
-      <div class="card-content">
-        <b>Le congélateur contient tous les produits surgelés de première qualité</b>
-        <ul>
-          <li>Boeuf Canada AAA</li>
-          <li>Poulet du Québec</li>
-          <li>Porc du Québec</li>
-          <li>Agneau et veau</li>
-          <li>Produits de la mer</li>
-        </ul>
-      </div>
-      <div class="card-actions">
-        <paper-button on-click="_ouvreCongelateur">Modifier</paper-button>
-      </div>
-    </paper-card>
-    <paper-card class="items" heading="Mon garde-manger">
-      <div class="card-content">
-        <b>Le garde-manger contient une grande variété de nourriture sèche et non périssable tels que:</b>
-        <ul>
-          <li>Pâtes</li>
-          <li>Sauces et conserves</li>
-          <li>Huiles et vinaigrettes</li>
-          <li>Céréales, riz</li>
-        </ul>
-        De quoi combler 90% de vos besoins en épicerie, dans les mêmes marques et format que vous avez l'habitude de consommer.
-      </div>
-      <div class="card-actions">
-        <paper-button on-click="_ouvreGardeManger">Modifier</paper-button>
-      </div>
-    </paper-card>
-    <div>
-      2- Sélectionnez vos dates de livraison
-    </div>
-    <paper-card heading="Mes livraisons">
-      <div class="card-content"><span>Lorsque vos achats sont completes, selectionnez le contenu et les dates de vos livraisons</span></div>
-      <div class="card-actions">
-        <paper-button on-click="_ouvreLivraisons">Modifier</paper-button>
-      </div>
-    </paper-card>
   </template>
   <script>
   (function() {

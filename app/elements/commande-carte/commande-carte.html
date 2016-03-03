@@ -14,16 +14,95 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        display: inline;
+        display: inline-flex;
+
+      }
+      .encours, .termine {
+        max-width: 450px;
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        margin: 0px;
+
+        background: #fff;
+        border-radius: 2px;
+        @apply(--paper-card);
+        cursor: pointer;
+        border-left-style: solid;
+        border-left-color: #fff;
+        transition-duration: 0.3s;
+        background-color: rgba(93, 191, 63, 0.08);
+        color: rgb(55, 110, 36);
+      }
+      .encours:hover, .termine:hover {
+        border-left-color: rgba(93, 191, 63, 1);
+        background-color: rgba(93, 191, 63, 0.2);
+      }
+
+      .inactif {
+        max-width: 450px;
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        margin: 0px;
+
+        background: #fff;
+        border-radius: 2px;
+        @apply(--paper-card);
+        cursor: pointer;
+        border-left-style: solid;
+        border-left-color: #fff;
+        background-color: rgba(55, 55, 55, 0.08);
+        transition-duration: 0.3s;
+      }
+      .inactif:hover {
+        color: rgb(2, 2, 2);
+        border-left-color: rgba(55, 55, 55, 1);
+        background-color: rgba(55, 55, 55, 0.2);
+      }
+      paper-card.commande {
+        margin: 10px;
+      }
+      paper-card {
+        border-top: 1px solid #e8e8e8;
+      }
+      .flex-vertical {
+        @apply(--layout-vertical);
       }
     </style>
 
-    <paper-card heading="[[commande.nom]]">
-      <div class="card-content"><span>[[commande.detail]]</span></div>
+    <paper-card class="commande" heading="Commande #[[commande.no]]">
+      <div class="card-content">
+        <div>Création: [[datecreation]]</div>
+        <div class="flex-vertical">
+          <div>
+            <div>titre</div>
+            <div>statut</div>
+          </div>
+          <paper-card id="carteItems" heading="1- Choix des items" on-click="_ouvreCommande" elevation="0">
+            <div class="card-content">[[commande.statut.item]]</div>
+          </paper-card>
+          <paper-card id="carteLivraisons" heading="2- Choix des livraisons" class="bruno" elevation="0">
+            <div class="card-content">
+              <p hidden$="[[commande.statut.livraison]]">Le choix des items doit être confirmé avant de choisir les dates et le contenu des livraisons.</p>
+              [[commande.statut.livraison]]
+            </div>
+          </paper-card>
+          <paper-card id="carteApprobation" heading="3- Approbation du plan alimentaire" class="bruno" elevation="0">
+            <div class="card-content">[[commande.statut.approbation]]</div>
+          </paper-card>
+
+        </div>
+      </div>
+<!--
       <div class="card-actions">
         <paper-button on-click="_ouvreCommande">Modifier</paper-button>
       </div>
+-->
     </paper-card>
+
+
+
 
   </template>
   <script>
@@ -36,7 +115,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         commande: {
           type: Object,
-          notify: false
+          notify: false,
+          observer: '_commandeChanged'
+        },
+        datecreation: {
+          type: String,
+          notify: false,
+          value: null
+        }
+      },
+      _commandeChanged: function() {
+        this.datecreation = new Date(this.commande.creation);
+        //set la classe des 3 boites
+        //this._classeCarte(this.commande.statut.item);
+
+        var clsItem = this._getCarteClasse(this.commande.statut.item);
+        var clsLivraison = this._getCarteClasse(this.commande.statut.livraison);
+        var clsApprobation = this._getCarteClasse(this.commande.statut.approbation);
+        this.toggleClass(clsItem, true, this.$.carteItems);
+        this.toggleClass(clsLivraison, true, this.$.carteLivraisons);
+        this.toggleClass(clsApprobation, true, this.$.carteApprobation);
+      },
+      _getCarteClasse: function(statut) {
+        if (statut === 'en cours') {
+          return 'encours';
+        }
+        else if (statut === 'termine') {
+          return 'termine';
+        }
+        else {
+          return 'inactif';
         }
       },
       _ouvreCommande: function(e) {

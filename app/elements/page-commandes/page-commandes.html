@@ -26,8 +26,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <paper-material class="bienvenue">
       <h1>Bienvenue chez votre epicier</h1>
-      <div>user name: <span>[[userauth.google.displayName]]</span></div>
-      <paper-button on-click="logoff">log off</paper-button>
+      <div>Quelques informations de base pour aider [[userauth.google.displayName]]</div>
+      <paper-button on-click="_fermeIntro">j'ai compris</paper-button>
     </paper-material>
 
     <vue-commandes userauth="[[userauth]]"></vue-commandes>
@@ -45,8 +45,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Object
         }
       },
-      logoff: function() {
-        app.signOut();
+      _fermeIntro: function() {
+        console.log('PAGE-COMMANDES - ferme intro');
       },
       behaviors: [
         Polymer.NeonAnimatableBehavior

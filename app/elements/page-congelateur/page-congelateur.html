@@ -33,18 +33,80 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 20px 20px;
         text-align: center;
       }
+
+      .onglets {
+        background: rgba(107, 25, 25, 0.18);
+
+        position: relative;
+        height: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        @apply(--layout-flex);
+      }
+      .onglet {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        @apply(--layout-flex-auto);
+      }
+      .onglet div:hover {
+        background: rgba(107, 25, 25, 0.5);
+      }
+      .onglet div {
+        /*padding: 10px 10px 10px 20px;*/
+        border-bottom-style: solid;
+        /*border-bottom-color: rgba(107, 25, 25, 0.18);*/
+        cursor: pointer;
+        background: rgba(107, 25, 25, 0.18);
+      }
+      paper-tabs paper-tab:hover {
+        background: rgba(19, 57, 82, 0.2);
+      }
+      .information {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        height: 60px;
+      }
+      .information > *{
+        margin-left: 10px;
+      }
       /*
-      paper-tabs {
-        @apply(--layout-start-justified);
-        background-color: #ECEFF1;
-        color: blue;
-
-      }*/
-
+      .iron-selected {
+        border-bottom-color: rgba(107, 25, 25, 1);
+        font-weight: bold;
+      }
+      */
+      /*
+      paper-tabs paper-tab.iron-selected {
+        color: black;
+      }
+      */
     </style>
-
-    <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
-
+    <div id="breadcrumb">
+      <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
+      <span>fil d'Ariane ici...</span>
+    </div>
+    <div id="place-information" class="information">
+      <iron-image src="../../images/kitchen_freezer.gif"
+                  style="width:50px; height:50px"
+                  sizing="contain"></iron-image>
+      <span>Items du congélateur</span>
+    </div>
+    <div id="onglets">
+      <iron-selector selected="{{selected2}}" class="onglet">
+        <div>Poulet</div>
+        <div>Boeuf</div>
+        <div>Poulet</div>
+        <div>Boeuf</div>
+        <div>Poulet</div>
+        <div>Boeuf</div>
+        <div>Poulet</div>
+        <div>Boeuf</div>
+        <div>Poulet</div>
+        <div>Boeuf</div>
+        <div>Poulet</div>
+        <div>Boeuf</div>
+      </iron-selector>
+    </div>
     <paper-material class="intro">
       <h1>Items du congélateur:</h1>
       Boeuf Canada AAA
@@ -89,12 +151,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         selected: {
           type: Number,
-          value: 0,
+          value: 1,
           observer: '_selectedChanged'
         },
         categorie2: {
           type: String,
           value: '*'
+        },
+        selected2: {
+          type: Number,
+          value: 1
         }
       },
       isPoulet: function(item){

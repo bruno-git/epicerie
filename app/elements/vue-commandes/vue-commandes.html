@@ -44,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          log>
     </firebase-collection>
 
-    <div>MES COMMANDES</div>
+    <p>MES COMMANDES</p>
     <p class="zero-commande" hidden="[[_commandesVides(listecommandes.length)]]">Aucune commande! Cliquez sur le bouton d'action (+) pour créer votre première commande. ==></p>
 
 <!--
@@ -58,7 +58,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-repeat" items="[[listecommandes]]" as="commande">
       <commande-carte commande="[[commande]]"></commande-carte>
     </template>
-    <paper-fab class="red" icon="add" on-click="_nouvelleCommande"></paper-fab>
+    <paper-fab id="fabCommande" class="red" icon="add" on-click="_nouvelleCommande"></paper-fab>
+    <paper-tooltip for="fabCommande" position="left" animation-delay="0">Nouvelle commande</paper-tooltip>
   </template>
   <script>
   (function() {
@@ -80,7 +81,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       _nouvelleCommande: function() {
-        var nouvelleCommande = this.$.firebaseUserCommandes.add({active: 'oui', nom: 'Nouvelle Commande', detail: 'detail de la nouvelle commande!'});
+        //obtient le numéro de la nouvelle commande
+        var ref = new Firebase(this.url);
+        var noCommande;
+        ref.once('value', function(snapshot) {
+          noCommande = snapshot.numChildren() + 1;
+        });
+        //creation de la nouvelle commande dans le profil
+        var nouvelleCommande = this.$.firebaseUserCommandes.add({
+          active: 'oui',
+          nom: 'Nouvelle Commande',
+          detail: 'detail de la nouvelle commande!',
+          creation: Firebase.ServerValue.TIMESTAMP,
+          no: noCommande,
+          statut: {
+            item: 'en cours'
+          }
+        });
+        //creation de la commande
         this.fire('nouvelle-commande', {commandeCle: nouvelleCommande.key()});
       },
       _commandesVides: function(length) {
