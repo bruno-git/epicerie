@@ -32,11 +32,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <div>
-      <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
-      PAGE MA COMMANDE <span>[[commandeSelected]]</span>
-    </div>
     <div class="vue-commande">
+      <div>[[commandeSelected]]</div>
       <p>MES ITEMS</p>
       <div class="section-items">
         <paper-card class="items" heading="Mon congélateur">
@@ -91,9 +88,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Object,
           notify: false
         }
-      },
-      _back: function() {
-        this.fire('change-page', {page: 'menu'});
       },
       _ouvreCongelateur: function() {
         this.fire('change-page', {page: 'congelateur'});

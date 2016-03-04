@@ -72,7 +72,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     <paper-material elevation="1" class="nav-top">
       <div class="nav-block">
-        <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
+        <paper-icon-button icon="icons:arrow-back"
+                           on-click="_back"
+                           hidden$="[[isBackButtonHidden]]"></paper-icon-button>
         <div>[[pageName]]</div>
       </div>
       <div class="logo">
@@ -117,8 +119,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         pageName: {
           type: String,
-          value: 'allo',
-          notify: true
+          notify: false,
+          value: 'menu',
+          observer: '_pageNameChanged'
+        },
+        userauth: {
+          type: Object,
+          notify: false
+        },
+        isBackButtonHidden: {
+          type: Boolean,
+          value: true
+        }
+      },
+      _pageNameChanged: function(newPageName) {
+        if (newPageName === 'menu') {
+          console.log('true');
+          this.isBackButtonHidden = true;
+        }
+        else {
+          console.log('false');
+          this.isBackButtonHidden = false;
+        }
+      },
+      _back: function() {
+        console.log('APP-EN-TETE _back() method called');
+        console.log('currentPage:' + this.pageName);
+        this.fire('back-page', {currentPage: this.pageName});
+      },
+      _menuSelection: function(e) {
+        var _selection = this.$.menuSelection.selected;
+        //reset the selection
+        this.$.menuSelection.selected = null;
+        if (_selection === 0){
+          console.log('Action mes commandes');
+        }
+        else if (_selection ===1) {
+          console.log('Action mon profil');
+          this.fire('change-page', {page: 'profil'});
+//TODO FIRE L'EVENT DEPUIS L'ELEMENT QUI SERA EXTRAIT (HEADER PANEL)
+          //this.fire("change-page", {page: 'profil'});
+          //Combiner cette action dans ouvreCommande ET changePage pour eviter
+          //toute assignation manuelle... (2e occurence)
+          //this.pageSelected = 4;
+          //this.pageName = 'MON PROFIL';
+        }
+        else if (_selection === 2) {
+          console.log('Action deconnexion');
+          app.signOut();
         }
       }
     });

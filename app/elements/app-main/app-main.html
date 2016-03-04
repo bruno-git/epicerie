@@ -29,7 +29,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- HEADER PANEL -->
     <app-en-tete page-name="[[pageName]]"
-                 userauth="[[userauth]]"></app-en-tete>
+                 userauth="[[userauth]]"
+                 on-back-page="backPage"
+                 on-change-page="changePage"></app-en-tete>
 
     <!-- div pour compenser l'espace du header -->
     <div style="height: 60px"></div>
@@ -107,21 +109,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         //console.log(e.detail);
         this.commandeSelected = e.detail.commandeCle;
         console.log('APP-MAIN COMMANDE SELECTED CHANGED: ' + this.commandeSelected);
-        //TODO rendre dynamique base sur la cle...
-        this.pageSelected = 1;
-//Combiner cette action dans ouvreCommande ET changePage pour eviter
-//toute assignation manuelle...
-        this.pageName = 'MA COMMANDE';
+        this.gotoPage('ma-commande');
       },
       changePage: function(e) {
-        console.log(e);
-        if (e.detail.page == 'menu') {
+        this.gotoPage(e.detail.page);
+      },
+      backPage: function(e) {
+        var sourcePage = e.detail.currentPage;
+        console.log('BACK PAGE CALLED: ' + sourcePage);
+        if (sourcePage === 'ma-commande') {
+          //goto menu
+          this.gotoPage('menu');
+        }
+        else if (sourcePage === 'congelateur') {
+          this.gotoPage('ma-commande');
+        }
+        else if (sourcePage === 'profil') {
+          this.gotoPage('menu');
+        }
+      },
+      gotoPage: function(newPageName) {
+        if (newPageName == 'menu') {
           this.pageSelected = 0;
         }
-        if (e.detail.page == 'ma-commande') {
+        else if (newPageName == 'ma-commande') {
+          console.log('APP-MAIN CHANGE PAGE: MA-COMMANDE');
           this.pageSelected = 1;
         }
-        if (e.detail.page == 'congelateur') {
+        else if (newPageName == 'congelateur') {
           console.log('APP-MAIN CHANGE PAGE: CONGELATEUR');
 
           this.filterZone = 'congelateur';
@@ -129,33 +144,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           console.log('filterZone: ' + this.filterZone);
         }
-        if (e.detail.page == 'profil') {
+        else if (newPageName == 'profil') {
           console.log('APP-MAIN CHANGE PAGE: PROFIL');
           this.pageSelected = 4;
         }
-        this.pageName = e.detail.page;
-      },
-      _menuSelection: function(e) {
-        var _selection = this.$.menuSelection.selected;
-        //reset the selection
-        this.$.menuSelection.selected = null;
-        if (_selection === 0){
-          console.log('Action mes commandes');
-        }
-        else if (_selection ===1) {
-          console.log('Action mon profil');
-//TODO FIRE L'EVENT DEPUIS L'ELEMENT QUI SERA EXTRAIT (HEADER PANEL)
-          //this.fire("change-page", {page: 'profil'});
-          //Combiner cette action dans ouvreCommande ET changePage pour eviter
-          //toute assignation manuelle... (2e occurence)
-          this.pageSelected = 4;
-          this.pageName = 'MON PROFIL';
-        }
-        else if (_selection === 2) {
-          console.log('Action deconnexion');
-          app.signOut();
-        }
+        this.pageName = newPageName;
       }
+
     });
   })();
   </script>

@@ -81,10 +81,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       */
     </style>
+<!-- titre maintenant dans l'element app-en-tete
     <div id="breadcrumb">
       <paper-icon-button icon="icons:arrow-back" on-click="_back"></paper-icon-button>
       <span>fil d'Ariane ici...</span>
     </div>
+-->
     <div id="place-information" class="information">
       <iron-image src="../../images/kitchen_freezer.gif"
                   style="width:50px; height:50px"
@@ -193,7 +195,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.monid.render();
       },
       _back: function() {
-        this.fire("change-page", {page: 'ma-commande'});
+        this.fire('change-page', {page: 'ma-commande'});
       }
     });
   })();
